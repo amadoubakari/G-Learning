@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group_sp"
+        android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/ic_arrow_drop_down_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Home" />
+        <item
+            android:id="@+id/menu_bible"
+            android:icon="@drawable/ic_arrow_drop_down_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="About" />
+        <item
+            android:id="@+id/menu_audio_bible"
+            android:icon="@drawable/ic_arrow_drop_down_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Connexion" />
+        <item
+            android:id="@+id/subheader"
+            android:title="Sous Menu">
+            <menu>
+                <item
+                    android:id="@+id/nav_all_email"
+                    android:icon="@drawable/baseline_account_circle_white_48dp"
+                    android:title="Sous menu item"/>
+                <item
+                    android:id="@+id/nav_all_email2"
+                    android:icon="@drawable/baseline_account_circle_white_48dp"
+                    android:title="Sous menu item"/>
+            </menu>
+        </item>
+    </group>
+</menu>
