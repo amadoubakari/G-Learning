@@ -89,6 +89,7 @@ public abstract class AbstractFragment extends Fragment {
             this.mainActivity = (IMainActivity) activity;
             this.session = (Session) this.mainActivity.getSession();
         }
+        mainActivity.hideNavigationView(hideNavigationBottomView());
         // on récupère l'état précédent du fragment (la toute 1ère fois, seul le booléen hasBeenVisited représente quelque chose)
         previousState = session.getCoreState(getNumView());
         // mise à jour du fragment fille en plusieurs étapes
@@ -473,6 +474,10 @@ public abstract class AbstractFragment extends Fragment {
     protected abstract void notifyEndOfUpdates();
 
     protected abstract void notifyEndOfTasks(boolean runningTasksHaveBeenCanceled);
+
+    protected abstract boolean hideNavigationBottomView() ;
+
+
 
 
 }

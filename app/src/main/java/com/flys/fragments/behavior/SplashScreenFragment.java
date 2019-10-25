@@ -56,4 +56,11 @@ public class SplashScreenFragment extends AbstractFragment {
     protected void notifyEndOfTasks(boolean runningTasksHaveBeenCanceled) {
 
     }
+
+    //Nous cachons le bottom navigation view
+
+    @Override
+    protected boolean hideNavigationBottomView() {
+        return true;
+    }
 }
