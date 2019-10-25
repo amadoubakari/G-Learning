@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.flys.dao.service.IDao;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -55,6 +56,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     private DrawerLayout drawerLayout;
     //Action sur l'icone du menu principal
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    //Bottom navigation view
+    private BottomNavigationView bottomNavigationView;
 
     // constructeur
     public AbstractActivity() {
@@ -66,6 +69,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         }
         // jsonMapper
         jsonMapper = new ObjectMapper();
+
     }
 
     // implémentation IMainActivity --------------------------------------------------------------------
@@ -152,6 +156,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.main_content);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -329,6 +334,15 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         @Override
         public CharSequence getPageTitle(int position) {
             return getFragmentTitle(position);
+        }
+    }
+
+    @Override
+    public void hideNavigationView(boolean hide) {
+        if(hide){
+            bottomNavigationView.setVisibility(View.GONE);
+        }else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
         }
     }
 

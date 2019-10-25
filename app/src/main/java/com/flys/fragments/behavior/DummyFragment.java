@@ -112,4 +112,9 @@ public class DummyFragment extends AbstractFragment {
     // il faut en général remettre la vue dans un état différent de celui qu'elle avait pendant qu'elle attendait les réponses des tâches asynchrones
 
   }
+
+  @Override
+  protected boolean hideNavigationBottomView() {
+    return false;
+  }
 }

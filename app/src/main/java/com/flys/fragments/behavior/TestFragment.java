@@ -51,4 +51,8 @@ public class TestFragment extends AbstractFragment {
     protected void notifyEndOfTasks(boolean runningTasksHaveBeenCanceled) {
 
     }
+    @Override
+    protected boolean hideNavigationBottomView() {
+        return false;
+    }
 }

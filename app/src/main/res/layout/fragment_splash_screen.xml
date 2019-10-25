@@ -14,7 +14,7 @@
         android:layout_height="477dp"
         android:layout_gravity="center"
         android:alpha="0.5"
-        app:srcCompat="@drawable/ic_arrow_drop_down_24px" />
+        app:srcCompat="@drawable/books" />
 
     <TextView
         android:id="@+id/textView7"

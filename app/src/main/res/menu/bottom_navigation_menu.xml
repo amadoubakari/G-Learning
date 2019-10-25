@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Accueil"
+        android:id="@+id/bottomNavigationAlarmMenuId"
+        android:icon="@drawable/ic_home_24px"/>
+
+    <item android:title="Lecture"
+        android:id="@+id/bottomNavigationClockMenuId"
+        android:icon="@drawable/ic_book_24px"/>
+
+    <item android:title="Me"
+        android:id="@+id/bottomNavigationStopWatchMenuId"
+        android:icon="@drawable/ic_account_circle_24px"/>
+
+</menu>

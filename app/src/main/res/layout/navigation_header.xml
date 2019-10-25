@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:paddingLeft="16dp"
-    android:background="@color/colorPrimary"
+    android:background="@color/red_A700"
     android:gravity="bottom"
     android:paddingBottom="16dp"
     android:paddingRight="16dp"
@@ -52,7 +52,7 @@
             android:layout_width="177dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_arrow_drop_down_24px" />
+            app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp" />
     </LinearLayout>
 
 </LinearLayout>
