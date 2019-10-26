@@ -13,7 +13,6 @@
         android:layout_width="120dp"
         android:layout_height="477dp"
         android:layout_gravity="center"
-        android:alpha="0.5"
         app:srcCompat="@drawable/books" />
 
     <TextView
@@ -22,7 +21,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
-        android:text="Open source"
+        android:text="@string/app_name"
         android:textSize="14dp"
         android:textStyle="bold" />
 
@@ -33,7 +32,7 @@
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
         android:text="Version 1.0.0"
-        android:textColor="@color/blue_500"
+        android:textColor="@color/red_A700"
         android:textSize="12dp" />
 
 
