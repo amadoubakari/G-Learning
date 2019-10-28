@@ -32,7 +32,7 @@
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
         android:text="Version 1.0.0"
-        android:textColor="@color/blue_500"
+        android:textColor="@color/red_A700"
         android:textSize="12dp" />
 
 

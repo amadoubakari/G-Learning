@@ -2,12 +2,15 @@ package com.flys.architecture.core;
 
 import android.os.Bundle;
 
+import com.flys.common_tools.utils.Utils;
 import com.flys.dao.service.IDao;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -19,6 +22,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.flys.R;
 import com.flys.architecture.custom.CustomTabLayout;
@@ -234,6 +238,28 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (session.getAction() == ISession.Action.NONE) {
             navigateToView(getFirstView(), ISession.Action.NONE);
         }
+
+        //Navigation drawer
+        NavigationView navigationView = findViewById(R.id.navigation);
+        //Nous appliquons le font aussi au menu
+        Utils.applyFontStyleToMenu(this,navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
+        //Action sur les éléments de menu
+        navigationView.setNavigationItemSelectedListener(
+                menuItem -> {
+                    // set item as selected to persist highlight
+                    menuItem.setChecked(true);
+                    Toast.makeText(this,"Home menu",Toast.LENGTH_LONG).show();
+                    // close drawer when item is tapped
+                    switch (menuItem.getItemId()) {
+                        case R.id.menu_home:
+                            Toast.makeText(this,"Home menu",Toast.LENGTH_LONG).show();
+                            break;
+                        default:
+                            break;
+                    }
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                });
         // on passe la main à l'activité fille
         onCreateActivity();
     }
