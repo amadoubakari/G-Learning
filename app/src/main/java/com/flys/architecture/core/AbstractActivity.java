@@ -35,6 +35,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity {
     // couche [DAO]
     private IDao dao;
@@ -62,6 +64,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     private ActionBarDrawerToggle actionBarDrawerToggle;
     //Bottom navigation view
     private BottomNavigationView bottomNavigationView;
+    //image du profil
+    private CircleImageView profile;
 
     // constructeur
     public AbstractActivity() {
@@ -87,6 +91,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (IS_DEBUG_ENABLED) {
             Log.d(className, String.format("navigation vers vue %s sur action %s", position, action));
         }
+        //
+        mViewPager.setScrollingEnabled(true);
         // affichage nouveau fragment
         mViewPager.setCurrentItem(position);
         // on note l'action en cours lors de ce changement de vue
@@ -239,20 +245,24 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             navigateToView(getFirstView(), ISession.Action.NONE);
         }
 
+        //Action sur les éléments de menu
         //Navigation drawer
         NavigationView navigationView = findViewById(R.id.navigation);
-        //Nous appliquons le font aussi au menu
+        //Navigation drawer
+        View headerNavView = navigationView.getHeaderView(0);
+
+        //Nous appliquons le même style aux éléments de menu
         Utils.applyFontStyleToMenu(this,navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
-        //Action sur les éléments de menu
+
+        profile = headerNavView.findViewById(R.id.profile_image);
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
                     // set item as selected to persist highlight
                     menuItem.setChecked(true);
-                    Toast.makeText(this,"Home menu",Toast.LENGTH_LONG).show();
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_home:
-                            Toast.makeText(this,"Home menu",Toast.LENGTH_LONG).show();
+                           navigateToView(0, ISession.Action.SUBMIT);
                             break;
                         default:
                             break;
@@ -260,6 +270,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 });
+
         // on passe la main à l'activité fille
         onCreateActivity();
     }

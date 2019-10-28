@@ -7,7 +7,7 @@
 
         <item
             android:id="@+id/menu_home"
-            android:icon="@drawable/ic_arrow_drop_down_24px"
+            android:icon="@drawable/ic_home_24px"
             app:itemTextAppearance="@style/menu_font_style"
             android:title="Home" />
         <item
