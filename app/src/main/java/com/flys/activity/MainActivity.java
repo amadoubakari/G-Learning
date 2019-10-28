@@ -8,6 +8,7 @@ import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.Session;
 import com.flys.dao.service.Dao;
 import com.flys.dao.service.IDao;
+import com.flys.fragments.behavior.HomeFragment_;
 import com.flys.fragments.behavior.SplashScreenFragment_;
 import com.flys.fragments.behavior.TestFragment_;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AbstractActivity {
   @Override
   protected AbstractFragment[] getFragments() {
     // todo : définir les fragments ici
-    return new AbstractFragment[]{new SplashScreenFragment_(),new TestFragment_()};
+    return new AbstractFragment[]{new SplashScreenFragment_(),new HomeFragment_()};
   }
 
 
