@@ -40,7 +40,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 2;
+    int FRAGMENTS_COUNT = 3;
 
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view

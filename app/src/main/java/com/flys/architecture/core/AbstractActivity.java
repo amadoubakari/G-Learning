@@ -262,7 +262,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_home:
-                           navigateToView(0, ISession.Action.SUBMIT);
+                           navigateToView(2, ISession.Action.SUBMIT);
                             break;
                         default:
                             break;

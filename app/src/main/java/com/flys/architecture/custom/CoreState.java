@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.flys.architecture.core.MenuItemState;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.flys.fragments.state.AlphabetFragmentState;
 import com.flys.fragments.state.HomeFragmentState;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 // todo : ajouter ici les sous-classes de [CoreState]
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = HomeFragmentState.class)}
+        @JsonSubTypes.Type(value = HomeFragmentState.class),
+        @JsonSubTypes.Type(value = AlphabetFragmentState.class)}
 )
 public class CoreState {
     // fragment visité ou non
