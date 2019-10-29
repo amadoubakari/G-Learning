@@ -31,4 +31,9 @@
         <item name="android:textColor">@color/red_A700</item>
         <item name="android:fontFamily">@font/libre_franklin_thin</item>
     </style>
+    <!--  Bottom navigation view style -->
+    <style name="Widget.BottomNavigationView"   parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:textSize">12dp</item>
+    </style>
 </resources>

@@ -5,7 +5,7 @@
         android:color="@color/red_A700" />
     <item
         android:state_checked="false"
-        android:color="@color/grey_400" />
+        android:color="@color/grey_600" />
     <item
         android:state_focused="false"
         android:color="@color/red_100" />

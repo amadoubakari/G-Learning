@@ -1,20 +1,21 @@
 package com.flys.fragments.behavior;
 
-import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.flys.R;
+import com.flys.architecture.core.AbstractFragment;
+import com.flys.architecture.custom.CoreState;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-import com.flys.R;
-import com.flys.architecture.core.AbstractFragment;
-import com.flys.architecture.core.ISession;
-import com.flys.architecture.custom.CoreState;
 
-@EFragment(R.layout.fragment_splash_screen)
+@EFragment(R.layout.fragment_home_layout)
 @OptionsMenu(R.menu.menu_vide)
-public class SplashScreenFragment extends AbstractFragment {
+public class HomeFragment extends AbstractFragment {
+
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -22,19 +23,17 @@ public class SplashScreenFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return 0;
+        return 1;
     }
 
     @Override
     protected void initFragment(CoreState previousState) {
-        ((AppCompatActivity) mainActivity).getSupportActionBar().hide();
+       ((AppCompatActivity) mainActivity).getSupportActionBar().show();
     }
 
     @Override
     protected void initView(CoreState previousState) {
-        new Handler().postDelayed(() -> {
-            mainActivity.navigateToView(1, ISession.Action.SUBMIT);
-        }, 3000);
+
     }
 
     @Override
@@ -57,10 +56,8 @@ public class SplashScreenFragment extends AbstractFragment {
 
     }
 
-    //Nous cachons le bottom navigation view
-
     @Override
     protected boolean hideNavigationBottomView() {
-        return true;
+        return false;
     }
 }
