@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EFragment(R.layout.fragment_alphabet_layout)
-@OptionsMenu(R.menu.menu_vide)
+@OptionsMenu(R.menu.menu_home)
 public class AlphabetFragment extends AbstractFragment {
 
     @ViewById(R.id.recyclerview)
