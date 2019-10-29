@@ -50,6 +50,7 @@ public class AlphabetFragment extends AbstractFragment {
         alphabets.add(new Alphabet("u"));
         alphabets.add(new Alphabet("e"));
         alphabets.add(new Alphabet("o"));
+        alphabets.add(new Alphabet("ə"));
         alphabets.add(new Alphabet("b"));
         alphabets.add(new Alphabet("ɓ"));
         alphabets.add(new Alphabet("c"));
