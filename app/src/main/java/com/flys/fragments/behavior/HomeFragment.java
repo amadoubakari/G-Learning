@@ -1,7 +1,5 @@
 package com.flys.fragments.behavior;
 
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.flys.R;
@@ -12,7 +10,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
 
-@EFragment(R.layout.fragment_home_layout)
+@EFragment(R.layout.fragment_fish_layout)
 @OptionsMenu(R.menu.menu_vide)
 public class HomeFragment extends AbstractFragment {
 

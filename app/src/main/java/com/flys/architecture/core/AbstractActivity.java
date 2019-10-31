@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -166,7 +167,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.main_content);
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -252,7 +253,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         View headerNavView = navigationView.getHeaderView(0);
 
         //Nous appliquons le même style aux éléments de menu
-        Utils.applyFontStyleToMenu(this,navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
+        Utils.applyFontStyleToMenu(this, navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
 
         profile = headerNavView.findViewById(R.id.profile_image);
         navigationView.setNavigationItemSelectedListener(
@@ -261,8 +262,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     menuItem.setChecked(true);
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
-                        case R.id.menu_home:
-                           navigateToView(2, ISession.Action.SUBMIT);
+                        case R.id.menu_alphabet:
+                            navigateToView(2, ISession.Action.SUBMIT);
                             break;
                         default:
                             break;
@@ -271,6 +272,27 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     return true;
                 });
 
+        //Action listener on bottom navigation view
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                return false;
+            }
+        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.bottom_menu_home:
+                    Toast.makeText(AbstractActivity.this,"Home",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.bottom_menu_book:
+                    navigateToView(2, ISession.Action.SUBMIT);
+                    break;
+                case R.id.bottom_menu_me:
+                    Toast.makeText(AbstractActivity.this,"Me",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            return true;
+        });
         // on passe la main à l'activité fille
         onCreateActivity();
     }
@@ -376,9 +398,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     @Override
     public void hideNavigationView(boolean hide) {
-        if(hide){
+        if (hide) {
             bottomNavigationView.setVisibility(View.GONE);
-        }else {
+        } else {
             bottomNavigationView.setVisibility(View.VISIBLE);
         }
     }
