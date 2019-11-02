@@ -7,7 +7,7 @@
         android:title="Connexion" />
     <item
         android:id="@+id/search"
-        android:icon="@drawable/books"
+        android:icon="@drawable/ic_search_24px"
         android:orderInCategory="300"
         android:title="Rechercher"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
