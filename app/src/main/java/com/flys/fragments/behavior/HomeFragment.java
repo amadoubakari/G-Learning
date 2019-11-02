@@ -10,8 +10,8 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
 
-@EFragment(R.layout.fragment_fish_layout)
-@OptionsMenu(R.menu.menu_vide)
+@EFragment(R.layout.fragment_cruche_layout)
+@OptionsMenu(R.menu.menu_home)
 public class HomeFragment extends AbstractFragment {
 
     @Override
