@@ -3,4 +3,9 @@
 
   <!-- nom de l'application -->
   <string name="app_name">Dubun</string>
+    <string name="msg_c_quoi">C\'est quoi?</string>
+  <string name="msg_poisson">poisson</string>
+  <string name="msg_arc">arc</string>
+  <string name="msg_cruche">cruche</string>
+  <string name="msg_feuille">feuille</string>
 </resources>

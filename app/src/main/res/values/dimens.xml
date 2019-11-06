@@ -140,4 +140,11 @@
     </dimen>
     <!-- Toolbars -->
     <!-- Tooltips -->
+    <!--   Custom -->
+    <dimen name="material_component_test_header">38dp</dimen>
+    <dimen name="material_component_text_medium">34dp</dimen>
+    <dimen name="material_component_image_padding_top">10dp</dimen>
+    <dimen name="material_component_image_padding_bottom">10dp</dimen>
+    <dimen name="layout_padding_left">10dp</dimen>
+    <dimen name="layout_padding_10dp">10dp</dimen>
 </resources>
