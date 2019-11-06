@@ -2,6 +2,8 @@ package com.flys.architecture.core;
 
 import android.os.Bundle;
 
+import com.flys.common_tools.dialog.AbstractDialogActivity;
+import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
 import com.flys.common_tools.utils.Utils;
 import com.flys.dao.service.IDao;
 import com.google.android.material.appbar.AppBarLayout;
@@ -38,7 +40,7 @@ import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity {
+public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity , AbstractDialogFragmentInterface {
     // couche [DAO]
     private IDao dao;
     // la session
@@ -265,6 +267,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                         case R.id.menu_alphabet:
                             navigateToView(2, ISession.Action.SUBMIT);
                             break;
+                        case R.id.menu_recommander:
+                            showEditDialog();
+                            break;
                         default:
                             break;
                     }
@@ -357,6 +362,19 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //Récupération du texte issu de la boite de dialogue
+    @Override
+    public void receivedDate(String data) {
+        Utils.shareText(this, "Dubun GUIZIGA", data + "  https://play.google.com/store/apps/details?id=com.sprintpaycommunity", "Recommandation de l'application.");
+    }
+
+    private void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher,R.style.AlertDialogTheme);
+        dialogActivity.show(fm, "fragment_edit_name");
+    }
+
 
     // le gestionnaire de fragments --------------------------------
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

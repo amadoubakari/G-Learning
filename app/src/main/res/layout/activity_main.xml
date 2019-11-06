@@ -37,7 +37,6 @@
             android:layout_height="match_parent"
             android:paddingTop="?attr/actionBarSize"
             android:background="@android:color/white"
-            android:paddingLeft="20dp"
             android:paddingBottom="56dp"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
