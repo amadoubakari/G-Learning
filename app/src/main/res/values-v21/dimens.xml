@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_component_image_padding_top">10dp</dimen>
+    <dimen name="layout_padding_left">10dp</dimen>
+    <dimen name="layout_padding_10dp">10dp</dimen>
+</resources>
