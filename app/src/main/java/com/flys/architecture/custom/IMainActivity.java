@@ -42,6 +42,13 @@ public interface IMainActivity extends IDao {
     // nombre de fragments de l'application
     int FRAGMENTS_COUNT = 3;
 
+    //Fragments number
+    int HOME_FRAGMENT=1;
+    int FISH_FRAGMENT=2;
+    int DOG_FRAGMENT=3;
+    int FISH_AND_DOG_FRAGMENT=4;
+    int LEAF_FRAGMENT=5;
+
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view
     void hideNavigationView(boolean hide);

@@ -1,7 +1,5 @@
 package com.flys.fragments.behavior;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.CoreState;
@@ -9,11 +7,9 @@ import com.flys.architecture.custom.CoreState;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-
-@EFragment(R.layout.fragment_bottle_layout)
+@EFragment(R.layout.fragment_dog_layout)
 @OptionsMenu(R.menu.menu_home)
-public class HomeFragment extends AbstractFragment {
-
+public class DogFragment extends AbstractFragment {
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -21,12 +17,12 @@ public class HomeFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.HOME_FRAGMENT;
+        return mainActivity.DOG_FRAGMENT;
     }
 
     @Override
     protected void initFragment(CoreState previousState) {
-       ((AppCompatActivity) mainActivity).getSupportActionBar().show();
+
     }
 
     @Override
