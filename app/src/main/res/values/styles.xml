@@ -64,9 +64,9 @@
     </style>
 
     <style name="BodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
-        <item name="android:textColor">@color/red_A700</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="android:fontFamily">@font/libre_franklin_thin</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
