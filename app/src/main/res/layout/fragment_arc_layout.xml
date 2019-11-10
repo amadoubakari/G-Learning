@@ -41,12 +41,8 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/libre_franklin"
                 android:text="@string/msg_i_mike"
-                android:textSize="@dimen/material_component_test_header"
-                android:textStyle="bold" />
+                style="@style/style_text_header_medium" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -72,13 +68,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/libre_franklin"
                 android:gravity="right"
                 android:text="i leke"
-                android:textSize="@dimen/material_component_test_header"
-                android:textStyle="bold" />
+                style="@style/style_text_header_medium" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,13 +86,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/libre_franklin"
                 android:gravity="right"
                 android:text="leke"
-                android:textSize="@dimen/material_component_test_header"
-                android:textStyle="bold" />
+                style="@style/style_text_header_medium" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -116,13 +104,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/libre_franklin"
                 android:gravity="right"
                 android:text="ke"
-                android:textSize="@dimen/material_component_test_header"
-                android:textStyle="bold" />
+                style="@style/style_text_header_medium" />
 
         </LinearLayout>
         <LinearLayout
