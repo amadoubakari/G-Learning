@@ -311,6 +311,7 @@
         <TextView
             android:id="@+id/textView18"
             style="@style/textMedium"
+            android:gravity="left"
             android:text="kolobo"
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintHorizontal_bias="0.285"
@@ -320,15 +321,17 @@
         <TextView
             android:id="@+id/textView19"
             style="@style/textMedium"
-            android:text="mike     "
+            android:gravity="left"
+            android:text="mike"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
             app:layout_constraintTop_toTopOf="@+id/textView18" />
 
         <TextView
             android:id="@+id/textView21"
             style="@style/textMedium"
+            android:gravity="left"
             android:text="kukulum"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
@@ -343,19 +346,35 @@
 
         <TextView
             android:id="@+id/textView22"
+            style="@style/textMediumSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:text="bouteille"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.153"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
         <TextView
             android:id="@+id/textView23"
+            style="@style/textMediumSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="quoi"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/guideline18" />
+
+        <TextView
+            android:id="@+id/textView25"
+            style="@style/textMediumSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cruche"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
