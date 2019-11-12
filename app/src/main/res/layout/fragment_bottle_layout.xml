@@ -370,22 +370,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="674dp" />
+            app:layout_constraintGuide_begin="641dp" />
 
         <LinearLayout
             android:layout_width="409dp"
             android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline15">
+            app:layout_constraintStart_toStartOf="@+id/guideline">
 
             <ImageView
                 android:id="@+id/previous"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
+                android:layout_weight="0.8"
                 android:alpha="0.7"
                 android:src="@drawable/ic_keyboard_arrow_left_24px" />
 
@@ -402,10 +404,10 @@
 
             <ImageView
                 android:id="@+id/next"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
+                android:layout_weight="0.8"
                 android:alpha="0.7"
                 android:src="@drawable/ic_keyboard_arrow_right_24px" />
         </LinearLayout>

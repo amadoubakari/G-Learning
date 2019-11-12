@@ -2,14 +2,22 @@ package com.flys.fragments.behavior;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
+import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.CoreState;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
 @EFragment(R.layout.fragment_dog_fish_layout)
 @OptionsMenu(R.menu.menu_home)
 public class FishDogFragment extends AbstractFragment {
+
+    @Click(R.id.next)
+    protected void nextChapitre() {
+        mainActivity.navigateToView(mainActivity.LEAF_FRAGMENT, ISession.Action.SUBMIT);
+    }
+
     @Override
     public CoreState saveFragment() {
         return new CoreState();

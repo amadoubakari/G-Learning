@@ -40,7 +40,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 3;
+    int FRAGMENTS_COUNT = 6;
 
     //Fragments number
     int HOME_FRAGMENT=1;
