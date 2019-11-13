@@ -2,21 +2,14 @@ package com.flys.fragments.behavior;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
-import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.CoreState;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_leaf_layout)
+@EFragment(R.layout.fragment_bottle_layout)
 @OptionsMenu(R.menu.menu_home)
-public class LeafFragment extends AbstractFragment {
-
-    @Click(R.id.next)
-    protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.CRUCHE_FRAGMENT, ISession.Action.SUBMIT);
-    }
+public class BottleFragment extends AbstractFragment {
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -24,7 +17,7 @@ public class LeafFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.LEAF_FRAGMENT;
+        return mainActivity.BOTTLE_FRAGMENT;
     }
 
     @Override

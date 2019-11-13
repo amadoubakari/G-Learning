@@ -9,13 +9,13 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_leaf_layout)
+@EFragment(R.layout.fragment_arc_layout)
 @OptionsMenu(R.menu.menu_home)
-public class LeafFragment extends AbstractFragment {
+public class ArcFragment extends AbstractFragment {
 
     @Click(R.id.next)
     protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.CRUCHE_FRAGMENT, ISession.Action.SUBMIT);
+        mainActivity.navigateToView(mainActivity.BOTTLE_FRAGMENT, ISession.Action.SUBMIT);
     }
     @Override
     public CoreState saveFragment() {
@@ -24,7 +24,7 @@ public class LeafFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.LEAF_FRAGMENT;
+        return mainActivity.ARC_FRAGMENT;
     }
 
     @Override
