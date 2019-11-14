@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="@dimen/layout_padding_10dp"
-        android:paddingRight="@dimen/layout_padding_10dp">
+        android:paddingRight="@dimen/layout_padding_10dp"
+        >
 
         <TextView
             android:id="@+id/textView48"
@@ -310,16 +311,20 @@
         <TextView
             android:id="@+id/textView18"
             style="@style/textMedium"
+            android:layout_marginEnd="8dp"
             android:gravity="left"
             android:text="kolobo"
+            app:layout_constraintEnd_toStartOf="@+id/textView19"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
         <TextView
             android:id="@+id/textView19"
             style="@style/textMedium"
+            android:layout_marginEnd="8dp"
             android:gravity="left"
             android:text="mike"
+            app:layout_constraintEnd_toStartOf="@+id/textView21"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
             app:layout_constraintTop_toTopOf="@+id/textView18" />
 
@@ -343,7 +348,9 @@
             style="@style/textMediumSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="bouteille"
+            app:layout_constraintEnd_toStartOf="@+id/textView23"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
@@ -352,7 +359,9 @@
             style="@style/textMediumSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="quoi"
+            app:layout_constraintEnd_toStartOf="@+id/textView25"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
