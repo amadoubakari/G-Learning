@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -247,7 +248,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="422dp" />
+            app:layout_constraintGuide_begin="436dp" />
 
         <TextView
             android:id="@+id/textView20"
@@ -306,80 +307,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="570dp" />
-
-        <TextView
-            android:id="@+id/textView18"
-            style="@style/textMedium"
-            android:layout_marginEnd="8dp"
-            android:gravity="left"
-            android:text="kolobo"
-            app:layout_constraintEnd_toStartOf="@+id/textView19"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline17" />
-
-        <TextView
-            android:id="@+id/textView19"
-            style="@style/textMedium"
-            android:layout_marginEnd="8dp"
-            android:gravity="left"
-            android:text="mike"
-            app:layout_constraintEnd_toStartOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="@+id/textView18" />
-
-        <TextView
-            android:id="@+id/textView21"
-            style="@style/textMedium"
-            android:gravity="left"
-            android:text="kukulum"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toTopOf="@+id/textView19" />
+            app:layout_constraintGuide_begin="638dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="609dp" />
-
-        <TextView
-            android:id="@+id/textView22"
-            style="@style/textMediumSubTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="bouteille"
-            app:layout_constraintEnd_toStartOf="@+id/textView23"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline18" />
-
-        <TextView
-            android:id="@+id/textView23"
-            style="@style/textMediumSubTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="quoi"
-            app:layout_constraintEnd_toStartOf="@+id/textView25"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="@+id/guideline18" />
-
-        <TextView
-            android:id="@+id/textView25"
-            style="@style/textMediumSubTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cruche"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toTopOf="@+id/guideline18" />
+            app:layout_constraintGuide_begin="705dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="641dp" />
+            app:layout_constraintGuide_begin="552dp" />
 
         <LinearLayout
             android:layout_width="409dp"
@@ -421,6 +363,58 @@
                 android:src="@drawable/ic_keyboard_arrow_right_24px" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline15">
+
+            <TextView
+                style="@style/textMedium"
+                android:text="kolobo" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:text="bouteille" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline15">
+
+            <TextView
+                style="@style/textMedium"
+                android:text="mike" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:text="quoi" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline17">
+
+            <TextView
+                style="@style/textMedium"
+                android:text="kukulum" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:text="cruche" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

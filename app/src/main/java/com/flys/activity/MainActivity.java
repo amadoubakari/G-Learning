@@ -17,8 +17,10 @@ import com.flys.fragments.behavior.FishDogFragment_;
 import com.flys.fragments.behavior.FishFragment_;
 import com.flys.fragments.behavior.HomeFragment_;
 import com.flys.fragments.behavior.LeafFragment_;
+import com.flys.fragments.behavior.PanierFragment_;
 import com.flys.fragments.behavior.SplashScreenFragment_;
 import com.flys.fragments.behavior.TestFragment_;
+import com.flys.fragments.behavior.TortoiseFragment_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -56,7 +58,8 @@ public class MainActivity extends AbstractActivity {
     // todo : définir les fragments ici
     return new AbstractFragment[]{new SplashScreenFragment_(),new HomeFragment_(),
             new FishFragment_(),new DogFragment_(),new FishDogFragment_(),new LeafFragment_(),
-    new CrucheFragment_(),new ArcFragment_(),new BottleFragment_()};
+    new CrucheFragment_(),new ArcFragment_(),new BottleFragment_(),new PanierFragment_(),
+    new TortoiseFragment_()};
   }
 
 
