@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
 
-@EFragment(R.layout.fragment_bottle_layout)
+@EFragment(R.layout.fragment_panier_layout)
 @OptionsMenu(R.menu.menu_home)
 public class HomeFragment extends AbstractFragment {
 
