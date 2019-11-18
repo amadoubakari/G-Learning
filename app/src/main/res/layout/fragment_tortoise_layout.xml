@@ -469,13 +469,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kakali" />
+                android:text="kukulum" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="oiseau" />
+                android:text="@string/msg_cruche" />
         </LinearLayout>
 
         <LinearLayout
@@ -493,13 +493,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kilo" />
+                android:text="kirlala" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kilo" />
+                android:text="arbre" />
         </LinearLayout>
 
         <LinearLayout
@@ -601,7 +601,7 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="leke" />
+                android:text="kurek" />
 
             <TextView
                 style="@style/textMediumSubTitle"
@@ -647,13 +647,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kokuleke" />
+                android:text="kukur" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="peroquet" />
+                android:text="rouler" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
