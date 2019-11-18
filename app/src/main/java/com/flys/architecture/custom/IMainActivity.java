@@ -40,7 +40,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 3;
+    int FRAGMENTS_COUNT = 11;
 
     //Fragments number
     int HOME_FRAGMENT=1;
@@ -48,6 +48,11 @@ public interface IMainActivity extends IDao {
     int DOG_FRAGMENT=3;
     int FISH_AND_DOG_FRAGMENT=4;
     int LEAF_FRAGMENT=5;
+    int CRUCHE_FRAGMENT=6;
+    int ARC_FRAGMENT=7;
+    int BOTTLE_FRAGMENT=8;
+    int PANIER_FRAGMENT=9;
+    int TORTOISE_FRAGMENT=10;
 
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view
