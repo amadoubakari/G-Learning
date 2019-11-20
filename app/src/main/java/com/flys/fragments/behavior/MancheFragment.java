@@ -2,21 +2,14 @@ package com.flys.fragments.behavior;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
-import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.CoreState;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_tortoise_layout)
+@EFragment(R.layout.fragment_manche_layout)
 @OptionsMenu(R.menu.menu_home)
-public class TortoiseFragment extends AbstractFragment {
-
-    @Click(R.id.next)
-    protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.MANCHE_FRAGMENT, ISession.Action.SUBMIT);
-    }
+public class MancheFragment extends AbstractFragment {
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -24,7 +17,7 @@ public class TortoiseFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.TORTOISE_FRAGMENT;
+        return mainActivity.MANCHE_FRAGMENT;
     }
 
     @Override
