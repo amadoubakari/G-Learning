@@ -16,51 +16,34 @@
         android:paddingRight="@dimen/layout_padding_10dp">
 
         <TextView
-            android:id="@+id/textView47"
-            style="@style/style_text_header_medium"
-            android:layout_width="0dp"
-            android:layout_height="57dp"
-            android:gravity="center"
-            android:text="mu"
-            app:layout_constraintEnd_toStartOf="@+id/guideline27"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline26"
-            app:layout_constraintTop_toTopOf="@+id/guideline10" />
-
-        <TextView
             android:id="@+id/textView33"
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="ma"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            android:text="tu"
             app:layout_constraintEnd_toStartOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
-            app:layout_constraintTop_toTopOf="@+id/guideline9"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
         <TextView
             android:id="@+id/textView30"
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="mo"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            android:text="te"
             app:layout_constraintEnd_toStartOf="@+id/guideline27"
             app:layout_constraintStart_toStartOf="@+id/guideline26"
-            app:layout_constraintTop_toTopOf="@+id/guideline9"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
         <TextView
+            android:id="@+id/textView34"
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:gravity="center"
-            android:text="mu"
+            android:text="til"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline27"
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
@@ -70,28 +53,22 @@
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="me"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            android:text="to"
             app:layout_constraintEnd_toStartOf="@+id/guideline25"
             app:layout_constraintStart_toStartOf="@+id/guideline24"
-            app:layout_constraintTop_toTopOf="@+id/guideline9"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
         <TextView
             android:id="@+id/textView24"
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="mi"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            android:text="ti"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline9"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -100,11 +77,11 @@
             android:layout_marginStart="60dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.629"
+            app:layout_constraintHorizontal_bias="0.704"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
-            app:layout_constraintVertical_bias="0.831"
-            app:srcCompat="@drawable/couteau" />
+            app:layout_constraintVertical_bias="0.577"
+            app:srcCompat="@drawable/shoe" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
@@ -126,7 +103,7 @@
             android:layout_width="46dp"
             android:layout_height="69dp"
             android:gravity="center"
-            android:text="M"
+            android:text="T"
             app:layout_constraintBottom_toBottomOf="@+id/textView17"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -138,7 +115,7 @@
             android:layout_width="46dp"
             android:layout_height="68dp"
             android:gravity="center"
-            android:text="m"
+            android:text="t"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -169,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="464dp" />
+            app:layout_constraintGuide_begin="485dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -200,47 +177,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="508dp" />
-
-        <TextView
-            android:id="@+id/textView28"
-            style="@style/style_text_header_medium"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:gravity="left"
-            android:text="i mufuku"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="614dp" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="0dp"
-            android:layout_height="18dp"
-            android:fontFamily="@font/libre_franklin_thin"
-            android:gravity="left"
-            android:text="C'est le couteau à jet"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
-            app:layout_constraintTop_toTopOf="@+id/guideline5" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="529dp" />
+            app:layout_constraintGuide_begin="604dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"
@@ -319,7 +260,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_horizontal"
-                android:text="Page 12"
+                android:text="Page 14"
                 android:textColor="@color/red_A700"
                 android:textSize="16dp" />
 
@@ -347,13 +288,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kimili" />
+                android:text="motoforo" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="luciole" />
+                android:text="idiot" />
         </LinearLayout>
 
         <LinearLayout
@@ -363,7 +304,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline16">
 
@@ -371,13 +312,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mulu" />
+                android:text="metetek" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="grand vautour" />
+                android:text="auriculaire" />
         </LinearLayout>
 
         <LinearLayout
@@ -393,13 +334,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mulaka" />
+                android:text="kitikil" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="étranger" />
+                android:text="tas d'ordure" />
         </LinearLayout>
 
         <LinearLayout
@@ -414,13 +355,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mokofok" />
+                android:text="tulum" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="arbre" />
+                android:text="corne" />
         </LinearLayout>
 
         <LinearLayout
@@ -436,13 +377,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mikuli" />
+                android:text="kotokom" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="sacrifice" />
+                android:text="souris" />
         </LinearLayout>
 
         <LinearLayout
@@ -457,13 +398,13 @@
                 style="@style/textMedium26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I lumam morori ar luma." />
+                android:text="Motoforo a kil ti kotokom" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nous avons eu le riz au marché" />
+                android:text="L'idiot fuit avec la souris." />
         </LinearLayout>
 
         <LinearLayout
@@ -479,13 +420,13 @@
                 style="@style/textMedium26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ki lumam morori a maka ?" />
+                android:text="Kitikil ara fi tulum" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vous avez trouvé le riz où ?" />
+                android:text="Kitikil siffle au corne" />
         </LinearLayout>
 
         <LinearLayout
@@ -502,56 +443,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="makala" />
+                android:text="teter" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="beignet" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="66dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline29">
-
-            <TextView
-                style="@style/textMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="makarakara" />
-
-            <TextView
-                style="@style/textMediumSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="mante réligieuse" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="8dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
-            app:layout_constraintTop_toTopOf="@+id/guideline29">
-
-            <TextView
-                style="@style/textMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="kukulum" />
-
-            <TextView
-                style="@style/textMediumSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/msg_cruche" />
+                android:text="balancier à filer" />
         </LinearLayout>
 
         <LinearLayout
@@ -568,13 +466,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="melef" />
+                android:text="mututufur" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="boule" />
+                android:text="toile d'araignée" />
         </LinearLayout>
 
         <LinearLayout
@@ -591,13 +489,13 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="morori" />
+                android:text="memete" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="riz" />
+                android:text="plante aquatique" />
         </LinearLayout>
 
         <LinearLayout
@@ -606,7 +504,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline17">
 
@@ -614,35 +512,87 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="luma" />
+                android:text="teme" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="marché" />
+                android:text="oignon" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout10"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+            <TextView
+                style="@style/style_text_header_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="i tarak" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/libre_franklin_thin"
+                android:text="marché" />
+
+            <TextView
+                style="@style/style_text_header_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ta" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout12"
             app:layout_constraintTop_toTopOf="@+id/guideline17">
 
             <TextView
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rumu" />
+                android:text="mota" />
 
             <TextView
                 style="@style/textMediumSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="village" />
+                android:text="voiture" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toTopOf="@+id/guideline17">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="tiler" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="termite" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
@@ -678,7 +628,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1285dp" />
+            app:layout_constraintGuide_begin="1217dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
@@ -732,7 +682,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1188dp" />
+            app:layout_constraintGuide_begin="1140dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline31"

@@ -678,7 +678,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1285dp" />
+            app:layout_constraintGuide_begin="1209dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
@@ -732,7 +732,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1188dp" />
+            app:layout_constraintGuide_begin="1140dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline31"
