@@ -7,19 +7,19 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginBottom="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="100dp">
+   >
 
         <TextView
             android:id="@+id/alphabet_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fontFamily="@font/libre_franklin"
+            android:gravity="center"
             android:text="A"
             android:textSize="30dp" />
     </com.google.android.material.card.MaterialCardView>

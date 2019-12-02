@@ -1,20 +1,22 @@
 package com.flys.fragments.behavior;
 
-import android.os.Handler;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.OptionsMenu;
-
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.CoreState;
 
-@EFragment(R.layout.fragment_splash_screen)
-@OptionsMenu(R.menu.menu_vide)
-public class SplashScreenFragment extends AbstractFragment {
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.OptionsMenu;
+
+@EFragment(R.layout.fragment_knife_layout)
+@OptionsMenu(R.menu.menu_home)
+public class KnifeFragment extends AbstractFragment {
+
+    @Click(R.id.next)
+    protected void nextChapitre() {
+        mainActivity.navigateToView(mainActivity.SUMMARIZE_FRAGMENT, ISession.Action.SUBMIT);
+    }
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -22,17 +24,17 @@ public class SplashScreenFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.SPLASHSCREEN_FRAGMENT;
+        return mainActivity.KNIFE_FRAGMENT;
     }
 
     @Override
     protected void initFragment(CoreState previousState) {
-        ((AppCompatActivity) mainActivity).getSupportActionBar().hide();
+
     }
 
     @Override
     protected void initView(CoreState previousState) {
-        new Handler().postDelayed(() -> mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.SUBMIT), 3000);
+
     }
 
     @Override
@@ -55,10 +57,8 @@ public class SplashScreenFragment extends AbstractFragment {
 
     }
 
-    //Nous cachons le bottom navigation view
-
     @Override
     protected boolean hideNavigationBottomView() {
-        return true;
+        return false;
     }
 }

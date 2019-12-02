@@ -15,13 +15,19 @@ import com.flys.fragments.behavior.CrucheFragment_;
 import com.flys.fragments.behavior.DogFragment_;
 import com.flys.fragments.behavior.FishDogFragment_;
 import com.flys.fragments.behavior.FishFragment_;
+import com.flys.fragments.behavior.HangarFragment_;
 import com.flys.fragments.behavior.HomeFragment_;
+import com.flys.fragments.behavior.KnifeFragment_;
 import com.flys.fragments.behavior.LeafFragment_;
 import com.flys.fragments.behavior.MancheFragment_;
 import com.flys.fragments.behavior.PanierFragment_;
+import com.flys.fragments.behavior.ShoeFragment_;
 import com.flys.fragments.behavior.SplashScreenFragment_;
+import com.flys.fragments.behavior.SquirryFragment_;
+import com.flys.fragments.behavior.SummarizeFragment_;
 import com.flys.fragments.behavior.TestFragment_;
 import com.flys.fragments.behavior.TortoiseFragment_;
+import com.flys.fragments.behavior.TreeFragment_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -57,10 +63,12 @@ public class MainActivity extends AbstractActivity {
   @Override
   protected AbstractFragment[] getFragments() {
     // todo : définir les fragments ici
-    return new AbstractFragment[]{new SplashScreenFragment_(),new HomeFragment_(),
+    return new AbstractFragment[]{new SplashScreenFragment_(),new AlphabetFragment_(),
             new FishFragment_(),new DogFragment_(),new FishDogFragment_(),new LeafFragment_(),
     new CrucheFragment_(),new ArcFragment_(),new BottleFragment_(),new PanierFragment_(),
-    new TortoiseFragment_(),new MancheFragment_()};
+    new TortoiseFragment_(),new MancheFragment_(),
+    new KnifeFragment_(),new SummarizeFragment_(),new ShoeFragment_(),
+    new HangarFragment_(),new TreeFragment_(),new SquirryFragment_()};
   }
 
 

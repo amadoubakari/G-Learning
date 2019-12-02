@@ -2,6 +2,8 @@ package com.flys.fragments.behavior;
 
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.core.ISession;
@@ -37,6 +39,7 @@ public class FishFragment extends AbstractFragment {
 
     @Override
     protected void initFragment(CoreState previousState) {
+        ((AppCompatActivity) mainActivity).getSupportActionBar().show();
 
     }
 
