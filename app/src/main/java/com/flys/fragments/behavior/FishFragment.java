@@ -13,7 +13,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_fish_layout)
+@EFragment(R.layout.fragment_singe_layout)
 @OptionsMenu(R.menu.menu_home)
 public class FishFragment extends AbstractFragment {
 
