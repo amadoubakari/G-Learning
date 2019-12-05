@@ -34,7 +34,7 @@ public class AlphabetFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return 2;
+        return mainActivity.ALPHABET_FRAGMENT;
     }
 
     @Override

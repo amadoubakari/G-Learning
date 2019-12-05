@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
 
-@EFragment(R.layout.fragment_tortoise_layout)
+@EFragment(R.layout.fragment_squirrel_layout)
 @OptionsMenu(R.menu.menu_home)
 public class HomeFragment extends AbstractFragment {
 

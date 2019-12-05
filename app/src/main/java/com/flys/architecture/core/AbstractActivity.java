@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import com.flys.common_tools.dialog.AbstractDialogActivity;
 import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
+import com.flys.common_tools.utils.DepthPageTransformer;
 import com.flys.common_tools.utils.Utils;
+import com.flys.common_tools.utils.ZoomOutPageTransformer;
 import com.flys.dao.service.IDao;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -236,9 +238,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // le conteneur de fragments est associé au gestionnaire de fragments
         // ç-à-d que le fragment n° i du conteneur de fragments est le fragment n° i délivré par le gestionnaire de fragments
         mViewPager = (MyPager) findViewById(R.id.container);
+        mViewPager.setPageTransformer(true,new DepthPageTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on inhibe le swipe entre fragments
-        mViewPager.setSwipeEnabled(false);
+        mViewPager.setSwipeEnabled(true);
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
         // qu'on associe à notre gestionnaire de fragments
@@ -265,7 +268,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_alphabet:
-                            navigateToView(2, ISession.Action.SUBMIT);
+                            navigateToView(1, ISession.Action.SUBMIT);
                             break;
                         case R.id.menu_recommander:
                             showEditDialog();
