@@ -1,5 +1,7 @@
 package com.flys.fragments.behavior;
 
+import android.graphics.Matrix;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +14,13 @@ import com.flys.architecture.custom.CoreState;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.ViewById;
 
-@EFragment(R.layout.fragment_singe_layout)
+@EFragment(R.layout.fragment_coq_layout)
 @OptionsMenu(R.menu.menu_home)
 public class FishFragment extends AbstractFragment {
+    @ViewById(R.id.image)
+    protected ImageView icon;
 
     @Click(R.id.next)
     protected void nextChapitre() {
@@ -45,6 +50,10 @@ public class FishFragment extends AbstractFragment {
 
     @Override
     protected void initView(CoreState previousState) {
+       /* Matrix matrix = new Matrix();
+        icon.setScaleType(ImageView.ScaleType.MATRIX);   //required
+        matrix.postRotate((float) 5, 700, 0);
+        icon.setImageMatrix(matrix);*/
 
     }
 
