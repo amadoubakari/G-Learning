@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:layout_constraintVertical_bias="0.764"
-            app:srcCompat="@drawable/porcepic" />
+            app:srcCompat="@drawable/cat" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
@@ -103,7 +103,7 @@
             android:layout_width="53dp"
             android:layout_height="71dp"
             android:gravity="center"
-            android:text="D"
+            android:text="G"
             app:layout_constraintBottom_toBottomOf="@+id/textView17"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -115,7 +115,7 @@
             android:layout_width="46dp"
             android:layout_height="68dp"
             android:gravity="center"
-            android:text="d"
+            android:text="g"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -160,9 +160,10 @@
             style="@style/style_text_header_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="I didir"
+            android:layout_marginEnd="8dp"
+            android:text="I magamak"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline25"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
@@ -172,7 +173,7 @@
             android:layout_height="26dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/libre_franklin_thin"
-            android:text="c'est le porc-épic"
+            android:text="c'est le chat"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -621,9 +622,10 @@
             android:id="@+id/linearLayout15"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline3">
 
             <TextView
@@ -631,7 +633,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="didir" />
+                android:text="magamak" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -639,14 +641,14 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center"
-                android:text="porc-épic" />
+                android:text="chat" />
 
             <TextView
                 style="@style/style_text_header_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="di" />
+                android:text="ga" />
 
         </LinearLayout>
 
