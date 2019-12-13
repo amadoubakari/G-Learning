@@ -9,15 +9,15 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-
-@EFragment(R.layout.fragment_squirrel_layout)
+@EFragment(R.layout.fragment_porcepic_layout)
 @OptionsMenu(R.menu.menu_home)
-public class SquirryFragment extends AbstractFragment {
+public class PorcEpicFragment extends AbstractFragment {
 
     @Click(R.id.next)
     protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.SINGE_FRAGMENT, ISession.Action.SUBMIT);
+        mainActivity.navigateToView(mainActivity.CAT_FRAGMENT, ISession.Action.SUBMIT);
     }
+
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -25,7 +25,7 @@ public class SquirryFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.SQUIRRY_FRAGMENT;
+        return mainActivity.PORCEPIC_FRAGMENT;
     }
 
     @Override

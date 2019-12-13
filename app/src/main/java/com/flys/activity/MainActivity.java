@@ -11,6 +11,8 @@ import com.flys.dao.service.IDao;
 import com.flys.fragments.behavior.AlphabetFragment_;
 import com.flys.fragments.behavior.ArcFragment_;
 import com.flys.fragments.behavior.BottleFragment_;
+import com.flys.fragments.behavior.CatFragment_;
+import com.flys.fragments.behavior.CoqFragment_;
 import com.flys.fragments.behavior.CrucheFragment_;
 import com.flys.fragments.behavior.DogFragment_;
 import com.flys.fragments.behavior.FishDogFragment_;
@@ -21,7 +23,10 @@ import com.flys.fragments.behavior.KnifeFragment_;
 import com.flys.fragments.behavior.LeafFragment_;
 import com.flys.fragments.behavior.MancheFragment_;
 import com.flys.fragments.behavior.PanierFragment_;
+import com.flys.fragments.behavior.PlantoirFragment_;
+import com.flys.fragments.behavior.PorcEpicFragment_;
 import com.flys.fragments.behavior.ShoeFragment_;
+import com.flys.fragments.behavior.SingeFragment_;
 import com.flys.fragments.behavior.SplashScreenFragment_;
 import com.flys.fragments.behavior.SquirryFragment_;
 import com.flys.fragments.behavior.SummarizeFragment_;
@@ -68,7 +73,9 @@ public class MainActivity extends AbstractActivity {
     new CrucheFragment_(),new ArcFragment_(),new BottleFragment_(),new PanierFragment_(),
     new TortoiseFragment_(),new MancheFragment_(),
     new KnifeFragment_(),new SummarizeFragment_(),new ShoeFragment_(),
-    new HangarFragment_(),new TreeFragment_(),new SquirryFragment_()};
+    new HangarFragment_(),new TreeFragment_(),new SquirryFragment_(),
+    new SingeFragment_(),new PlantoirFragment_(),new CoqFragment_(),
+    new PorcEpicFragment_(),new CatFragment_()};
   }
 
 

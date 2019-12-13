@@ -2,30 +2,22 @@ package com.flys.fragments.behavior;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
-import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.CoreState;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-
-@EFragment(R.layout.fragment_squirrel_layout)
+@EFragment(R.layout.fragment_cat_layout)
 @OptionsMenu(R.menu.menu_home)
-public class SquirryFragment extends AbstractFragment {
-
-    @Click(R.id.next)
-    protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.SINGE_FRAGMENT, ISession.Action.SUBMIT);
-    }
+public class CatFragment extends AbstractFragment {
     @Override
     public CoreState saveFragment() {
-        return new CoreState();
+        return new CoreState() ;
     }
 
     @Override
     protected int getNumView() {
-        return mainActivity.SQUIRRY_FRAGMENT;
+        return mainActivity.CAT_FRAGMENT;
     }
 
     @Override

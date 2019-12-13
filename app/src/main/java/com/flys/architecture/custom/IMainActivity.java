@@ -40,7 +40,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 20;
+    int FRAGMENTS_COUNT = 25;
 
     //Fragments number
     int ALPHABET_FRAGMENT = 0;
@@ -62,6 +62,11 @@ public interface IMainActivity extends IDao {
     int TREE_FRAGMENT=16;
     int SQUIRRY_FRAGMENT=17;
     int SPLASHSCREEN_FRAGMENT=18;
+    int SINGE_FRAGMENT=19;
+    int PLANTOIR_FRAGMENT=20;
+    int COQ_FRAGMENT=21;
+    int PORCEPIC_FRAGMENT=22;
+    int CAT_FRAGMENT=23;
 
 
 
