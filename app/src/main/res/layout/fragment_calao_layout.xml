@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.NoActionBar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_padding_10dp"
+        android:paddingRight="@dimen/layout_padding_10dp">
+
+        <TextView
+            android:id="@+id/textView33"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:gravity="left"
+            android:text="za"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toTopOf="@+id/guideline40" />
+
+        <TextView
+            android:id="@+id/textView30"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:gravity="left"
+            android:text="zu"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
+            app:layout_constraintStart_toStartOf="@+id/guideline26"
+            app:layout_constraintTop_toTopOf="@+id/guideline40" />
+
+        <TextView
+            android:id="@+id/textView34"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:gravity="left"
+            android:text="Zuŋ"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline27"
+            app:layout_constraintTop_toTopOf="@+id/guideline40" />
+
+        <TextView
+            android:id="@+id/textView31"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:gravity="left"
+            android:text="ze"
+            app:layout_constraintEnd_toStartOf="@+id/guideline25"
+            app:layout_constraintStart_toStartOf="@+id/guideline24"
+            app:layout_constraintTop_toTopOf="@+id/guideline40" />
+
+        <TextView
+            android:id="@+id/textView24"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="8dp"
+            android:gravity="left"
+            android:text="zo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline24"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline40" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="273dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.169"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
+            app:layout_constraintVertical_bias="0.867"
+            app:srcCompat="@drawable/calao" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="161dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="45dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            style="@style/style_letter_text_header"
+            android:layout_width="53dp"
+            android:layout_height="71dp"
+            android:gravity="center"
+            android:text="Z"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintEnd_toStartOf="@+id/guideline11"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+        <TextView
+            android:id="@+id/textView17"
+            style="@style/style_letter_text_header"
+            android:layout_width="46dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:text="z"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toTopOf="@+id/guideline7"
+            app:layout_constraintVertical_bias="0.048" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="494dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="208dp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            style="@style/style_text_header_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="I zizilim"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
+            app:layout_constraintStart_toStartOf="@+id/guideline31"
+            app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/libre_franklin_thin"
+            android:text="c'est le calao"
+            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline31"
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35036495" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="717dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="777dp" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="409dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline">
+
+            <ImageView
+                android:id="@+id/previous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.8"
+                android:alpha="0.7"
+                android:src="@drawable/ic_keyboard_arrow_left_24px" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/libre_franklin_thin"
+                android:gravity="center_horizontal"
+                android:text="Page 27"
+                android:textColor="@color/red_A700"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.8"
+                android:alpha="0.7"
+                android:src="@drawable/ic_keyboard_arrow_right_24px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="61dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline18">
+
+            <TextView
+                android:id="@+id/textView26"
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zeweɗ" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="corde" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline16">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mivizivizi" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="oxyre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout18"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline35">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zokotof" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="déchet de l'estomac" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout21"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline39">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bezem" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="loir" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout23"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline41">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mezew" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sable à fer" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout27"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/guideline41">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zome" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hippopotame" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout36"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline42">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bebezem" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="loir" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout36">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mezezer" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cache sexe" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout37">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="muzuɗzuɗ" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="oiseau" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout37"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline42">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zugwi" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="casse" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline35">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="muzaw" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mayo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout22"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline39">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mazawal" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bouc" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout35"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toTopOf="@+id/guideline41">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sozo" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="marécage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout16"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline21">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mazazaw" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sorcier" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout11"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintTop_toTopOf="@+id/guideline21">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="muzuzur" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="moelle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline23">
+
+            <TextView
+                style="@style/textMedium26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A ki zana gagazaŋ." />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Il porte un habit rouge." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline30">
+
+            <TextView
+                style="@style/textMedium26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ɗiyuw nana, a zilaka zizilim." />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cet oiseau s'appelle calao." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintTop_toTopOf="@+id/guideline16">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zuzuy" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="village" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline18">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mezereɓ" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="animal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout12"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline17">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="zana" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="habit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+            <TextView
+                style="@style/style_text_header_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="zizilim" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/libre_franklin_thin"
+                android:gravity="center"
+                android:text="calao" />
+
+            <TextView
+                style="@style/style_text_header_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="zi" />
+
+            <TextView
+                style="@style/style_text_header_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="z" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout14"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout12"
+            app:layout_constraintTop_toTopOf="@+id/guideline17">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ziri" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="enfants" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout13"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toTopOf="@+id/guideline17">
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ziziw" />
+
+            <TextView
+                style="@style/textMediumSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="termitière" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="838dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="904dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1416dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1342dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1486dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="182dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_begin="219dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1576dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="606dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1036dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="663dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1102dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1168dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="1234dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

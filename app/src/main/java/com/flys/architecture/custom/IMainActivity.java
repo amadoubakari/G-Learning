@@ -40,7 +40,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 20;
+    int FRAGMENTS_COUNT = 33;
 
     //Fragments number
     int ALPHABET_FRAGMENT = 0;
@@ -62,7 +62,19 @@ public interface IMainActivity extends IDao {
     int TREE_FRAGMENT=16;
     int SQUIRRY_FRAGMENT=17;
     int SPLASHSCREEN_FRAGMENT=18;
-
+    int SINGE_FRAGMENT=19;
+    int PLANTOIR_FRAGMENT=20;
+    int COQ_FRAGMENT=21;
+    int PORCEPIC_FRAGMENT=22;
+    int CAT_FRAGMENT=23;
+    int FROG_FRAGMENT=24;
+    int SHEEP_FRAGMENT=25;
+    int LANCE_FRAGMENT=26;
+    int ECHELLE_FRAGMENT=27;
+    int CALAO_FRAGMENT=28;
+    int CAMEL_FRAGMENT=29;
+    int COUTEAU_FRAGMENT=30;
+    int PINTADE_FRAGMENT=24;
 
 
     // todo ajoutez ici vos constantes et autres méthodes

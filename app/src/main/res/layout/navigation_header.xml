@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/libre_franklin_thin"
         android:paddingTop="5dp"
-        android:text="AMADOU BAKARI"
+        android:text="Username"
         android:textColor="@android:color/white"
         android:textSize="14dp"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/libre_franklin_thin"
             android:paddingTop="5dp"
-            android:text="amadoubakari@yahoo.fr"
+            android:text="email"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
