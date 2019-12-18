@@ -22,6 +22,7 @@
             android:title="Recommander" />
         <item
             android:id="@+id/subheader"
+            android:visible="false"
             android:title="Sous Menu">
             <menu>
                 <item
