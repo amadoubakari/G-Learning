@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_c_quoi">C\'est quoi?</string>
+    <string name="msg_poisson">poisson</string>
+    <string name="msg_arc">arc</string>
+    <string name="msg_cruche">cruche</string>
+    <string name="msg_feuille">feuille</string>
+    <string name="msg_i_mike">i mike?</string>
+</resources>

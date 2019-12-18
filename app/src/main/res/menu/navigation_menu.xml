@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group_sp"
+        android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/ic_home_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Home" />
+        <item
+            android:id="@+id/menu_alphabet"
+            android:icon="@drawable/ic_text_format_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Alphabet" />
+        <item
+            android:id="@+id/menu_recommander"
+            android:icon="@drawable/ic_people_outline_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Recommander" />
+        <item
+            android:id="@+id/subheader"
+            android:visible="false"
+            android:title="Sous Menu">
+            <menu>
+                <item
+                    android:id="@+id/nav_all_email"
+                    android:icon="@drawable/baseline_account_circle_white_48dp"
+                    android:title="Sous menu item"/>
+                <item
+                    android:id="@+id/nav_all_email2"
+                    android:icon="@drawable/baseline_account_circle_white_48dp"
+                    android:title="Sous menu item"/>
+            </menu>
+        </item>
+    </group>
+    <group
+        android:id="@+id/group_others"
+        android:checkableBehavior="all">
+        <item
+            android:id="@+id/menu_settings"
+            android:icon="@drawable/ic_settings_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Settings" />
+        <item
+            android:id="@+id/connexion"
+            android:icon="@drawable/ic_login_black_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Sign in" />
+        <item
+            android:id="@+id/deconnexion"
+            android:icon="@drawable/ic_login_black_24px"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="Sign out"
+            android:visible="false" />
+    </group>
+</menu>
