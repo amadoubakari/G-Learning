@@ -80,4 +80,7 @@ public interface IMainActivity extends IDao {
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view
     void hideNavigationView(boolean hide);
+
+    //swif fragment from this one
+    boolean swiffFragment();
 }
