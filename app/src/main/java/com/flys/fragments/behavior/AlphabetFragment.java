@@ -1,5 +1,6 @@
 package com.flys.fragments.behavior;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ public class AlphabetFragment extends AbstractFragment {
 
     @Override
     protected void initFragment(CoreState previousState) {
-
+        ((AppCompatActivity) mainActivity).getSupportActionBar().show();
     }
 
     @Override
