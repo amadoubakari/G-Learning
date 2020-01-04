@@ -241,7 +241,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         mViewPager.setPageTransformer(true,new DepthPageTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on inhibe le swipe entre fragments
-        mViewPager.setSwipeEnabled(true);
+        mViewPager.setSwipeEnabled(swiffFragment());
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
         // qu'on associe à notre gestionnaire de fragments
@@ -268,7 +268,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_alphabet:
-                            navigateToView(1, ISession.Action.SUBMIT);
+                            navigateToView(31, ISession.Action.SUBMIT);
                             break;
                         case R.id.menu_recommander:
                             showEditDialog();
@@ -284,13 +284,13 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.bottom_menu_home:
-                    Toast.makeText(AbstractActivity.this,"Home",Toast.LENGTH_SHORT).show();
+                    navigateToView(HOME_FRAGMENT, ISession.Action.SUBMIT);
                     break;
                 case R.id.bottom_menu_book:
-                    navigateToView(2, ISession.Action.SUBMIT);
+                    navigateToView(FISH_FRAGMENT, ISession.Action.SUBMIT);
                     break;
                 case R.id.bottom_menu_me:
-                    Toast.makeText(AbstractActivity.this,"Me",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbstractActivity.this,"Indisponible ...",Toast.LENGTH_SHORT).show();
                     break;
             }
             return true;
@@ -369,7 +369,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     //Récupération du texte issu de la boite de dialogue
     @Override
     public void receivedDate(String data) {
-        Utils.shareText(this, "Dubun GUIZIGA", data + "  https://play.google.com/store/apps/details?id=com.sprintpaycommunity", "Recommandation de l'application.");
+        Utils.shareText(this, "Dubun GUIZIGA", data + "  https://play.google.com/store/apps/details?id=com.flys.glearning", "Recommandation de l'application.");
     }
 
     private void showEditDialog() {
@@ -433,4 +433,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     protected abstract int getFirstView();
 
+    @Override
+    public boolean swiffFragment() {
+        return true;
+    }
 }

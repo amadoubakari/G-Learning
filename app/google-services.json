@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "633999394440",
+    "firebase_url": "https://dubun-guiziga.firebaseio.com",
+    "project_id": "dubun-guiziga",
+    "storage_bucket": "dubun-guiziga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633999394440:android:5acadc699c92216b1bc13d",
+        "android_client_info": {
+          "package_name": "com.flys.glearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633999394440-21mjm3i94jdb4t3v8l0l7e1gnhc9kpuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcA3rZSZvgUWoji9iPJ9jh-LfUKVVayvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633999394440-21mjm3i94jdb4t3v8l0l7e1gnhc9kpuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
