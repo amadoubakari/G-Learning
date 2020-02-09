@@ -9,14 +9,16 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_pintade_layout)
+
+@EFragment(R.layout.fragment_lapin_layout)
 @OptionsMenu(R.menu.menu_home)
-public class PintadeFragment extends AbstractFragment {
+public class LapinFragment extends AbstractFragment {
 
     @Click(R.id.next)
     protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.MORTIER_FRAGMENT, ISession.Action.SUBMIT);
+        mainActivity.navigateToView(mainActivity.MOULIN_FRAGMENT, ISession.Action.SUBMIT);
     }
+
     @Override
     public CoreState saveFragment() {
         return new CoreState();
@@ -24,7 +26,7 @@ public class PintadeFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.PINTADE_FRAGMENT;
+        return mainActivity.LAPIN_FRAGMENT;
     }
 
     @Override

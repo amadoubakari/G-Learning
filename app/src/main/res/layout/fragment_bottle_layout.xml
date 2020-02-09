@@ -349,7 +349,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_horizontal"
-                android:text="Page 6"
+                android:text="Page 8"
                 android:textColor="@color/red_A700"
                 android:textSize="16dp" />
 
