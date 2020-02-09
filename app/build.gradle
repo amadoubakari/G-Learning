@@ -13,6 +13,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -86,5 +87,3 @@ repositories {
     }
     google()  // Google's Maven repository
 }
-
-apply plugin: 'com.google.gms.google-services'

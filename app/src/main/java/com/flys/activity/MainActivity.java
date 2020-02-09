@@ -11,6 +11,7 @@ import com.flys.dao.service.IDao;
 import com.flys.fragments.behavior.AlphabetFragment_;
 import com.flys.fragments.behavior.ArcFragment_;
 import com.flys.fragments.behavior.BottleFragment_;
+import com.flys.fragments.behavior.BouclierFragment_;
 import com.flys.fragments.behavior.CalaoFragment_;
 import com.flys.fragments.behavior.CamelFragment_;
 import com.flys.fragments.behavior.CatFragment_;
@@ -22,12 +23,18 @@ import com.flys.fragments.behavior.EchelleFragment_;
 import com.flys.fragments.behavior.FishDogFragment_;
 import com.flys.fragments.behavior.FishFragment_;
 import com.flys.fragments.behavior.FrogFragment_;
+import com.flys.fragments.behavior.GoatFragment_;
+import com.flys.fragments.behavior.GuitarFragment_;
 import com.flys.fragments.behavior.HangarFragment_;
 import com.flys.fragments.behavior.HomeFragment_;
+import com.flys.fragments.behavior.HouseFragment_;
 import com.flys.fragments.behavior.KnifeFragment_;
 import com.flys.fragments.behavior.LanceFragment_;
+import com.flys.fragments.behavior.LapinFragment_;
 import com.flys.fragments.behavior.LeafFragment_;
 import com.flys.fragments.behavior.MancheFragment_;
+import com.flys.fragments.behavior.MortierFragment_;
+import com.flys.fragments.behavior.MoulinFragment_;
 import com.flys.fragments.behavior.PanierFragment_;
 import com.flys.fragments.behavior.PintadeFragment_;
 import com.flys.fragments.behavior.PlantoirFragment_;
@@ -87,7 +94,9 @@ public class MainActivity extends AbstractActivity {
                 new PorcEpicFragment_(), new CatFragment_(), new FrogFragment_(),
                 new SheepFragment_(), new LanceFragment_(), new EchelleFragment_(),
                 new CalaoFragment_(), new CamelFragment_(), new CouteauFragment_(),
-                new PintadeFragment_(), new AlphabetFragment_()};
+                new PintadeFragment_(), new MortierFragment_(), new BouclierFragment_(),
+                new GuitarFragment_(), new LapinFragment_(),new MoulinFragment_(),
+                new HouseFragment_(), new GoatFragment_(),new AlphabetFragment_()};
     }
 
 

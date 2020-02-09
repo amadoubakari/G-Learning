@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:text="ʼaw ara zum gizin"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline27"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 

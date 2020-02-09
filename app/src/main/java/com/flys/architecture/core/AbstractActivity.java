@@ -6,14 +6,12 @@ import com.flys.common_tools.dialog.AbstractDialogActivity;
 import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
 import com.flys.common_tools.utils.DepthPageTransformer;
 import com.flys.common_tools.utils.Utils;
-import com.flys.common_tools.utils.ZoomOutPageTransformer;
 import com.flys.dao.service.IDao;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -268,7 +266,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_alphabet:
-                            navigateToView(31, ISession.Action.SUBMIT);
+                            navigateToView(38, ISession.Action.SUBMIT);
                             break;
                         case R.id.menu_recommander:
                             showEditDialog();

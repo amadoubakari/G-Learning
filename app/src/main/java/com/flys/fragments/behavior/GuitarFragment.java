@@ -9,13 +9,14 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-@EFragment(R.layout.fragment_pintade_layout)
+
+@EFragment(R.layout.fragment_guitar_layout)
 @OptionsMenu(R.menu.menu_home)
-public class PintadeFragment extends AbstractFragment {
+public class GuitarFragment extends AbstractFragment {
 
     @Click(R.id.next)
     protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.MORTIER_FRAGMENT, ISession.Action.SUBMIT);
+        mainActivity.navigateToView(mainActivity.LAPIN_FRAGMENT, ISession.Action.SUBMIT);
     }
     @Override
     public CoreState saveFragment() {
@@ -24,7 +25,7 @@ public class PintadeFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.PINTADE_FRAGMENT;
+        return mainActivity.GUITAR_FRAGMENT;
     }
 
     @Override
