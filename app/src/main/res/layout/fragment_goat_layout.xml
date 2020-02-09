@@ -180,10 +180,9 @@
             android:id="@+id/textView27"
             android:layout_width="0dp"
             android:layout_height="26dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/libre_franklin_thin"
             android:text="la chèvre broute l'herbe"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
