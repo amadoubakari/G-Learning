@@ -274,11 +274,11 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="61dp"
+            android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline13"
-            app:layout_constraintTop_toTopOf="@+id/guideline18">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
             <TextView
                 android:id="@+id/textView26"
@@ -346,7 +346,7 @@
             android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline39">
 
@@ -364,14 +364,8 @@
         </LinearLayout>
 
 
-
-
-
-
-
-
-
         <LinearLayout
+            android:id="@+id/linearLayout79"
             android:layout_width="0dp"
             android:layout_height="66dp"
             android:orientation="vertical"
@@ -423,8 +417,8 @@
             android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
-            app:layout_constraintTop_toTopOf="@+id/guideline21">
+            app:layout_constraintStart_toStartOf="@+id/guideline26"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout79">
 
             <TextView
                 style="@style/textMedium"
@@ -529,10 +523,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline13"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline11"
             app:layout_constraintTop_toTopOf="@+id/guideline18">
 
             <TextView
