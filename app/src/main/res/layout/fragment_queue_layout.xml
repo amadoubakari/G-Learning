@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:gravity="left"
-            android:text="gwu"
+            android:text="ngwu"
             app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
             app:layout_constraintTop_toTopOf="@+id/guideline40" />
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:gravity="left"
-            android:text="gwi"
+            android:text="ngwi"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline40" />
@@ -43,8 +43,8 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:gravity="left"
-            android:text="gwe"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            android:text="ngwe"
+            app:layout_constraintEnd_toStartOf="@+id/textView30"
             app:layout_constraintStart_toStartOf="@+id/guideline11"
             app:layout_constraintTop_toTopOf="@+id/guideline40" />
 
@@ -55,7 +55,7 @@
             android:layout_height="54dp"
             android:layout_marginStart="8dp"
             android:gravity="left"
-            android:text="gwo"
+            android:text="ngwo"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline40" />
@@ -91,23 +91,23 @@
 
         <TextView
             android:id="@+id/textView15"
-            style="@style/style_letter_text_header"
+            style="@style/style_letter_text_header_small"
             android:layout_width="0dp"
             android:layout_height="71dp"
             android:gravity="left"
-            android:text="GW"
+            android:text="NGW"
             app:layout_constraintBottom_toBottomOf="@+id/textView17"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
         <TextView
             android:id="@+id/textView17"
-            style="@style/style_letter_text_header"
+            style="@style/style_letter_text_header_small"
             android:layout_width="0dp"
             android:layout_height="68dp"
             android:gravity="center"
-            android:text="gw"
+            android:text="ngw"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -152,7 +152,7 @@
             style="@style/style_text_header_medium"
             android:layout_width="277dp"
             android:layout_height="45dp"
-            android:text="I dirgwaɗ"
+            android:text="dangwal"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline27"
             app:layout_constraintHorizontal_bias="0.0"
@@ -166,7 +166,7 @@
             android:layout_height="26dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/libre_franklin_thin"
-            android:text="c'est le grainier"
+            android:text="la queue"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -545,7 +545,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="dirgwaɗ" />
+                android:text="dangwal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -553,14 +553,14 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center"
-                android:text="grainier" />
+                android:text="queue" />
 
             <TextView
                 style="@style/style_text_header_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="gwa" />
+                android:text="ngwa" />
 
         </LinearLayout>
 
@@ -598,7 +598,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.44" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline21"
