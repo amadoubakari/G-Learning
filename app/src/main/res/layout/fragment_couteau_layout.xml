@@ -456,7 +456,7 @@
             android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline21">
 
@@ -479,7 +479,7 @@
             android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toTopOf="@+id/guideline21">
 
             <TextView

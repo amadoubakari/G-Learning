@@ -253,7 +253,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_horizontal"
-                android:text="Page 34"
+                android:text="Page 33"
                 android:textColor="@color/red_A700"
                 android:textSize="16dp" />
 
@@ -270,11 +270,11 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="61dp"
+            android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline67"
-            app:layout_constraintTop_toTopOf="@+id/guideline18">
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout83">
 
             <TextView
                 android:id="@+id/textView26"
@@ -319,7 +319,7 @@
             android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline35">
 
@@ -342,7 +342,7 @@
             android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline39">
 
@@ -364,10 +364,11 @@
             android:id="@+id/linearLayout41"
             android:layout_width="0dp"
             android:layout_height="66dp"
+            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout18"
-            app:layout_constraintTop_toTopOf="@+id/guideline35">
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout47">
 
             <TextView
                 style="@style/textMedium"
@@ -383,11 +384,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout83"
             android:layout_width="0dp"
             android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout47"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline39">
 
             <TextView
@@ -433,7 +435,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout48">
+            app:layout_constraintTop_toTopOf="@+id/guideline68">
 
             <TextView
                 style="@style/textMedium26"
@@ -495,10 +497,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline67"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline24"
             app:layout_constraintTop_toTopOf="@+id/guideline18">
 
             <TextView
@@ -611,7 +612,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1137dp" />
+            app:layout_constraintGuide_begin="1184dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
@@ -651,7 +652,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1063dp" />
+            app:layout_constraintGuide_begin="1110dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline31"
@@ -665,7 +666,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1390dp" />
+            app:layout_constraintGuide_begin="1421dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline35"
@@ -714,7 +715,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1240dp" />
+            app:layout_constraintGuide_begin="1250dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

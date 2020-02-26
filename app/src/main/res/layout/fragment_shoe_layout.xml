@@ -540,9 +540,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:fontFamily="@font/libre_franklin_thin"
-                android:text="marché" />
+                android:gravity="center"
+                android:text="c'est la chaussure" />
 
             <TextView
                 style="@style/style_text_header_medium"

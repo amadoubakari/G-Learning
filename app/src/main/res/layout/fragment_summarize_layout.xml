@@ -723,6 +723,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tu vas où ?   Je vais à Laf" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="0dp"
@@ -770,12 +771,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout65"
             android:layout_width="0dp"
             android:layout_height="66dp"
-            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
+            app:layout_constraintStart_toStartOf="@+id/guideline24"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout42">
 
             <TextView
@@ -816,10 +817,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="66dp"
+            android:layout_marginStart="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline13"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout44">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout65">
 
             <TextView
                 style="@style/textMedium"
@@ -943,7 +945,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1503dp" />
+            app:layout_constraintGuide_begin="1393dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline21"
@@ -957,7 +959,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1304dp" />
+            app:layout_constraintGuide_begin="1223dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
@@ -1011,7 +1013,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1229dp" />
+            app:layout_constraintGuide_begin="1147dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline31"
@@ -1074,7 +1076,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="1170dp" />
+            app:layout_constraintGuide_begin="1083dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline73"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="964dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
