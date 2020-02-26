@@ -16,7 +16,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
-@EFragment(R.layout.fragment_grenouille_layout)
+@EFragment(R.layout.fragment_fish_layout)
 @OptionsMenu(R.menu.menu_home)
 public class FishFragment extends AbstractFragment {
     @ViewById(R.id.image)

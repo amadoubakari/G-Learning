@@ -74,6 +74,7 @@
             android:layout_width="243dp"
             android:layout_height="155dp"
             android:layout_marginStart="60dp"
+            android:alpha="0.8"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.678"

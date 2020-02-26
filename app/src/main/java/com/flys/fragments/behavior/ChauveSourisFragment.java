@@ -9,14 +9,13 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 
-
-@EFragment(R.layout.fragment_goat_layout)
+@EFragment(R.layout.fragment_chauve_souris_layout)
 @OptionsMenu(R.menu.menu_home)
-public class GoatFragment extends AbstractFragment {
+public class ChauveSourisFragment extends AbstractFragment {
 
     @Click(R.id.next)
     protected void nextChapitre() {
-        mainActivity.navigateToView(mainActivity.CHAUVE_SOURIS_FRAGMENT, ISession.Action.SUBMIT);
+        mainActivity.navigateToView(mainActivity.GRAINIER_FRAGMENT, ISession.Action.SUBMIT);
     }
     @Override
     public CoreState saveFragment() {
@@ -25,7 +24,7 @@ public class GoatFragment extends AbstractFragment {
 
     @Override
     protected int getNumView() {
-        return mainActivity.GOAT_FRAGMENT;
+        return mainActivity.CHAUVE_SOURIS_FRAGMENT;
     }
 
     @Override
