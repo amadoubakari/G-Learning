@@ -264,10 +264,9 @@
             android:id="@+id/linearLayout18"
             android:layout_width="0dp"
             android:layout_height="66dp"
-            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline13"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline27"
+            app:layout_constraintStart_toStartOf="@+id/guideline24"
             app:layout_constraintTop_toTopOf="@+id/guideline35">
 
             <TextView
@@ -350,13 +349,14 @@
                 android:layout_height="wrap_content"
                 android:text="tornade" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline13"
-            app:layout_constraintTop_toTopOf="@+id/guideline35">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout74">
 
             <TextView
                 style="@style/textMedium"
@@ -394,6 +394,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout74"
             android:layout_width="0dp"
             android:layout_height="66dp"
             android:orientation="vertical"
@@ -420,7 +421,7 @@
             android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline21">
 
@@ -428,7 +429,8 @@
                 style="@style/textMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="meɗeɗeŋ" />
+                android:text="meɗeɗeŋ"
+                android:textStyle="normal" />
 
             <TextView
                 style="@style/textMediumSubTitle"
@@ -443,7 +445,7 @@
             android:layout_height="66dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline19"
+            app:layout_constraintStart_toStartOf="@+id/guideline26"
             app:layout_constraintTop_toTopOf="@+id/guideline21">
 
             <TextView
@@ -471,6 +473,7 @@
                 style="@style/textMedium26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="normal"
                 android:text="Dirlengeŋ a diɗ le ar futuŋ." />
 
             <TextView
