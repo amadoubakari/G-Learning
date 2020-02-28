@@ -33,7 +33,7 @@ public abstract class AbstractFragment extends Fragment {
     private List<Subscription> abonnements = new ArrayList<>();
     // menu du fragment
     private Menu menu;
-    private MenuItemState[] menuOptionsStates;
+    private MenuItemState[] menuOptionsStates=new MenuItemState[0];
     // cycle de vie du fragment
     private boolean isVisibleToUser = false;
     private boolean saveFragmentDone = false;
