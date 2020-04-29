@@ -7,11 +7,14 @@ import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
 import com.flys.common_tools.utils.DepthPageTransformer;
 import com.flys.common_tools.utils.Utils;
 import com.flys.dao.service.IDao;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -35,12 +38,14 @@ import com.flys.architecture.custom.Session;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity , AbstractDialogFragmentInterface {
+public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity, AbstractDialogFragmentInterface {
     // couche [DAO]
     private IDao dao;
     // la session
@@ -236,7 +241,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // le conteneur de fragments est associé au gestionnaire de fragments
         // ç-à-d que le fragment n° i du conteneur de fragments est le fragment n° i délivré par le gestionnaire de fragments
         mViewPager = (MyPager) findViewById(R.id.container);
-        mViewPager.setPageTransformer(true,new DepthPageTransformer());
+        mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on inhibe le swipe entre fragments
         mViewPager.setSwipeEnabled(swiffFragment());
@@ -288,11 +293,31 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     navigateToView(FISH_FRAGMENT, ISession.Action.SUBMIT);
                     break;
                 case R.id.bottom_menu_me:
-                    Toast.makeText(AbstractActivity.this,"Indisponible ...",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbstractActivity.this, "Indisponible ...", Toast.LENGTH_SHORT).show();
                     break;
             }
             return true;
         });
+
+        //Check registration token
+       /* FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(getClass().getName(), "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        String msg = getString(R.string.fcm_fallback_notification_channel_label, token);
+                        Log.d(getClass().getName(), msg);
+                        Toast.makeText(AbstractActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });*/
         // on passe la main à l'activité fille
         onCreateActivity();
     }
@@ -372,7 +397,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher,R.style.AlertDialogTheme,R.style.BodyTextStyle);
+        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher, R.style.AlertDialogTheme, R.style.BodyTextStyle);
         dialogActivity.show(fm, "fragment_edit_name");
     }
 
