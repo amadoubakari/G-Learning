@@ -8,13 +8,16 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
 import com.flys.R;
 import com.flys.activity.MainActivity;
+import com.flys.activity.MainActivity_;
 import com.flys.architecture.core.AbstractActivity;
+import com.flys.architecture.custom.DApplicationContext;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -54,7 +57,7 @@ public class FCMService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
+            sendNotification(remoteMessage.getData().get("notification"));
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
                 //scheduleJob();
@@ -67,7 +70,8 @@ public class FCMService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            sendNotification(remoteMessage.getNotification().getBody());
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -105,21 +109,25 @@ public class FCMService extends FirebaseMessagingService {
     /**
      * Create and show a simple notification containing the received FCM message.
      *
-     * @param messageBody FCM message body received.
+     * @param msg FCM message body received.
      */
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, AbstractActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+    private void sendNotification(String msg) {
+        Intent intent = new Intent(DApplicationContext.getContext(), MainActivity_.class);
+        intent.putExtra("notification","notification");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(DApplicationContext.getContext(), 0 /* Request code */, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         String channelId = getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.books)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setContentText(messageBody)
+                        .setContentTitle("Dubun Guiziga")
+                        .setContentText(msg)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(msg))
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);

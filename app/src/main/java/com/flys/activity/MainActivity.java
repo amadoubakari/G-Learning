@@ -1,10 +1,13 @@
 package com.flys.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractActivity;
 import com.flys.architecture.core.AbstractFragment;
+import com.flys.architecture.core.ISession;
 import com.flys.architecture.custom.Session;
 import com.flys.dao.service.Dao;
 import com.flys.dao.service.IDao;
@@ -81,6 +84,16 @@ public class MainActivity extends AbstractActivity {
         // session
         this.session = (Session) super.session;
         // todo : on continue les initialisations commencées par la classe parent
+        if(getIntent().hasExtra("notification")){
+            navigateToView(10, ISession.Action.SUBMIT);
+        }
+    }
+
+    @Override
+    protected void onResumeActivity() {
+        if(getIntent().hasExtra("notification")){
+            navigateToView(10, ISession.Action.SUBMIT);
+        }
     }
 
     @Override
@@ -126,4 +139,13 @@ public class MainActivity extends AbstractActivity {
         // todo : définir le n° de la première vue (fragment) à afficher
         return 0;
     }
+
+   /* @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e(getClass().getSimpleName(),"on new intent :"+intent.getExtras());
+        if(intent.getExtras().containsKey("notification")){
+            navigateToView(10, ISession.Action.SUBMIT);
+        }
+    }*/
 }

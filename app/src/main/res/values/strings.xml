@@ -10,4 +10,5 @@
     <string name="msg_feuille">feuille</string>
     <string name="msg_i_mike">i mike?</string>
     <string name="default_notification_channel_id">com.flys.glearning</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>

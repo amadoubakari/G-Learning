@@ -7,6 +7,7 @@ import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
 import com.flys.common_tools.utils.DepthPageTransformer;
 import com.flys.common_tools.utils.Utils;
 import com.flys.dao.service.IDao;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.AppBarLayout;
@@ -298,27 +299,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             }
             return true;
         });
-
-        //Check registration token
-       /* FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(getClass().getName(), "getInstanceId failed", task.getException());
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        String msg = getString(R.string.fcm_fallback_notification_channel_label, token);
-                        Log.d(getClass().getName(), msg);
-                        Toast.makeText(AbstractActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-        // on passe la main à l'activité fille
+        //Check if the user device has google play services installed and if not install them
+        //GoogleApiAvailability.makeGooglePlayServicesAvailable(this);
         onCreateActivity();
     }
 
@@ -333,6 +315,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (ARE_TABS_NEEDED && session.getAction() == ISession.Action.RESTORE) {
             tabLayout.getTabAt(session.getPreviousTab()).select();
         }
+        //getIntent().putExtra("notification","notification");
+        onResumeActivity();
+        // todo : on continue les initialisations commencées par la classe parent
     }
 
     // gestion de l'image d'attente ---------------------------------
@@ -445,6 +430,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     // classes filles
     protected abstract void onCreateActivity();
+
+    protected abstract void onResumeActivity();
 
     protected abstract IDao getDao();
 
