@@ -1,46 +1,44 @@
 package com.flys.architecture.core;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flys.R;
+import com.flys.architecture.custom.CustomTabLayout;
+import com.flys.architecture.custom.DApplicationContext;
+import com.flys.architecture.custom.IMainActivity;
+import com.flys.architecture.custom.Session;
 import com.flys.common_tools.dialog.AbstractDialogActivity;
 import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
 import com.flys.common_tools.utils.DepthPageTransformer;
+import com.flys.common_tools.utils.FileUtils;
 import com.flys.common_tools.utils.Utils;
+import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.flys.R;
-import com.flys.architecture.custom.CustomTabLayout;
-import com.flys.architecture.custom.IMainActivity;
-import com.flys.architecture.custom.Session;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import org.androidannotations.annotations.EApplication;
 
 import java.io.IOException;
 
@@ -265,6 +263,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         Utils.applyFontStyleToMenu(this, navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
 
         profile = headerNavView.findViewById(R.id.profile_image);
+        TextView title = headerNavView.findViewById(R.id.profile_user_name);
+        TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
                     // set item as selected to persist highlight
@@ -283,7 +283,33 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 });
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
 
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                User user = updateProfile();
+                if (user != null) {
+                    title.setText(user.getNom());
+                    mail.setText(user.getEmail());
+                    profile.setImageDrawable(FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()));
+                }
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
         //Action listener on bottom navigation view
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -300,7 +326,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             return true;
         });
         //Check if the user device has google play services installed and if not install them
-        //GoogleApiAvailability.makeGooglePlayServicesAvailable(this);
         onCreateActivity();
     }
 

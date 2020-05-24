@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+
 @EBean(scope = EBean.Scope.Singleton)
 public class Dao extends AbstractDao implements IDao {
 
@@ -74,6 +76,11 @@ public class Dao extends AbstractDao implements IDao {
       interceptors.add(authInterceptor);
       restTemplate.setInterceptors(interceptors);
     }
+  }
+
+  @Override
+  public Observable<byte[]> downloadUrl(String url) {
+    return getResponse(() -> webClient.downloadUrl(url));
   }
 
   // méthodes privées -------------------------------------------------

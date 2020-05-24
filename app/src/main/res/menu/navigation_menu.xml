@@ -39,7 +39,7 @@
     <group
         android:id="@+id/group_others"
         android:checkableBehavior="all"
-        android:visible="false">
+        android:visible="true">
         <item
             android:id="@+id/menu_settings"
             android:icon="@drawable/ic_settings_24px"
@@ -53,8 +53,14 @@
         <item
             android:id="@+id/deconnexion"
             android:icon="@drawable/ic_login_black_24px"
-            app:itemTextAppearance="@style/menu_font_style"
             android:title="Sign out"
-            android:visible="false" />
+            android:visible="false"
+            app:itemTextAppearance="@style/menu_font_style" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            app:itemTextAppearance="@style/menu_font_style"
+            android:title="About"
+            android:visible="true" />
     </group>
 </menu>

@@ -11,4 +11,8 @@
     <string name="msg_i_mike">i mike?</string>
     <string name="default_notification_channel_id">com.flys.glearning</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">3221988621168281</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb3221988621168281</string>
+    <string name="fui_progress_dialog_signing_up">Creating your shiny new account...</string>
 </resources>

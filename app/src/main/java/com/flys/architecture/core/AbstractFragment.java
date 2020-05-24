@@ -161,9 +161,11 @@ public abstract class AbstractFragment extends Fragment {
                     Log.d(className, "updateOnRestore");
                 }
                 // restauration menu (previousState ne peut être null)
-                setMenuOptionsStates(previousState.getMenuOptionsState());
-                // fragment fille
-                updateOnRestore(previousState);
+                if(previousState!=null){
+                    setMenuOptionsStates(previousState.getMenuOptionsState());
+                    // fragment fille
+                    updateOnRestore(previousState);
+                }
                 break;
         }
 

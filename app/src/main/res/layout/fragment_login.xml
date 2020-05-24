@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout94"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:clipToPadding="false">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/red_A700"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="Connectez-vous pour continuer"
+        android:textColor="@color/grey_900"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/books"
+        app:civ_border_color="@color/red_A700"
+        app:civ_border_width="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05109489" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connexion_facebook_id"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/libre_franklin"
+        android:gravity="center"
+        android:text="Avec Facebook"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_200"
+        app:icon="@drawable/ic_social_round_facebook"
+        app:iconGravity="start"
+        app:iconTint="@color/blue_600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_google_id"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connexion_google_id"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/libre_franklin"
+        android:gravity="center"
+        android:text="Avec Google"
+        android:textAllCaps="false"
+        android:textColor="@color/red_A700"
+        app:icon="@drawable/ic_social_round_google_plus"
+        app:iconGravity="start"
+        app:iconTint="@color/red_A700"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_mail_id" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connexion_mail_id"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/libre_franklin"
+        android:gravity="center"
+        android:text="Avec une adresse email"
+        android:textAllCaps="false"
+        android:textColor="@color/grey_900"
+        app:icon="@drawable/ic_mail_outline_black_24dp"
+        app:iconGravity="start"
+        app:iconTint="@color/grey_900"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_phone_id" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connexion_phone_id"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/libre_franklin"
+        android:gravity="center"
+        android:text="Avec mon téléphone"
+        android:textAllCaps="false"
+        android:textColor="@color/green_700"
+        app:icon="@drawable/ic_perm_phone_msg_black_24dp"
+        app:iconGravity="start"
+        app:iconTint="@color/green_700"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91"
+        app:layout_constraintTop_toBottomOf="@+id/textView79" />
+
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/libre_franklin_thin"
+        android:textColor="@color/black"
+        android:text="Bienvenue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline91" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

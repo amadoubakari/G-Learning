@@ -2,4 +2,14 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.flys.activity.MainActivity">
+    <item
+        android:id="@+id/connexion"
+        android:checkable="false"
+        android:visible="true"
+        android:title="Connexion"/>
+    <item
+        android:id="@+id/deconnexion"
+        android:checkable="false"
+        android:title="Déconnexion"
+        android:visible="false" />
 </menu>
