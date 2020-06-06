@@ -1,0 +1,19 @@
+
+
+java:S1186g"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ëä–8§Ñ…§.
+£
+java:S1186v"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(²‘Şàüÿÿÿÿ8Éèƒ§.
+Y	java:S125­"<This block of commented-out lines of code should be removed.(º—Ïü8„¸Š§.
+O
+java:S1128"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ó¼¡‹§.
+
+java:S1186l"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¸ø®é8Éèƒ§.
+U
+java:S1854`"8Remove this useless assignment to local variable "view".(Àƒù8ü…±…¨.
+F
+java:S1481`")Remove this unused "view" local variable.(Àƒù8ü…±…¨.
+¤
+java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Õùß¦ÿÿÿÿÿ8§Ñ…§.
+
+java:S1186q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ÿ¦ÓÁ8Éèƒ§.
+]	java:S125H"<This block of commented-out lines of code should be removed.(ìÈÙøıÿÿÿÿ8¢˜Ú®§.

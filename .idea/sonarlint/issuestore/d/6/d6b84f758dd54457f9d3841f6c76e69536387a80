@@ -1,0 +1,27 @@
+
+p
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(ŸŒ¹Ñ8şçøĞ§.
+9
+java:S3626¹"Remove this redundant jump.(ûÁİ…8şçøĞ§.
+P
+java:S1135Œ"2Complete the task associated to this TODO comment.(ƒıöé8ñÀŞ‚¨.
+T
+java:S1135y"2Complete the task associated to this TODO comment.(Ôà­åúÿÿÿÿ8æÛ˜²¦.
+P
+java:S1135ª"2Complete the task associated to this TODO comment.(Èëƒ«8şçøĞ§.
+P
+java:S1135¯"2Complete the task associated to this TODO comment.(°š„Á8şçøĞ§.
+…
+java:S3252Ã"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(ÆºÉö8şçøĞ§.
+F	java:S108á")Either remove or fill this block of code.(¯ÆîÚ8şçøĞ§.
+F	java:S108Ş")Either remove or fill this block of code.(Ä¡8şçøĞ§.
+u
+java:S1450l"SRemove the "user" field and declare it as a local variable in the relevant methods.(’Ø¾ıÿÿÿÿ8æÛ˜²¦.
+U
+java:S1135¤"2Complete the task associated to this TODO comment.(¼¦éïÿÿÿÿÿ8şçøĞ§.
+W
+java:S1117”"9Rename "user" which hides the field declared at line 108.(—ÓÛ8şçøĞ§.
+O
+java:S1602›",Remove useless curly braces around statement(ÍŒ¼Áşÿÿÿÿ8şçøĞ§.
+Y
+java:S1117Ò";Rename "dialog" which hides the field declared at line 106.(áÆ¬8™—Ú«¨.

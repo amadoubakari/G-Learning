@@ -1,10 +1,6 @@
 package com.flys.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -16,6 +12,7 @@ import com.flys.R;
 import com.flys.architecture.core.AbstractActivity;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.core.ISession;
+import com.flys.architecture.core.Utils;
 import com.flys.architecture.custom.Session;
 import com.flys.common_tools.dialog.MaterialNotificationDialog;
 import com.flys.common_tools.domain.NotificationData;
@@ -23,9 +20,9 @@ import com.flys.common_tools.utils.FileUtils;
 import com.flys.dao.entities.User;
 import com.flys.dao.service.Dao;
 import com.flys.dao.service.IDao;
+import com.flys.fragments.behavior.AboutFragment_;
 import com.flys.fragments.behavior.AlphabetFragment_;
 import com.flys.fragments.behavior.ArcFragment_;
-import com.flys.fragments.behavior.AuthenticationFragment_;
 import com.flys.fragments.behavior.BottleFragment_;
 import com.flys.fragments.behavior.BouclierFragment_;
 import com.flys.fragments.behavior.CalaoFragment_;
@@ -56,6 +53,7 @@ import com.flys.fragments.behavior.MancheFragment_;
 import com.flys.fragments.behavior.MilFragment_;
 import com.flys.fragments.behavior.MortierFragment_;
 import com.flys.fragments.behavior.MoulinFragment_;
+import com.flys.fragments.behavior.NotificationFragment_;
 import com.flys.fragments.behavior.PanierFragment_;
 import com.flys.fragments.behavior.PintadeFragment_;
 import com.flys.fragments.behavior.PlantoirFragment_;
@@ -71,6 +69,7 @@ import com.flys.fragments.behavior.TerrasseFragment_;
 import com.flys.fragments.behavior.TortoiseFragment_;
 import com.flys.fragments.behavior.TreeFragment_;
 import com.flys.fragments.behavior.TroncFragment_;
+import com.flys.notification.domain.Notification;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -81,8 +80,6 @@ import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -126,8 +123,10 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected void onResumeActivity() {
-        if (getIntent().hasExtra("notification")) {
-            navigateToView(10, ISession.Action.SUBMIT);
+        if (getIntent().getExtras() != null) {
+            Notification notification = (Notification) getIntent().getSerializableExtra("notification");
+            Session.getNotifications().add(notification);
+            navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
         }
     }
 
@@ -140,6 +139,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     protected AbstractFragment[] getFragments() {
         // todo : définir les fragments ici
         return new AbstractFragment[]{
+                new AlphabetFragment_(),
                 new SplashScreenFragment_(), new HomeFragment_(), new FishFragment_(),
                 new DogFragment_(), new FishDogFragment_(), new LeafFragment_(),
                 new CrucheFragment_(), new ArcFragment_(), new BottleFragment_(),
@@ -155,7 +155,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 new HouseFragment_(), new GoatFragment_(), new ChauveSourisFragment_(),
                 new GrainierFragment_(), new QueueFragment_(), new GrenouilleFragment_(),
                 new TerrasseFragment_(), new MilFragment_(), new TroncFragment_(),
-                new HyeneFragment_(), new AlphabetFragment_(), new AuthenticationFragment_()};
+                new HyeneFragment_(), new NotificationFragment_(), new AboutFragment_(),
+        };
     }
 
     @Override
@@ -172,11 +173,12 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @Override
     protected int getFirstView() {
         // todo : définir le n° de la première vue (fragment) à afficher
-        return 0;
+        return SPLASHSCREEN_FRAGMENT;
     }
 
     @Override
     public void onBackPressed() {
+        drawerLayout.closeDrawers();
         if (mViewPager.getCurrentItem() == 0 || mViewPager.getCurrentItem() == 1) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
@@ -205,13 +207,24 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @OptionsItem(R.id.deconnexion)
     public void deconnexion() {
-        // on navigue vers la vue 2
+        MaterialNotificationDialog dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous vous déconnecter de l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert));
+        dialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
+        // Disconnection
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(task -> {
-                    // ...
-                    connexion.setVisible(true);
-                    deconnexion.setVisible(false);
+                    if (task.isSuccessful()) {
+                        connexion.setVisible(true);
+                        deconnexion.setVisible(false);
+                        session.setUser(null);
+                        dialog.dismiss();
+                    }
+                    if (task.isComplete()) {
+
+                    }
+                    if (task.isCanceled()) {
+
+                    }
                 });
     }
 
@@ -256,23 +269,23 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e(getClass().getSimpleName(), "user before :" + requestCode + " resultCode : " + resultCode);
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Log.e(getClass().getSimpleName(), "user :" + user.getDisplayName());
-                Log.e(getClass().getSimpleName(), "email :" + user.getEmail());
-                Log.e(getClass().getSimpleName(), "phone :" + user.getPhoneNumber());
-                Log.e(getClass().getSimpleName(), "photo :" + user.getPhotoUrl());
                 this.user = new User(user.getDisplayName(), user.getEmail());
                 if (user.getPhotoUrl() != null) {
-                    downloadUrl(user.getPhotoUrl().toString()).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(bytes -> {
-                                FileUtils.saveToInternalStorage(bytes, "glearning", user.getDisplayName() + ".png", this);
-                            });
+                    //Tester la connexion internet
+                    if (Utils.isConnectedToNetwork(this)) {
+                        downloadUrl(user.getPhotoUrl().toString()).subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(bytes -> {
+                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getDisplayName() + ".png", this);
+                                });
+                    } else {
+                        showErrorMessage("Oops! Erreur connexion internet");
+                    }
                 }
 
                 //Mise à jour des informations de l'utilisateur dans la session
@@ -285,30 +298,35 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 if (response == null) {
                     // User pressed back button
                     Log.e(getClass().getSimpleName(), "onActivityResult: sign_in_cancelled");
-                    showErrorMessage("To bad... It seems like you cancelled :/");
+                    showErrorMessage("Connexion annulée");
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Log.e(getClass().getSimpleName(), "onActivityResult: no_internet_connection");
-                    showErrorMessage("Ups! There's no internet connection");
+                    showErrorMessage("Oops! Erreur connexion internet");
                     return;
                 }
                 if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     Log.e(getClass().getSimpleName(), "onActivityResult: unknown_error");
-                    showErrorMessage("Woot! Something unexpected just happend.");
+                    showErrorMessage("Oops! Veuillez réessayer..");
                     return;
                 }
             }
         }
     }
 
-    private void showErrorMessage(String s) {
-        Snackbar.make(findViewById(R.id.main_content), "This is main activity", Snackbar.LENGTH_LONG)
+    /**
+     * @param msg
+     */
+    private void showErrorMessage(String msg) {
+        Snackbar.make(findViewById(R.id.main_content), msg, Snackbar.LENGTH_LONG)
                 .setAction("CLOSE", view -> {
 
                 })
                 .setActionTextColor(getColor(R.color.red_A700))
+                .setBackgroundTint(getColor(R.color.grey_900))
+                .setTextColor(getColor(R.color.white))
                 .show();
     }
 
@@ -321,5 +339,4 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     public User updateProfile() {
         return session.getUser();
     }
-    // [END auth_fui_result]
 }

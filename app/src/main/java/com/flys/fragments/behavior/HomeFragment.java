@@ -1,9 +1,12 @@
 package com.flys.fragments.behavior;
 
+import android.text.Html;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
@@ -17,14 +20,17 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 
-@EFragment(R.layout.fragment_home_layout)
+@EFragment(R.layout.fragment_simple_home)
 @OptionsMenu(R.menu.menu_home)
 public class HomeFragment extends AbstractFragment {
 
     @ViewById(R.id.webview)
     protected WebView webview;
 
-    @Click(R.id.next)
+    @ViewById(R.id.home_msg)
+    protected TextView message;
+
+    /*@Click(R.id.next)
     protected void nextChapitre() {
         mainActivity.navigateToView(mainActivity.DOG_FRAGMENT, ISession.Action.SUBMIT);
     }
@@ -32,7 +38,7 @@ public class HomeFragment extends AbstractFragment {
     @Click(R.id.previous)
     protected void previousChapitre() {
 
-    }
+    }*/
 
     @Override
     public CoreState saveFragment() {
@@ -51,7 +57,8 @@ public class HomeFragment extends AbstractFragment {
 
     @Override
     protected void initView(CoreState previousState) {
-        Utils.readHtmlFileFromAssets(activity,"html/home.html",webview);
+        message.setText(HtmlCompat.fromHtml(getString(R.string.home_msg),HtmlCompat.FROM_HTML_MODE_LEGACY));
+        //Utils.readHtmlFileFromAssets(activity,"html/home.html",webview);
     }
 
     @Override

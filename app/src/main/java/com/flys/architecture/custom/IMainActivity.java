@@ -44,28 +44,29 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT = 49;
+    int FRAGMENTS_COUNT =51;
 
     //Fragments number
+
     int ALPHABET_FRAGMENT = 0;
-    int HOME_FRAGMENT = 1;
-    int FISH_FRAGMENT = 2;
-    int DOG_FRAGMENT = 3;
-    int FISH_AND_DOG_FRAGMENT = 4;
-    int LEAF_FRAGMENT = 5;
-    int CRUCHE_FRAGMENT = 6;
-    int ARC_FRAGMENT = 7;
-    int BOTTLE_FRAGMENT = 8;
-    int PANIER_FRAGMENT = 9;
-    int TORTOISE_FRAGMENT = 10;
-    int MANCHE_FRAGMENT = 11;
-    int KNIFE_FRAGMENT = 12;
-    int SUMMARIZE_FRAGMENT = 13;
-    int SHOE_FRAGMENT = 14;
-    int HANGAR_FRAGMENT = 15;
-    int TREE_FRAGMENT = 16;
-    int SQUIRRY_FRAGMENT = 17;
-    int SPLASHSCREEN_FRAGMENT = 18;
+    int SPLASHSCREEN_FRAGMENT = 1;
+    int HOME_FRAGMENT = 2;
+    int FISH_FRAGMENT = 3;
+    int DOG_FRAGMENT = 4;
+    int FISH_AND_DOG_FRAGMENT = 5;
+    int LEAF_FRAGMENT = 6;
+    int CRUCHE_FRAGMENT = 7;
+    int ARC_FRAGMENT = 8;
+    int BOTTLE_FRAGMENT = 9;
+    int PANIER_FRAGMENT = 10;
+    int TORTOISE_FRAGMENT = 11;
+    int MANCHE_FRAGMENT = 12;
+    int KNIFE_FRAGMENT = 13;
+    int SUMMARIZE_FRAGMENT = 14;
+    int SHOE_FRAGMENT = 15;
+    int HANGAR_FRAGMENT = 16;
+    int TREE_FRAGMENT = 17;
+    int SQUIRRY_FRAGMENT = 18;
     int SINGE_FRAGMENT = 19;
     int PLANTOIR_FRAGMENT = 20;
     int COQ_FRAGMENT = 21;
@@ -94,7 +95,9 @@ public interface IMainActivity extends IDao {
     int MIL_FRAGMENT = 44;
     int TRONC_FRAGMENT = 45;
     int HYENE_FRAGMENT = 46;
-    int AUTH_FRAGMENT = 47;
+    int NOTIFICATION_FRAGMENT = 47;
+    int ABOUT_FRAGMENT=48;
+    int AUTH_FRAGMENT = 49;
 
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view

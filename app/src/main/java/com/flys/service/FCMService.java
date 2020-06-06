@@ -20,6 +20,7 @@ import com.flys.activity.MainActivity;
 import com.flys.activity.MainActivity_;
 import com.flys.architecture.core.AbstractActivity;
 import com.flys.architecture.custom.DApplicationContext;
+import com.flys.notification.domain.Notification;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -35,7 +36,7 @@ public class FCMService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-
+        Notification notification = new Notification();
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages
         // are handled
@@ -58,8 +59,10 @@ public class FCMService extends FirebaseMessagingService {
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            sendNotification(remoteMessage.getData().get("notification"));
+            notification.setTitle(remoteMessage.getData().get("title"));
+            notification.setSubTitle(remoteMessage.getData().get("subTitle"));
+            notification.setContent(remoteMessage.getData().get("content"));
+            sendNotification(notification);
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
                 //scheduleJob();
@@ -73,7 +76,7 @@ public class FCMService extends FirebaseMessagingService {
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            sendNotification(remoteMessage.getNotification().getBody());
+            //sendNotification(remoteMessage.getNotification().getBody());
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -106,6 +109,7 @@ public class FCMService extends FirebaseMessagingService {
         WorkManager.getInstance(DApplicationContext.getContext()).beginWith(work).enqueue();
         // [END dispatch_job]
     }
+
     /**
      * Handle time allotted to BroadcastReceivers.
      */
@@ -128,11 +132,13 @@ public class FCMService extends FirebaseMessagingService {
     /**
      * Create and show a simple notification containing the received FCM message.
      *
-     * @param msg FCM message body received.
+     * @param notification FCM message body received.
      */
-    private void sendNotification(String msg) {
+    private void sendNotification(Notification notification) {
         Intent intent = new Intent(DApplicationContext.getContext(), MainActivity_.class);
-        intent.putExtra("notification","notification");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("notification",notification);
+        intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(DApplicationContext.getContext(), 0 /* Request code */, intent,
@@ -143,10 +149,10 @@ public class FCMService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.books)
-                        .setContentTitle("Dubun Guiziga")
-                        .setContentText(msg)
+                        .setContentTitle(notification.getSubTitle())
+                        .setContentText(notification.getSubTitle())
                         .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(msg))
+                                .bigText(notification.getContent()))
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);

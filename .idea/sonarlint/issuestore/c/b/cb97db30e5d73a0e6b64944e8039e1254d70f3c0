@@ -1,0 +1,28 @@
+
+`
+java:S11244"EReorder the modifiers to comply with the Java Language Specification.(¾™§šúÿÿÿÿ
+F
+java:S1148ª"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ôàå®§.
+a
+java:S1117è"ERename "menuOptionsStates" which hides the field declared at line 36.(í‹ëßúÿÿÿÿ
+F
+java:S1148„"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ôàå®§.
+F
+java:S1066"/Merge this if statement with the enclosing one.(¾ê¡Â
+q
+java:S1450)"\Remove the "previousState" field and declare it as a local variable in the relevant methods.(©û¡X
+<
+java:S11704"!Make this final field static too.(¾™§šúÿÿÿÿ
+<
+java:S1181®"%Catch Exception instead of Throwable.(áù«õ
+X
+java:S1874‰":Remove this use of "setUserVisibleHint"; it is deprecated.(Ö‚Û8ôàå®§.
+H
+java:S1612­",Replace this lambda with a method reference.(ÎÁå®øÿÿÿÿ
+t	java:S131‰"YComplete cases by adding the missing enum constants or add a default case to this switch.(ë´åİşÿÿÿÿ
+O
+java:S1612«",Replace this lambda with a method reference.(®Ÿ„½üÿÿÿÿ8ôàå®§.
+h
+java:S1874‡"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ê™ÒŒ8ôàå®§.
+m
+java:S3776L"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(ÀÚÑ¡ùÿÿÿÿ

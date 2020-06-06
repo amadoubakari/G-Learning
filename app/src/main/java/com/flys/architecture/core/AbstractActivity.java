@@ -33,6 +33,7 @@ import com.flys.common_tools.utils.FileUtils;
 import com.flys.common_tools.utils.Utils;
 import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
+import com.flys.notification.domain.Notification;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -41,6 +42,8 @@ import com.google.android.material.tabs.TabLayout;
 import org.androidannotations.annotations.EApplication;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +69,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     // mappeur jSON
     private ObjectMapper jsonMapper;
     //la fenetre de navigation
-    private DrawerLayout drawerLayout;
+    protected DrawerLayout drawerLayout;
     //Action sur l'icone du menu principal
     private ActionBarDrawerToggle actionBarDrawerToggle;
     //Bottom navigation view
@@ -99,9 +102,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             Log.d(className, String.format("navigation vers vue %s sur action %s", position, action));
         }
         //
-        mViewPager.setScrollingEnabled(true);
+
         // affichage nouveau fragment
         mViewPager.setCurrentItem(position);
+        mViewPager.setScrollingEnabled(true);
         // on note l'action en cours lors de ce changement de vue
         session.setAction(action);
     }
@@ -239,11 +243,11 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         // le conteneur de fragments est associé au gestionnaire de fragments
         // ç-à-d que le fragment n° i du conteneur de fragments est le fragment n° i délivré par le gestionnaire de fragments
-        mViewPager = (MyPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on inhibe le swipe entre fragments
-        mViewPager.setSwipeEnabled(swiffFragment());
+        mViewPager.setSwipeEnabled(true);
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
         // qu'on associe à notre gestionnaire de fragments
@@ -272,11 +276,16 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
                         case R.id.menu_alphabet:
-                            navigateToView(46, ISession.Action.SUBMIT);
+                            navigateToView(ALPHABET_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
+                        case R.id.menu_home:
+                            navigateToView(HOME_FRAGMENT, ISession.Action.SUBMIT);
                             break;
                         case R.id.menu_recommander:
                             showEditDialog();
                             break;
+                        case R.id.about:
+                            navigateToView(ABOUT_FRAGMENT, ISession.Action.SUBMIT);
                         default:
                             break;
                     }
@@ -320,11 +329,13 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     navigateToView(FISH_FRAGMENT, ISession.Action.SUBMIT);
                     break;
                 case R.id.bottom_menu_me:
-                    Toast.makeText(AbstractActivity.this, "Indisponible ...", Toast.LENGTH_SHORT).show();
+                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                     break;
             }
             return true;
         });
+        //Badge on bottom navigation menu
+        bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me).setNumber(10);
         //Check if the user device has google play services installed and if not install them
         onCreateActivity();
     }

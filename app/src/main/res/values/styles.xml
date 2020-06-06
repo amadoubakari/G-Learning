@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/red_A700</item>
         <item name="colorPrimaryDark">@color/red_A700</item>
         <item name="colorAccent">@color/red_A400</item>
         <item name="android:textColorSecondary">@color/red_A200</item>
