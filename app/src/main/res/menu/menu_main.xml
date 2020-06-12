@@ -8,8 +8,11 @@
         android:visible="true"
         android:title="Connexion"/>
     <item
-        android:id="@+id/deconnexion"
+        android:id="@+id/menu_profil"
         android:checkable="false"
-        android:title="Déconnexion"
-        android:visible="false" />
+        android:title="Profil" />
+    <item
+        android:id="@+id/settings"
+        android:checkable="false"
+        android:title="Paramètres" />
 </menu>

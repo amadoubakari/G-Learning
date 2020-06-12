@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common-tools" />
             <option value="$PROJECT_DIR$/fcm-notification-module" />
+            <option value="$PROJECT_DIR$/generictools" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

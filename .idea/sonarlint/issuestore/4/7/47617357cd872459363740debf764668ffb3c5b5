@@ -1,18 +1,17 @@
 
-P
-java:S1118
-":Add a private constructor to hide the implicit public one.(¼Øûì
-|
-java:S1488M"aImmediately return this expression instead of assigning it to the temporary variable "isMetered".(Ğ€¤Äıÿÿÿÿ
-~
-java:S1488>"cImmediately return this expression instead of assigning it to the temporary variable "isConnected".(éÇã«øÿÿÿÿ
-l
-java:S3457,"Q%n should be used in place of \n to produce the platform-specific line separator.(ØƒƒÄıÿÿÿÿ
-`
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(—ØšŞúÿÿÿÿ
-`
-java:S1124'"EReorder the modifiers to comply with the Java Language Specification.(ù»êáşÿÿÿÿ
-[
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ßÁï½
-l
-java:S3457"Q%n should be used in place of \n to produce the platform-specific line separator.(ØƒƒÄıÿÿÿÿ
+b
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ßÁï½8ÖÃ»ÿ¨.
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(—ØšŞúÿÿÿÿ8ÖÃ»ÿ¨.
+…
+java:S1488D"cImmediately return this expression instead of assigning it to the temporary variable "isConnected".(éÇã«øÿÿÿÿ8ÖÃ»ÿ¨.
+s
+java:S34572"Q%n should be used in place of \n to produce the platform-specific line separator.(ØƒƒÄıÿÿÿÿ8ÖÃ»ÿ¨.
+W
+java:S1118":Add a private constructor to hide the implicit public one.(¼Øûì8ÖÃ»ÿ¨.
+g
+java:S1124-"EReorder the modifiers to comply with the Java Language Specification.(ù»êáşÿÿÿÿ8ÖÃ»ÿ¨.
+ƒ
+java:S1488S"aImmediately return this expression instead of assigning it to the temporary variable "isMetered".(Ğ€¤Äıÿÿÿÿ8ÖÃ»ÿ¨.
+s
+java:S3457%"Q%n should be used in place of \n to produce the platform-specific line separator.(ØƒƒÄıÿÿÿÿ8ÖÃ»ÿ¨.

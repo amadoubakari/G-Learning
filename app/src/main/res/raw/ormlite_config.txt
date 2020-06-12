@@ -1,0 +1,49 @@
+#
+# generated on 2020/06/10 07:58:35
+#
+# --table-start--
+dataClass=com.flys.dao.entities.User
+tableName=user
+# --table-fields-start--
+# --field-start--
+fieldName=nom
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=imageUrl
+# --field-end--
+# --field-start--
+fieldName=phone
+# --field-end--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.flys.notification.domain.Notification
+tableName=notification
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=subTitle
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imageUrl
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

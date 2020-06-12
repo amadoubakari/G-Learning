@@ -15,7 +15,6 @@ public class DApplicationContext extends Application {
 
     @Override
     public void attachBaseContext(Context base) {
-        //MultiDex.install(base);
         super.attachBaseContext(base);
     }
 

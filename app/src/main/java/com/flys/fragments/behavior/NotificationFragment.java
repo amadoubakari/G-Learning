@@ -1,8 +1,8 @@
 package com.flys.fragments.behavior;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +21,15 @@ import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.CoreState;
 import com.flys.architecture.custom.DApplicationContext;
-import com.flys.architecture.custom.Session;
 import com.flys.common_tools.dialog.MaterialNotificationDialog;
 import com.flys.common_tools.domain.NotificationData;
+import com.flys.dao.db.NotificationDao;
+import com.flys.dao.db.NotificationDaoImpl;
+import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.adapter.NotificationAdapter;
 import com.flys.notification.domain.Notification;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -34,7 +37,6 @@ import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +52,9 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     protected TextView notificationsEmptyMsg;
     @OptionsMenuItem(R.id.search)
     protected MenuItem menuItem;
+
+    @Bean(NotificationDaoImpl.class)
+    protected NotificationDao notificationDao;
 
     protected SearchView searchView;
     private List<Notification> notifications;
@@ -67,8 +72,13 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     protected void initFragment(CoreState previousState) {
-        notifications = new ArrayList<>();
-        notifications.addAll(Session.getNotifications());
+        try {
+            notifications=notificationDao.getAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        //notifications = new ArrayList<>();
+        //notifications.addAll(Session.getNotifications());
        /* for (int i = 0; i < 10; i++) {
             notifications.add(new Notification("title", "Subtitle", "«Gwat kum magaka ar sipi jiviɗ kumo, jam lesl, anja ki gaka a mihiri mizli ɓa a purukum ta. Da kanah na, naɓa Cine kum misi a muŋ anta sa wurkukum ta"));
         }*/
@@ -122,18 +132,6 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     @Override
     protected boolean hideNavigationBottomView() {
         return false;
-    }
-
-    @Override
-    public void okButtonAction() {
-        Intent settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                .putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
-        startActivityForResult(settingsIntent, 32);
-    }
-
-    @Override
-    public void noButtonAction() {
-
     }
 
     @OptionsItem(R.id.search)
@@ -202,7 +200,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
      * @param query
      * @return
      */
-    private List<Notification> filter(Collection<Notification> notifications, final String query) {
+    private List<Notification> filter(List<Notification> notifications, final String query) {
         List<Notification> list = new ArrayList<>();
         if (!query.isEmpty()) {
             list = notifications.stream()
@@ -218,5 +216,17 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     @Override
     public void onClickListener(int position) {
         Toast.makeText(activity, notifications.get(position).getContent(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void okButtonAction(DialogInterface dialogInterface, int i) {
+        Intent settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                .putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
+        startActivityForResult(settingsIntent, 32);
+    }
+
+    @Override
+    public void noButtonAction(DialogInterface dialogInterface, int i) {
+
     }
 }

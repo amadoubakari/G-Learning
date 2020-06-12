@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
 import com.flys.R;
+import com.flys.activity.MainActivity;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.core.ISession;
+import com.flys.architecture.core.MyPager;
 import com.flys.architecture.custom.CoreState;
 import com.flys.common_tools.utils.Utils;
 
@@ -59,6 +61,7 @@ public class HomeFragment extends AbstractFragment {
     protected void initView(CoreState previousState) {
         message.setText(HtmlCompat.fromHtml(getString(R.string.home_msg),HtmlCompat.FROM_HTML_MODE_LEGACY));
         //Utils.readHtmlFileFromAssets(activity,"html/home.html",webview);
+
     }
 
     @Override

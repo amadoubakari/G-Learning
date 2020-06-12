@@ -2,6 +2,7 @@ package com.flys.architecture.core;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -35,6 +36,7 @@ import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
 import com.flys.notification.domain.Notification;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -286,12 +288,19 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                             break;
                         case R.id.about:
                             navigateToView(ABOUT_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
+                        case R.id.menu_deconnexion:
+                            disconnect();
+                            break;
                         default:
                             break;
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 });
+
+        //Get navigation menu
+        MenuItem disconnection = navigationView.getMenu().findItem(R.id.menu_deconnexion);
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -301,10 +310,17 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
                 User user = updateProfile();
+                //Si l'utilisateur est connecte?
                 if (user != null) {
+                    disconnection.setVisible(true);
                     title.setText(user.getNom());
                     mail.setText(user.getEmail());
                     profile.setImageDrawable(FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()));
+                } else {
+                    disconnection.setVisible(false);
+                    title.setText("username");
+                    mail.setText("usermail");
+                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
                 }
 
             }
@@ -335,10 +351,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             return true;
         });
         //Badge on bottom navigation menu
-        bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me).setNumber(10);
+        BadgeDrawable badgeDrawable=bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
+        badgeDrawable.setBackgroundColor(getColor(R.color.red_700));
+        badgeDrawable.setNumber(1000);
+        badgeDrawable.setMaxCharacterCount(3);
         //Check if the user device has google play services installed and if not install them
         onCreateActivity();
     }
+
 
     @Override
     public void onResume() {
@@ -478,6 +498,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     protected abstract void navigateOnTabSelected(int position);
 
     protected abstract int getFirstView();
+
+    protected abstract void disconnect();
+
 
     @Override
     public boolean swiffFragment() {

@@ -1,9 +1,15 @@
 package com.flys.architecture.core;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,5 +82,26 @@ public class Utils {
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isMetered = cm.isActiveNetworkMetered();
         return isMetered;
+    }
+
+    /**
+     *
+     * @param context
+     * @param uri
+     * @return
+     * @throws IOException
+     */
+    public static Bitmap getBytes(Context context, Uri uri) throws IOException {
+        InputStream iStream = context.getContentResolver().openInputStream(uri);
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len = 0;
+        while ((len = iStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return BitmapFactory.decodeByteArray(byteBuffer.toByteArray(), 0, byteBuffer.toByteArray().length);
+
     }
 }

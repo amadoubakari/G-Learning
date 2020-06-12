@@ -45,15 +45,15 @@
             android:icon="@drawable/ic_settings_24px"
             app:itemTextAppearance="@style/menu_font_style"
             android:title="Settings" />
-        <item
+        <!--<item
             android:id="@+id/connexion"
             android:icon="@drawable/ic_login_black_24px"
             app:itemTextAppearance="@style/menu_font_style"
-            android:title="Sign in" />
+            android:title="Sign in" />-->
         <item
-            android:id="@+id/deconnexion"
+            android:id="@+id/menu_deconnexion"
             android:icon="@drawable/ic_login_black_24px"
-            android:title="Sign out"
+            android:title="Se déconnecter"
             android:visible="false"
             app:itemTextAppearance="@style/menu_font_style" />
         <item

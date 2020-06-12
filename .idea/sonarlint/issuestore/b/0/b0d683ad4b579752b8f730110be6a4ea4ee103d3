@@ -1,20 +1,16 @@
 
-V	java:S125D"<This block of commented-out lines of code should be removed.(ØšÔşÿÿÿÿ
-q
-java:S3923B"[Remove this conditional structure or edit its code blocks so that they're not all the same.(üÔøØ
-D
-java:S1144t".Remove this unused private "handleNow" method.(éĞİ˜
-F
-java:S11358"2Complete the task associated to this TODO comment.(˜Ş6
-Q
-java:S1128";Remove this unused import 'com.flys.activity.MainActivity'.(»°–²
+M
+java:S11356"2Complete the task associated to this TODO comment.(˜Ş68¿éü÷©.
+]	java:S125L"<This block of commented-out lines of code should be removed.(¹¨øØøÿÿÿÿ8¿éü÷©.
+T
+java:S1135"2Complete the task associated to this TODO comment.(®§§¨ûÿÿÿÿ8¿éü÷©.
+R
+java:S1144g"0Remove this unused private "scheduleJob" method.(ÌàáÏüÿÿÿÿ8¿éü÷©.
 K
-java:S1144i"0Remove this unused private "scheduleJob" method.(ÌàáÏüÿÿÿÿ
-N
-java:S1135"2Complete the task associated to this TODO comment.(®§§¨ûÿÿÿÿ
-c
-java:S1128"HRemove this unused import 'com.flys.architecture.core.AbstractActivity'.(†ó†åşÿÿÿÿ
-Q	java:S125G"<This block of commented-out lines of code should be removed.(ÀÕÈ–
-B
-java:S1172€",Remove this unused method parameter "token".(¶áÑ
-V	java:S125N"<This block of commented-out lines of code should be removed.(¹¨øØøÿÿÿÿ
+java:S1144r".Remove this unused private "handleNow" method.(éĞİ˜8¿éü÷©.
+X	java:S125E"<This block of commented-out lines of code should be removed.(ÀÕÈ–8¿éü÷©.
+x
+java:S3923@"[Remove this conditional structure or edit its code blocks so that they're not all the same.(üÔøØ8¿éü÷©.
+]	java:S125B"<This block of commented-out lines of code should be removed.(ØšÔşÿÿÿÿ8¿éü÷©.
+H
+java:S1172~",Remove this unused method parameter "token".(¶áÑ8¿éü÷©.

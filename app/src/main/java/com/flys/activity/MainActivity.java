@@ -1,8 +1,17 @@
 package com.flys.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -17,6 +26,10 @@ import com.flys.architecture.custom.Session;
 import com.flys.common_tools.dialog.MaterialNotificationDialog;
 import com.flys.common_tools.domain.NotificationData;
 import com.flys.common_tools.utils.FileUtils;
+import com.flys.dao.db.NotificationDao;
+import com.flys.dao.db.NotificationDaoImpl;
+import com.flys.dao.db.UserDao;
+import com.flys.dao.db.UserDaoImpl;
 import com.flys.dao.entities.User;
 import com.flys.dao.service.Dao;
 import com.flys.dao.service.IDao;
@@ -69,10 +82,12 @@ import com.flys.fragments.behavior.TerrasseFragment_;
 import com.flys.fragments.behavior.TortoiseFragment_;
 import com.flys.fragments.behavior.TreeFragment_;
 import com.flys.fragments.behavior.TroncFragment_;
+import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.domain.Notification;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -91,15 +106,18 @@ import rx.schedulers.Schedulers;
 @OptionsMenu(R.menu.menu_main)
 public class MainActivity extends AbstractActivity implements MaterialNotificationDialog.NotificationButtonOnclickListeneer {
 
-    //
-    @OptionsMenuItem(R.id.deconnexion)
-    MenuItem deconnexion;
     @OptionsMenuItem(R.id.connexion)
     MenuItem connexion;
 
     // couche [DAO]
     @Bean(Dao.class)
     protected IDao dao;
+
+    @Bean(UserDaoImpl.class)
+    protected UserDao userDao;
+
+    @Bean(NotificationDaoImpl.class)
+    protected NotificationDao notificationDao;
     // session
     private Session session;
     //Notification
@@ -123,10 +141,22 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected void onResumeActivity() {
-        if (getIntent().getExtras() != null) {
+       if (getIntent().getExtras() != null) {
             Notification notification = (Notification) getIntent().getSerializableExtra("notification");
-            Session.getNotifications().add(notification);
-            navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
+            Log.e(getClass().getSimpleName(), " notification from "+notification);
+            if(notification!=null){
+                try {
+                    notificationDao.save(notification);
+                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
+                } catch (DaoException e) {
+                    Log.e(getClass().getSimpleName(), " notification exception :::  "+e);
+                    Log.e(getClass().getSimpleName(), " notification message :::  "+e.getMessage());
+                    Log.e(getClass().getSimpleName(), " notification cause :::  "+e.getCause());
+                    e.printStackTrace();
+                }
+
+            }
+
         }
     }
 
@@ -177,9 +207,45 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     }
 
     @Override
+    protected void disconnect() {
+        MaterialNotificationDialog dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous vous déconnecter de l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
+            @Override
+            public void okButtonAction(DialogInterface dialogInterface, int i) {
+                // Disconnection
+                AuthUI.getInstance()
+                        .signOut(MainActivity.this)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                try {
+                                    userDao.delete(session.getUser());
+                                    session.setUser(null);
+                                    dialogInterface.dismiss();
+                                } catch (DaoException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                            if (task.isComplete()) {
+
+                            }
+                            if (task.isCanceled()) {
+
+                            }
+                        });
+            }
+
+            @Override
+            public void noButtonAction(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        dialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
+    }
+
+    @Override
     public void onBackPressed() {
         drawerLayout.closeDrawers();
-        if (mViewPager.getCurrentItem() == 0 || mViewPager.getCurrentItem() == 1) {
+        if (mViewPager.getCurrentItem() == HOME_FRAGMENT) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             this.dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous quitter l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), this);
@@ -190,42 +256,18 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         }
     }
 
-    @Override
-    public void okButtonAction() {
-        super.onBackPressed();
-    }
 
-    @Override
-    public void noButtonAction() {
-        this.dialog.dismiss();
-    }
-
+    /**
+     *
+     */
     @OptionsItem(R.id.connexion)
     public void connexion() {
         createSignInIntent();
     }
 
-    @OptionsItem(R.id.deconnexion)
-    public void deconnexion() {
-        MaterialNotificationDialog dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous vous déconnecter de l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert));
-        dialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
-        // Disconnection
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        connexion.setVisible(true);
-                        deconnexion.setVisible(false);
-                        session.setUser(null);
-                        dialog.dismiss();
-                    }
-                    if (task.isComplete()) {
-
-                    }
-                    if (task.isCanceled()) {
-
-                    }
-                });
+    @OptionsItem(R.id.menu_profil)
+    public void showProfile() {
+        drawerLayout.openDrawer(Gravity.LEFT, true);
     }
 
     /**
@@ -262,26 +304,32 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                 "https://example.com/privacy.html")
                         .build(),
                 RC_SIGN_IN);
-        // [END auth_fui_create_intent]
     }
 
-    // [START auth_fui_result]
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //Call for authentication
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                this.user = new User(user.getDisplayName(), user.getEmail());
-                if (user.getPhotoUrl() != null) {
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                user = getProviderData(firebaseUser);
+                //
+                //If there is image
+                if (user.getImageUrl() != null) {
                     //Tester la connexion internet
                     if (Utils.isConnectedToNetwork(this)) {
-                        downloadUrl(user.getPhotoUrl().toString()).subscribeOn(Schedulers.io())
+                        downloadUrl(user.getImageUrl())
+                                .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(bytes -> {
-                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getDisplayName() + ".png", this);
+                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getNom() + ".png", this);
+                                    showDialogImage(bytes);
+                                }, error -> {
+                                    // on affiche les messages de la pile d'exceptions du Throwable th
+                                    new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
                                 });
                     } else {
                         showErrorMessage("Oops! Erreur connexion internet");
@@ -289,10 +337,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 }
 
                 //Mise à jour des informations de l'utilisateur dans la session
-                session.setUser(this.user);
-                connexion.setVisible(false);
-                deconnexion.setVisible(true);
-                // ...
+                try {
+                    userDao.save(this.user);
+                } catch (DaoException e) {
+                    e.printStackTrace();
+                }
             } else {
                 // Sign in failed
                 if (response == null) {
@@ -337,6 +386,91 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     public User updateProfile() {
+        //Check if the session content user
+        if (session.getUser() != null) {
+            return session.getUser();
+        } else {
+            //Check in the database if the user was connected
+            List<User> users = null;
+            try {
+                users = userDao.getAll();
+                if (users != null && !users.isEmpty()) {
+                    session.setUser(users.get(0));
+                }
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+        }
         return session.getUser();
+    }
+
+    /**
+     * Return user informations switch provider type
+     *
+     * @param firebaseUser
+     * @return
+     */
+    public User getProviderData(FirebaseUser firebaseUser) {
+        User user = new User();
+        if (user != null) {
+            for (UserInfo profile : firebaseUser.getProviderData()) {
+                //switch provider
+                switch (profile.getProviderId()) {
+                    case "google.com":
+                        user.setNom(firebaseUser.getDisplayName());
+                        user.setEmail(profile.getEmail());
+                        user.setImageUrl(profile.getPhotoUrl().toString().replace("s96-c", "s400-c"));
+                        break;
+                    case "facebook.com":
+                        user.setNom(firebaseUser.getDisplayName());
+                        user.setImageUrl(profile.getPhotoUrl().toString().concat("?type=large"));
+                        break;
+                    case "phone":
+                        user.setPhone(profile.getPhoneNumber());
+                        break;
+                    case "password":
+                        user.setEmail(profile.getEmail());
+                        break;
+                }
+
+            }
+        }
+        return user;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (updateProfile() != null) {
+            connexion.setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    private void showDialogImage(byte[] bytes) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_contact_image);
+        TextView name = dialog.findViewById(R.id.name);
+        TextView email = dialog.findViewById(R.id.email_or_number);
+        ImageView smallImage = dialog.findViewById(R.id.small_image);
+        ImageView image = dialog.findViewById(R.id.large_image);
+        smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+        image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+        email.setText("amadoubakari@gmail.com");
+        name.setText("AMADOU BAKARI");
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        (dialog.findViewById(R.id.bt_close)).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    @Override
+    public void okButtonAction(DialogInterface dialogInterface, int i) {
+        super.onBackPressed();
+    }
+
+    @Override
+    public void noButtonAction(DialogInterface dialogInterface, int i) {
+        this.dialog.dismiss();
     }
 }

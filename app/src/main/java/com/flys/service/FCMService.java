@@ -16,9 +16,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.flys.R;
-import com.flys.activity.MainActivity;
 import com.flys.activity.MainActivity_;
-import com.flys.architecture.core.AbstractActivity;
 import com.flys.architecture.custom.DApplicationContext;
 import com.flys.notification.domain.Notification;
 import com.google.firebase.messaging.FirebaseMessagingService;
