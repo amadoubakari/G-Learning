@@ -14,6 +14,8 @@ public class User extends BaseEntity {
     private String imageUrl;
     @DatabaseField
     private String phone;
+    @DatabaseField
+    private Type type;
 
     public User() {
     }
@@ -72,11 +74,29 @@ public class User extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", phone='" + phone + '\'' +
+                ", type=" + type +
                 '}';
+    }
+
+    public enum Type {
+        FACEBOOK,
+        GOOGLE,
+        MAIL,
+        PHONE
     }
 }

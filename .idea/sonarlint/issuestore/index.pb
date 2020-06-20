@@ -95,3 +95,7 @@ j
 :app/src/main/java/com/flys/dao/db/NotificationDaoImpl.java,8\7\87515ea6db0933a200d2e9513528a63e5a5bd278
 i
 9app/src/main/java/com/flys/dao/entities/Notification.java,4\f\4fe2990331df3b1759fc707c7df8119856a748f4
+e
+5app/src/main/java/com/flys/dao/service/WebClient.java,9\7\970c6a64f2679a1864c0c7a02855d1ba50c6b018
+`
+0app/src/main/java/com/flys/dao/service/IDao.java,4\4\44a68b0bca34080addff1c50d4668cf25644efc9

@@ -5,13 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -22,6 +28,7 @@ import com.flys.architecture.core.AbstractActivity;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.core.ISession;
 import com.flys.architecture.core.Utils;
+import com.flys.architecture.custom.DApplicationContext;
 import com.flys.architecture.custom.Session;
 import com.flys.common_tools.dialog.MaterialNotificationDialog;
 import com.flys.common_tools.domain.NotificationData;
@@ -88,6 +95,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -96,8 +104,10 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -126,6 +136,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     private User user;
 
     private static final int RC_SIGN_IN = 123;
+    private String TAG = getClass().getSimpleName();
 
     // méthodes classe parent -----------------------
     @Override
@@ -141,25 +152,59 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected void onResumeActivity() {
-       if (getIntent().getExtras() != null) {
+        //If we have fcm pushed notification in course
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey("notification")) {
             Notification notification = (Notification) getIntent().getSerializableExtra("notification");
-            Log.e(getClass().getSimpleName(), " notification from "+notification);
-            if(notification!=null){
+            Log.e(getClass().getSimpleName(), " notification from " + notification);
+            if (notification != null) {
                 try {
+                    notification.setDate(new Date());
                     notificationDao.save(notification);
                     navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
-                    Log.e(getClass().getSimpleName(), " notification exception :::  "+e);
-                    Log.e(getClass().getSimpleName(), " notification message :::  "+e.getMessage());
-                    Log.e(getClass().getSimpleName(), " notification cause :::  "+e.getCause());
                     e.printStackTrace();
                 }
 
             }
 
         }
+        //Update view if user has been connected
+        if (updateProfile() != null) {
+            updateUserConnectedProfile(updateProfile());
+        }
+
+        //Subscription on firebase to receive notifications
+        FirebaseMessaging.getInstance().subscribeToTopic("glearning")
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.e(TAG, "subscription to the channel for notification is successfully");
+                    }
+                });
     }
 
+ /*   @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey("notification")) {
+            Notification notification = (Notification) getIntent().getSerializableExtra("notification");
+            Log.e(getClass().getSimpleName(), " notification from " + notification);
+            if (notification != null) {
+                try {
+                    notification.setDate(new Date());
+                    notificationDao.save(notification);
+                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
+                } catch (DaoException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+        this.setIntent(intent);
+    }
+*/
     @Override
     protected IDao getDao() {
         return dao;
@@ -167,7 +212,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected AbstractFragment[] getFragments() {
-        // todo : définir les fragments ici
         return new AbstractFragment[]{
                 new AlphabetFragment_(),
                 new SplashScreenFragment_(), new HomeFragment_(), new FishFragment_(),
@@ -191,18 +235,17 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected CharSequence getFragmentTitle(int position) {
-        // todo : définir les titres des fragments ici
         return null;
     }
 
     @Override
     protected void navigateOnTabSelected(int position) {
-        // todo : navigation par onglets - définir la vue à afficher lorsque l'onglet n° [position] est sélectionné
+        //navigation par onglets - définir la vue à afficher lorsque l'onglet n° [position] est sélectionné
     }
 
     @Override
     protected int getFirstView() {
-        // todo : définir le n° de la première vue (fragment) à afficher
+        //définir le n° de la première vue (fragment) à afficher
         return SPLASHSCREEN_FRAGMENT;
     }
 
@@ -216,20 +259,32 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                         .signOut(MainActivity.this)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                try {
-                                    userDao.delete(session.getUser());
-                                    session.setUser(null);
-                                    dialogInterface.dismiss();
-                                } catch (DaoException e) {
-                                    e.printStackTrace();
-                                }
+                                MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(MainActivity.this, new NotificationData(getString(R.string.app_name), "Merci " + (session.getUser().getNom() != null ? session.getUser().getNom() : "") + ", vous revoir bientôt !", "OK", "Annuler", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
+                                    @Override
+                                    public void okButtonAction(DialogInterface dialogInterface, int i) {
+                                        try {
+                                            userDao.delete(session.getUser());
+                                            session.setUser(null);
+                                            dialogInterface.dismiss();
+                                            onPrepareOptionsMenu(null);
+                                            updateUserConnectedProfile(null);
+                                        } catch (DaoException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
 
+                                    @Override
+                                    public void noButtonAction(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+                                notificationDialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
                             }
                             if (task.isComplete()) {
 
                             }
                             if (task.isCanceled()) {
-
+                                showErrorMessage("Déconnexion annulée");
                             }
                         });
             }
@@ -288,7 +343,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.FacebookBuilder().build()
-                //new AuthUI.IdpConfig.TwitterBuilder().build()
         );
 
         // Create and launch sign-in intent
@@ -299,9 +353,9 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                         .setAuthMethodPickerLayout(customLayout)
                         .setLogo(R.drawable.books)      // Set logo drawable
                         .setTheme(R.style.AuthenticationTheme)      // Set theme
-                        .setTosAndPrivacyPolicyUrls(
+                        /*.setTosAndPrivacyPolicyUrls(
                                 "https://example.com/terms.html",
-                                "https://example.com/privacy.html")
+                                "https://example.com/privacy.html")*/
                         .build(),
                 RC_SIGN_IN);
     }
@@ -315,33 +369,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                user = getProviderData(firebaseUser);
-                //
-                //If there is image
-                if (user.getImageUrl() != null) {
-                    //Tester la connexion internet
-                    if (Utils.isConnectedToNetwork(this)) {
-                        downloadUrl(user.getImageUrl())
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(bytes -> {
-                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getNom() + ".png", this);
-                                    showDialogImage(bytes);
-                                }, error -> {
-                                    // on affiche les messages de la pile d'exceptions du Throwable th
-                                    new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
-                                });
-                    } else {
-                        showErrorMessage("Oops! Erreur connexion internet");
-                    }
-                }
-
                 //Mise à jour des informations de l'utilisateur dans la session
-                try {
-                    userDao.save(this.user);
-                } catch (DaoException e) {
-                    e.printStackTrace();
-                }
+                getProviderData(firebaseUser);
             } else {
                 // Sign in failed
                 if (response == null) {
@@ -385,6 +414,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     }
 
     @Override
+    public Observable<byte[]> downloadFacebookImage(String url, String type) {
+        return dao.downloadFacebookImage(url, type);
+    }
+
+    @Override
     public User updateProfile() {
         //Check if the session content user
         if (session.getUser() != null) {
@@ -410,43 +444,92 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      * @param firebaseUser
      * @return
      */
-    public User getProviderData(FirebaseUser firebaseUser) {
+    public void getProviderData(FirebaseUser firebaseUser) {
         User user = new User();
-        if (user != null) {
-            for (UserInfo profile : firebaseUser.getProviderData()) {
-                //switch provider
-                switch (profile.getProviderId()) {
-                    case "google.com":
-                        user.setNom(firebaseUser.getDisplayName());
-                        user.setEmail(profile.getEmail());
-                        user.setImageUrl(profile.getPhotoUrl().toString().replace("s96-c", "s400-c"));
-                        break;
-                    case "facebook.com":
-                        user.setNom(firebaseUser.getDisplayName());
-                        user.setImageUrl(profile.getPhotoUrl().toString().concat("?type=large"));
-                        break;
-                    case "phone":
-                        user.setPhone(profile.getPhoneNumber());
-                        break;
-                    case "password":
-                        user.setEmail(profile.getEmail());
-                        break;
-                }
-
+        for (UserInfo profile : firebaseUser.getProviderData()) {
+            //switch provider
+            switch (profile.getProviderId()) {
+                case "google.com":
+                    user.setType(User.Type.GOOGLE);
+                    user.setNom(firebaseUser.getDisplayName());
+                    user.setEmail(profile.getEmail());
+                    user.setImageUrl(profile.getPhotoUrl().toString().replace("s96-c", "s400-c"));
+                    if (Utils.isConnectedToNetwork(this)) {
+                        downloadUrl(user.getImageUrl())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(bytes -> {
+                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getNom() + ".png", this);
+                                    //Update profile
+                                    updateUserConnectedProfile(user);
+                                    showDialogImage(bytes, user);
+                                }, error -> {
+                                    // on affiche les messages de la pile d'exceptions du Throwable th
+                                    new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
+                                });
+                    } else {
+                        showErrorMessage("Oops! Erreur connexion internet");
+                    }
+                    break;
+                case "facebook.com":
+                    user.setType(User.Type.FACEBOOK);
+                    user.setNom(firebaseUser.getDisplayName());
+                    user.setImageUrl(profile.getPhotoUrl().toString());
+                    if (Utils.isConnectedToNetwork(this)) {
+                        downloadFacebookImage(user.getImageUrl(), "large")
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(bytes -> {
+                                    FileUtils.saveToInternalStorage(bytes, "glearning", user.getNom() + ".png", this);
+                                    //Update profile
+                                    updateUserConnectedProfile(user);
+                                    showDialogImage(bytes, user);
+                                }, error -> {
+                                    // on affiche les messages de la pile d'exceptions du Throwable th
+                                    new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
+                                });
+                    } else {
+                        showErrorMessage("Oops! Erreur connexion internet");
+                    }
+                    break;
+                case "phone":
+                    user.setType(User.Type.PHONE);
+                    user.setPhone(profile.getPhoneNumber());
+                    showDialogImage(null, user);
+                    break;
+                case "password":
+                    user.setType(User.Type.MAIL);
+                    user.setEmail(profile.getEmail());
+                    showDialogImage(null, user);
+                    break;
+                default:
+                    break;
             }
+
         }
-        return user;
+        //Mise à jour de la base de données
+        try {
+            userDao.save(user);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (updateProfile() != null) {
             connexion.setVisible(false);
+        } else {
+            connexion.setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
 
-    private void showDialogImage(byte[] bytes) {
+    /**
+     * @param bytes
+     * @param user
+     */
+    private void showDialogImage(byte[] bytes, User user) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_contact_image);
@@ -454,10 +537,33 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         TextView email = dialog.findViewById(R.id.email_or_number);
         ImageView smallImage = dialog.findViewById(R.id.small_image);
         ImageView image = dialog.findViewById(R.id.large_image);
-        smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-        image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-        email.setText("amadoubakari@gmail.com");
-        name.setText("AMADOU BAKARI");
+
+        switch (user.getType()) {
+            case GOOGLE:
+                email.setText(user.getEmail());
+                name.setText(user.getNom());
+                smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                break;
+            case FACEBOOK:
+                email.setText(user.getNom());
+                name.setText(user.getNom());
+                smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                break;
+            case MAIL:
+                email.setText(user.getEmail());
+                name.setText(user.getNom());
+                break;
+            case PHONE:
+                email.setText(user.getPhone());
+                name.setText(user.getNom());
+                break;
+        }
+        if (bytes != null) {
+            smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+        }
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(true);
         (dialog.findViewById(R.id.bt_close)).setOnClickListener(v -> dialog.dismiss());
@@ -473,4 +579,48 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     public void noButtonAction(DialogInterface dialogInterface, int i) {
         this.dialog.dismiss();
     }
+
+    /**
+     * @param user
+     */
+    void updateUserConnectedProfile(User user) {
+        View headerNavView = navigationView.getHeaderView(0);
+        CircleImageView profile = headerNavView.findViewById(R.id.profile_image);
+        TextView title = headerNavView.findViewById(R.id.profile_user_name);
+        TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
+        MenuItem disconnect = navigationView.getMenu().findItem(R.id.menu_deconnexion);
+        //Si l'utilisateur est connecte?
+        if (user != null) {
+            disconnect.setVisible(true);
+            switch (user.getType()) {
+                case GOOGLE:
+                    title.setText(user.getNom());
+                    mail.setText(user.getEmail());
+                    profile.setImageDrawable(user.getImageUrl() != null ? FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()) : getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    break;
+                case FACEBOOK:
+                    title.setText(user.getEmail());
+                    mail.setText(user.getNom());
+                    profile.setImageDrawable(user.getImageUrl() != null ? FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()) : getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    break;
+                case MAIL:
+                    title.setText(user.getNom());
+                    mail.setText(user.getEmail());
+                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    break;
+                case PHONE:
+                    title.setText(user.getNom());
+                    mail.setText(user.getPhone());
+                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    break;
+            }
+
+        } else {
+            disconnect.setVisible(false);
+            title.setText("Username");
+            mail.setText("Email");
+            profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+        }
+    }
+
 }

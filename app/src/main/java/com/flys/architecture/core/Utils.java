@@ -83,25 +83,4 @@ public class Utils {
         boolean isMetered = cm.isActiveNetworkMetered();
         return isMetered;
     }
-
-    /**
-     *
-     * @param context
-     * @param uri
-     * @return
-     * @throws IOException
-     */
-    public static Bitmap getBytes(Context context, Uri uri) throws IOException {
-        InputStream iStream = context.getContentResolver().openInputStream(uri);
-        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
-        int bufferSize = 1024;
-        byte[] buffer = new byte[bufferSize];
-
-        int len = 0;
-        while ((len = iStream.read(buffer)) != -1) {
-            byteBuffer.write(buffer, 0, len);
-        }
-        return BitmapFactory.decodeByteArray(byteBuffer.toByteArray(), 0, byteBuffer.toByteArray().length);
-
-    }
 }

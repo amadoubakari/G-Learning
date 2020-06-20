@@ -60,7 +60,6 @@ public class HomeFragment extends AbstractFragment {
     @Override
     protected void initView(CoreState previousState) {
         message.setText(HtmlCompat.fromHtml(getString(R.string.home_msg),HtmlCompat.FROM_HTML_MODE_LEGACY));
-        //Utils.readHtmlFileFromAssets(activity,"html/home.html",webview);
 
     }
 

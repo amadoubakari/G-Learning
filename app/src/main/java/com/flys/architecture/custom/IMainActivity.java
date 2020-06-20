@@ -26,7 +26,7 @@ public interface IMainActivity extends IDao {
     boolean IS_DEBUG_ENABLED = true;
 
     // délai maximal d'attente de la réponse du serveur
-    int TIMEOUT = 1000;
+    int TIMEOUT = 10000;
 
     // délai d'attente avant exécution de la requête client
     int DELAY = 0;

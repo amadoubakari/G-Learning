@@ -24,4 +24,6 @@ public interface IDao {
     void setDelay(int delay);
 
     Observable<byte[]> downloadUrl(String url);
+
+    Observable<byte[]> downloadFacebookImage(String url,String type);
 }

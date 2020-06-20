@@ -1,38 +1,42 @@
 
-P
-java:S1135È"2Complete the task associated to this TODO comment.(Èëƒ«8‰Ï¶ù©.
-^
-java:S1117Ó";Rename "dialog" which hides the field declared at line 124.(€öäøÿÿÿÿ8‰Ï¶ù©.
-P
-java:S1135Í"2Complete the task associated to this TODO comment.(°š„Á8‰Ï¶ù©.
-9
-java:S3626ê"Remove this redundant jump.(ûÁİ…8‰Ï¶ù©.
-p
-java:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ŸŒ¹Ñ8‰Ï¶ù©.
+U
+java:S1135Œ"2Complete the task associated to this TODO comment.(Ôà­åúÿÿÿÿ8Ä¤ûÊª.
+F	java:S108ğ")Either remove or fill this block of code.(Ä¡8‰¨İÎª.
 …
-java:S3252ô"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(ÆºÉö8‰Ï¶ù©.
-F
-java:S1148‘"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰Ï¶ù©.
-^
-java:S1117Â";Rename "dialog" which hides the field declared at line 124.(å”ù¤ıÿÿÿÿ8‰Ï¶ù©.
-F	java:S108ä")Either remove or fill this block of code.(Ä¡8‰Ï¶ù©.
-F	java:S108ç")Either remove or fill this block of code.(¯ÆîÚ8‰Ï¶ù©.
-u
-java:S1450~"SRemove the "user" field and declare it as a local variable in the relevant methods.(’Ø¾ıÿÿÿÿ8»÷…Ò©.
+java:S3252ë"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(ÆºÉö8‰¨İÎª.
 U
-java:S1135‹"2Complete the task associated to this TODO comment.(Ôà­åúÿÿÿÿ8»÷…Ò©.
+java:S1135Ã"2Complete the task associated to this TODO comment.(¼¦éïÿÿÿÿÿ8Ä¤ûÊª.
 O
-java:S1602Ê",Remove useless curly braces around statement(ËÕ£Õúÿÿÿÿ8‰Ï¶ù©.
-W
-java:S1117"9Rename "user" which hides the field declared at line 126.(Ç­‚û8‰Ï¶ù©.
-F
-java:S1148›"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8»õå ª.
-Z
-java:S2589Ÿ"7Remove this expression which always evaluates to "true"(¤¦ß‘üÿÿÿÿ8‰Ï¶ù©.
-D	java:S131¢""Add a default case to this switch.(¢»şùÿÿÿÿ8‰Ï¶ù©.
+java:S1602»",Remove useless curly braces around statement(ËÕ£Õúÿÿÿÿ8ë– Ïª.
 P
-java:S1135ª"2Complete the task associated to this TODO comment.(ƒıöé8‰Ï¶ù©.
+java:S1135«"2Complete the task associated to this TODO comment.(ƒıöé8Ä¤ûÊª.
+J
+java:S1068"(Remove this unused "user" private field.(’Ø¾ıÿÿÿÿ8¶¦Ïª.
+~
+java:S1192Û"`Define a constant instead of duplicating this literal "Oops! Erreur connexion internet" 3 times.(¶±’ì8ˆŒ¥Ïª.
+^
+java:S1117Ô";Rename "dialog" which hides the field declared at line 125.(€öäøÿÿÿÿ8Ä¤ûÊª.
+N
+java:S1128",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8áÿ†áª.
+p
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ŸŒ¹Ñ8‰¨İÎª.
+P
+java:S1135Î"2Complete the task associated to this TODO comment.(°š„Á8Ä¤ûÊª.
+^
+java:S1117Ú";Rename "dialog" which hides the field declared at line 125.(å”ù¤ıÿÿÿÿ8‰¨İÎª.
+O
+java:S1602©",Remove useless curly braces around statement(ËÕ£Õúÿÿÿÿ8øê Ïª.
+P
+java:S1135É"2Complete the task associated to this TODO comment.(Èëƒ«8Ä¤ûÊª.
+†
+java:S1192î"cDefine a constant instead of duplicating this literal "material_notification_alert_dialog" 3 times.(“ëâÕøÿÿÿÿ8‰¨İÎª.
 F
-java:S1148×"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰Ï¶ù©.
-U
-java:S1135Â"2Complete the task associated to this TODO comment.(¼¦éïÿÿÿÿÿ8‰Ï¶ù©.
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰¨İÎª.
+F
+java:S1148Î"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰¨İÎª.
+F
+java:S1148œ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ä¤ûÊª.
+W
+java:S1117š"9Rename "user" which hides the field declared at line 127.(Ç­‚û8‰¨İÎª.
+9
+java:S3626á"Remove this redundant jump.(ûÁİ…8‰¨İÎª.

@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -35,6 +36,7 @@ import com.flys.common_tools.utils.Utils;
 import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
 import com.flys.notification.domain.Notification;
+import com.flys.service.SwipeDirection;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -75,9 +77,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     //Action sur l'icone du menu principal
     private ActionBarDrawerToggle actionBarDrawerToggle;
     //Bottom navigation view
-    private BottomNavigationView bottomNavigationView;
-    //image du profil
-    private CircleImageView profile;
+    protected BottomNavigationView bottomNavigationView;
+    //Menu de navigation latérale
+    protected NavigationView navigationView;
 
     // constructeur
     public AbstractActivity() {
@@ -249,7 +251,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on inhibe le swipe entre fragments
-        mViewPager.setSwipeEnabled(true);
+        //mViewPager.setSwipeEnabled(true);
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
         // qu'on associe à notre gestionnaire de fragments
@@ -259,18 +261,48 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             navigateToView(getFirstView(), ISession.Action.NONE);
         }
 
-        //Action sur les éléments de menu
+        //Swipe between fragments
+        //
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case HOME_FRAGMENT:
+                    case ALPHABET_FRAGMENT:
+                    case ABOUT_FRAGMENT:
+                    case NOTIFICATION_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.none);
+                        break;
+                    case FISH_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.right);
+                        break;
+                    case HYENE_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.left);
+                        break;
+                    default:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.all);
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         //Navigation drawer
-        NavigationView navigationView = findViewById(R.id.navigation);
-        //Navigation drawer
-        View headerNavView = navigationView.getHeaderView(0);
+        navigationView = findViewById(R.id.navigation);
 
         //Nous appliquons le même style aux éléments de menu
         Utils.applyFontStyleToMenu(this, navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
 
-        profile = headerNavView.findViewById(R.id.profile_image);
-        TextView title = headerNavView.findViewById(R.id.profile_user_name);
-        TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
                     // set item as selected to persist highlight
@@ -309,19 +341,17 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                User user = updateProfile();
+               /* User user = updateProfile();
                 //Si l'utilisateur est connecte?
                 if (user != null) {
-                    disconnection.setVisible(true);
                     title.setText(user.getNom());
                     mail.setText(user.getEmail());
                     profile.setImageDrawable(FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()));
                 } else {
-                    disconnection.setVisible(false);
                     title.setText("username");
                     mail.setText("usermail");
                     profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
-                }
+                }*/
 
             }
 
@@ -351,7 +381,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             return true;
         });
         //Badge on bottom navigation menu
-        BadgeDrawable badgeDrawable=bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
         badgeDrawable.setBackgroundColor(getColor(R.color.red_700));
         badgeDrawable.setNumber(1000);
         badgeDrawable.setMaxCharacterCount(3);
@@ -371,7 +401,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (ARE_TABS_NEEDED && session.getAction() == ISession.Action.RESTORE) {
             tabLayout.getTabAt(session.getPreviousTab()).select();
         }
-        //getIntent().putExtra("notification","notification");
         onResumeActivity();
         // todo : on continue les initialisations commencées par la classe parent
     }

@@ -52,7 +52,7 @@
             android:title="Sign in" />-->
         <item
             android:id="@+id/menu_deconnexion"
-            android:icon="@drawable/ic_login_black_24px"
+            android:icon="@drawable/ic_baseline_power_settings_new_24"
             android:title="Se déconnecter"
             android:visible="false"
             app:itemTextAppearance="@style/menu_font_style" />

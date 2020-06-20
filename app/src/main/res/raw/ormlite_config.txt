@@ -1,5 +1,5 @@
 #
-# generated on 2020/06/10 07:58:35
+# generated on 2020/06/16 04:56:57
 #
 # --table-start--
 dataClass=com.flys.dao.entities.User
@@ -18,6 +18,9 @@ fieldName=imageUrl
 fieldName=phone
 # --field-end--
 # --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
 fieldName=id
 generatedId=true
 # --field-end--
@@ -25,24 +28,24 @@ generatedId=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.flys.notification.domain.Notification
+dataClass=com.flys.dao.entities.Notification
 tableName=notification
 # --table-fields-start--
-# --field-start--
-fieldName=id
-generatedId=true
-# --field-end--
 # --field-start--
 fieldName=title
 # --field-end--
 # --field-start--
-fieldName=subTitle
+fieldName=subTtitle
 # --field-end--
 # --field-start--
 fieldName=content
 # --field-end--
 # --field-start--
 fieldName=imageUrl
+# --field-end--
+# --field-start--
+fieldName=id
+generatedId=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
