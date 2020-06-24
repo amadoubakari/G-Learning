@@ -6,6 +6,10 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.view.View;
+
+import com.flys.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -83,4 +87,22 @@ public class Utils {
         boolean isMetered = cm.isActiveNetworkMetered();
         return isMetered;
     }
+
+
+
+    /**
+ * @param context
+ * @param view
+ * @param msg
+ */
+public static void showErrorMessage(Context context, View view, String msg) {
+    Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
+            .setAction("CLOSE", v -> {
+
+            })
+            .setActionTextColor(context.getColor(R.color.red_A700))
+            .setBackgroundTint(context.getColor(R.color.grey_900))
+            .setTextColor(context.getColor(R.color.white))
+            .show();
+}
 }

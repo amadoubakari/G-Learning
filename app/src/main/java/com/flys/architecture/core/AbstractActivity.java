@@ -2,12 +2,9 @@ package com.flys.architecture.core;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,31 +22,21 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flys.R;
 import com.flys.architecture.custom.CustomTabLayout;
-import com.flys.architecture.custom.DApplicationContext;
 import com.flys.architecture.custom.IMainActivity;
 import com.flys.architecture.custom.Session;
-import com.flys.common_tools.dialog.AbstractDialogActivity;
-import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
-import com.flys.common_tools.utils.DepthPageTransformer;
-import com.flys.common_tools.utils.FileUtils;
-import com.flys.common_tools.utils.Utils;
-import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
-import com.flys.notification.domain.Notification;
 import com.flys.service.SwipeDirection;
+import com.flys.tools.dialog.AbstractDialogActivity;
+import com.flys.tools.dialog.AbstractDialogFragmentInterface;
+import com.flys.tools.utils.DepthPageTransformer;
+import com.flys.tools.utils.Utils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import org.androidannotations.annotations.EApplication;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity, AbstractDialogFragmentInterface {
     // couche [DAO]
@@ -60,7 +47,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     // le conteneur des fragments
     protected MyPager mViewPager;
     // la barre d'outils
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     // l'image d'attente
     private ProgressBar loadingPanel;
     // barre d'onglets
@@ -177,7 +164,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         setContentView(R.layout.activity_main);
         // composants de la vue ---------------------
         // barre d'outils
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.main_content);

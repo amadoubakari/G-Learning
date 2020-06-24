@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,9 +14,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -30,9 +26,6 @@ import com.flys.architecture.core.ISession;
 import com.flys.architecture.core.Utils;
 import com.flys.architecture.custom.DApplicationContext;
 import com.flys.architecture.custom.Session;
-import com.flys.common_tools.dialog.MaterialNotificationDialog;
-import com.flys.common_tools.domain.NotificationData;
-import com.flys.common_tools.utils.FileUtils;
 import com.flys.dao.db.NotificationDao;
 import com.flys.dao.db.NotificationDaoImpl;
 import com.flys.dao.db.UserDao;
@@ -91,7 +84,9 @@ import com.flys.fragments.behavior.TreeFragment_;
 import com.flys.fragments.behavior.TroncFragment_;
 import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.domain.Notification;
-import com.google.android.material.snackbar.Snackbar;
+import com.flys.tools.dialog.MaterialNotificationDialog;
+import com.flys.tools.domain.NotificationData;
+import com.flys.tools.utils.FileUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -148,6 +143,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         // session
         this.session = (Session) super.session;
         // todo : on continue les initialisations commencées par la classe parent
+        getSupportActionBar().hide();
+        bottomNavigationView.setVisibility(View.GONE);
     }
 
     @Override
@@ -161,6 +158,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 try {
                     notification.setDate(new Date());
                     notificationDao.save(notification);
+                    getSupportActionBar().show();
                     navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
                     e.printStackTrace();
@@ -183,7 +181,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 });
     }
 
- /*   @Override
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Bundle bundle = getIntent().getExtras();
@@ -194,6 +192,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 try {
                     notification.setDate(new Date());
                     notificationDao.save(notification);
+                    getSupportActionBar().show();
                     navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
                     e.printStackTrace();
@@ -204,7 +203,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         }
         this.setIntent(intent);
     }
-*/
+
     @Override
     protected IDao getDao() {
         return dao;
@@ -235,6 +234,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
     @Override
     protected CharSequence getFragmentTitle(int position) {
+        AppCompatDelegate.
         return null;
     }
 
@@ -284,7 +284,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
 
                             }
                             if (task.isCanceled()) {
-                                showErrorMessage("Déconnexion annulée");
+                                Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Déconnexion annulée");
                             }
                         });
             }
@@ -376,37 +376,24 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 if (response == null) {
                     // User pressed back button
                     Log.e(getClass().getSimpleName(), "onActivityResult: sign_in_cancelled");
-                    showErrorMessage("Connexion annulée");
+                    Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Connexion annulée");
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Log.e(getClass().getSimpleName(), "onActivityResult: no_internet_connection");
-                    showErrorMessage("Oops! Erreur connexion internet");
+                    Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Erreur connexion internet");
                     return;
                 }
                 if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     Log.e(getClass().getSimpleName(), "onActivityResult: unknown_error");
-                    showErrorMessage("Oops! Veuillez réessayer..");
+                    Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Veuillez réessayer..");
                     return;
                 }
             }
         }
     }
 
-    /**
-     * @param msg
-     */
-    private void showErrorMessage(String msg) {
-        Snackbar.make(findViewById(R.id.main_content), msg, Snackbar.LENGTH_LONG)
-                .setAction("CLOSE", view -> {
-
-                })
-                .setActionTextColor(getColor(R.color.red_A700))
-                .setBackgroundTint(getColor(R.color.grey_900))
-                .setTextColor(getColor(R.color.white))
-                .show();
-    }
 
     @Override
     public Observable<byte[]> downloadUrl(String url) {
@@ -436,6 +423,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             }
         }
         return session.getUser();
+    }
+
+    @Override
+    public void activateMainButtonMenu() {
+        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_book);
     }
 
     /**
@@ -468,7 +460,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                     new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
                                 });
                     } else {
-                        showErrorMessage("Oops! Erreur connexion internet");
+                        Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Erreur connexion internet");
                     }
                     break;
                 case "facebook.com":
@@ -489,7 +481,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                     new android.app.AlertDialog.Builder(this).setTitle("Ooops !").setMessage("Vérifiez votre connexion internet et réessayer plus tard.").setNeutralButton("Fermer", null).show();
                                 });
                     } else {
-                        showErrorMessage("Oops! Erreur connexion internet");
+                        Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Erreur connexion internet");
                     }
                     break;
                 case "phone":

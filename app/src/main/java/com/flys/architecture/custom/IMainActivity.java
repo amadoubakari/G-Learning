@@ -106,5 +106,8 @@ public interface IMainActivity extends IDao {
     //swif fragment from this one
     boolean swiffFragment();
 
+    //Select the default bottomviem item
+    void activateMainButtonMenu();
+
 
 }

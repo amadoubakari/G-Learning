@@ -1,5 +1,6 @@
 package com.flys.fragments.behavior;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,10 +8,12 @@ import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,17 +24,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flys.R;
+import com.flys.activity.MainActivity;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.CoreState;
 import com.flys.architecture.custom.DApplicationContext;
-import com.flys.common_tools.dialog.MaterialNotificationDialog;
-import com.flys.common_tools.domain.NotificationData;
-import com.flys.common_tools.utils.Utils;
 import com.flys.dao.db.NotificationDao;
 import com.flys.dao.db.NotificationDaoImpl;
 import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.adapter.NotificationAdapter;
 import com.flys.notification.domain.Notification;
+import com.flys.tools.dialog.MaterialNotificationDialog;
+import com.flys.tools.domain.NotificationData;
+import com.flys.tools.utils.Utils;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
@@ -42,7 +46,6 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @EFragment(R.layout.fragment_notif_layout)
 @OptionsMenu(R.menu.menu_home)
@@ -76,6 +79,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     protected void initFragment(CoreState previousState) {
+        //mainActivity.activateMainButtonMenu();
         try {
             notifications = notificationDao.getAll();
         } catch (DaoException e) {
@@ -220,13 +224,13 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     }
 
     /**
-     *
      * @param context
      * @param anchor
      * @param custom_menu
      * @param position
      * @return
      */
+    @SuppressLint("RestrictedApi")
     public boolean showMenu(Context context, View anchor, int custom_menu, int position) {
         PopupMenu popup = new PopupMenu(context, anchor);
         popup.getMenuInflater().inflate(custom_menu, popup.getMenu());
@@ -240,6 +244,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                         notificationDao.delete(notifications.get(position));
                         notifications.remove(position);
                         notificationAdapter.notifyDataSetChanged();
+                        com.flys.architecture.core.Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), "Supprimée !");
                     } catch (DaoException e) {
                         e.printStackTrace();
                     }
@@ -247,7 +252,9 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
             }
             return false;
         });
-        popup.show();
+        MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) popup.getMenu(),anchor);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
         return true;
     }
 }

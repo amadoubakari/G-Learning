@@ -137,8 +137,7 @@ public class FCMService extends FirebaseMessagingService {
         Bundle bundle = new Bundle();
         bundle.putSerializable("notification",notification);
         intent.putExtras(bundle);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT );
         PendingIntent pendingIntent = PendingIntent.getActivity(DApplicationContext.getContext(), 0 /* Request code */, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 

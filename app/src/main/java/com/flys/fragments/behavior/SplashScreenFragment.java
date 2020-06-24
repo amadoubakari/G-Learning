@@ -27,12 +27,15 @@ public class SplashScreenFragment extends AbstractFragment {
 
     @Override
     protected void initFragment(CoreState previousState) {
-        ((AppCompatActivity) mainActivity).getSupportActionBar().hide();
+       // ((AppCompatActivity) mainActivity).getSupportActionBar().hide();
     }
 
     @Override
     protected void initView(CoreState previousState) {
-        new Handler().postDelayed(() -> mainActivity.navigateToView(mainActivity.HOME_FRAGMENT, ISession.Action.SUBMIT), 1000);
+        new Handler().postDelayed(() -> {
+            mainActivity.activateMainButtonMenu();
+            mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.SUBMIT);
+        }, 1000);
     }
 
     @Override

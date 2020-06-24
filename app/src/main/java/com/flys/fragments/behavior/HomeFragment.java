@@ -1,22 +1,15 @@
 package com.flys.fragments.behavior;
 
-import android.text.Html;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
 import com.flys.R;
-import com.flys.activity.MainActivity;
 import com.flys.architecture.core.AbstractFragment;
-import com.flys.architecture.core.ISession;
-import com.flys.architecture.core.MyPager;
 import com.flys.architecture.custom.CoreState;
-import com.flys.common_tools.utils.Utils;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
