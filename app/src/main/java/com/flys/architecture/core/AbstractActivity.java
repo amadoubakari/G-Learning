@@ -37,6 +37,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+
+import utils.FragmentObserver;
 
 public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity, AbstractDialogFragmentInterface {
     // couche [DAO]
@@ -54,7 +58,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     protected TabLayout tabLayout;
 
     // le gestionnaire de fragments ou sections
-    private FragmentPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     // nom de la classe
     protected String className;
     // mappeur jSON
@@ -96,7 +100,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
         // affichage nouveau fragment
         mViewPager.setCurrentItem(position);
-        mViewPager.setScrollingEnabled(true);
+        updateFragments();
         // on note l'action en cours lors de ce changement de vue
         session.setAction(action);
     }
@@ -236,11 +240,13 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // ç-à-d que le fragment n° i du conteneur de fragments est le fragment n° i délivré par le gestionnaire de fragments
         mViewPager = findViewById(R.id.container);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        // on inhibe le swipe entre fragments
-        //mViewPager.setSwipeEnabled(true);
+
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
+        // on inhibe le swipe entre fragments
+        mViewPager.setSwipeEnabled(false);
+        // pas de scrolling
+        mViewPager.setScrollingEnabled(true);
         // qu'on associe à notre gestionnaire de fragments
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on affiche la 1ère vue
@@ -318,40 +324,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     return true;
                 });
 
-        //Get navigation menu
-        MenuItem disconnection = navigationView.getMenu().findItem(R.id.menu_deconnexion);
-        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
 
-            }
-
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-               /* User user = updateProfile();
-                //Si l'utilisateur est connecte?
-                if (user != null) {
-                    title.setText(user.getNom());
-                    mail.setText(user.getEmail());
-                    profile.setImageDrawable(FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()));
-                } else {
-                    title.setText("username");
-                    mail.setText("usermail");
-                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
-                }*/
-
-            }
-
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
         //Action listener on bottom navigation view
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -367,11 +340,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             }
             return true;
         });
-        //Badge on bottom navigation menu
-        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
-        badgeDrawable.setBackgroundColor(getColor(R.color.red_700));
-        badgeDrawable.setNumber(1000);
-        badgeDrawable.setMaxCharacterCount(3);
         //Check if the user device has google play services installed and if not install them
         onCreateActivity();
     }
@@ -461,12 +429,12 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     // le gestionnaire de fragments --------------------------------
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+        private Observable mObservers = new FragmentObserver();
         AbstractFragment[] fragments;
 
         // constructeur
         public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
+            super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             // fragments de la classe fille
             fragments = getFragments();
         }
@@ -474,8 +442,12 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // doit rendre le fragment n° i avec ses éventuels arguments
         @Override
         public AbstractFragment getItem(int position) {
-            // on rend le fragment
-            return fragments[position];
+            mObservers.deleteObservers(); // Clear existing observers.
+            AbstractFragment fragment = fragments[position];
+            if (fragment instanceof Observer) {
+                mObservers.addObserver((Observer) fragment);
+            }
+            return fragment;
         }
 
         // rend le nombre de fragments à gérer
@@ -488,6 +460,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         @Override
         public CharSequence getPageTitle(int position) {
             return getFragmentTitle(position);
+        }
+
+        public void updateFragments() {
+            mObservers.notifyObservers();
         }
     }
 
@@ -521,5 +497,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     @Override
     public boolean swiffFragment() {
         return true;
+    }
+
+    private void updateFragments() {
+        mSectionsPagerAdapter.updateFragments();
     }
 }

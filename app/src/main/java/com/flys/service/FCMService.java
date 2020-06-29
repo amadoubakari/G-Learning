@@ -137,9 +137,9 @@ public class FCMService extends FirebaseMessagingService {
         Bundle bundle = new Bundle();
         bundle.putSerializable("notification",notification);
         intent.putExtras(bundle);
-        intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT );
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(DApplicationContext.getContext(), 0 /* Request code */, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_CANCEL_CURRENT);
 
         String channelId = getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

@@ -98,4 +98,5 @@ public class MyPager extends ViewPager {
         this.direction = direction;
     }
 
+
 }

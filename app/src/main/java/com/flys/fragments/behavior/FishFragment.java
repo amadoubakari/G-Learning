@@ -45,7 +45,7 @@ public class FishFragment extends AbstractFragment {
     @Override
     protected void initFragment(CoreState previousState) {
         ((AppCompatActivity) mainActivity).getSupportActionBar().show();
-        mainActivity.activateMainButtonMenu();
+        mainActivity.activateMainButtonMenu(R.id.bottom_menu_book);
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -72,6 +73,7 @@ import com.flys.fragments.behavior.PintadeFragment_;
 import com.flys.fragments.behavior.PlantoirFragment_;
 import com.flys.fragments.behavior.PorcEpicFragment_;
 import com.flys.fragments.behavior.QueueFragment_;
+import com.flys.fragments.behavior.SettingsFragment_;
 import com.flys.fragments.behavior.SheepFragment_;
 import com.flys.fragments.behavior.ShoeFragment_;
 import com.flys.fragments.behavior.SingeFragment_;
@@ -87,6 +89,7 @@ import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -145,28 +148,34 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         // todo : on continue les initialisations commencées par la classe parent
         getSupportActionBar().hide();
         bottomNavigationView.setVisibility(View.GONE);
-    }
-
-    @Override
-    protected void onResumeActivity() {
         //If we have fcm pushed notification in course
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey("notification")) {
-            Notification notification = (Notification) getIntent().getSerializableExtra("notification");
+            Notification notification =  (Notification) bundle.getSerializable("notification");
             Log.e(getClass().getSimpleName(), " notification from " + notification);
             if (notification != null) {
                 try {
                     notification.setDate(new Date());
                     notificationDao.save(notification);
                     getSupportActionBar().show();
-                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
+                    updateNotificationNumber(1);
+                    activateMainButtonMenu(R.id.bottom_menu_me);
+                    //navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
                     e.printStackTrace();
                 }
 
+            }else {
+                Toast.makeText(this,"Oncreate Activity notification null ",Toast.LENGTH_LONG).show();
             }
 
+        }else{
+            Toast.makeText(this,"Oncreate Activity",Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onResumeActivity() {
         //Update view if user has been connected
         if (updateProfile() != null) {
             updateUserConnectedProfile(updateProfile());
@@ -184,22 +193,31 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Bundle bundle = getIntent().getExtras();
+        Bundle bundle = intent.getExtras();
+        Toast.makeText(this,"bundle: "+bundle,Toast.LENGTH_LONG).show();
         if (bundle != null && bundle.containsKey("notification")) {
-            Notification notification = (Notification) getIntent().getSerializableExtra("notification");
+            Toast.makeText(this,"bundle containt key notification : "+bundle,Toast.LENGTH_LONG).show();
+            Log.e(getClass().getSimpleName(), " notification onNewIntent bundle " + bundle);
+            Notification notification = (Notification) bundle.getSerializable("notification");
             Log.e(getClass().getSimpleName(), " notification from " + notification);
             if (notification != null) {
                 try {
                     notification.setDate(new Date());
                     notificationDao.save(notification);
                     getSupportActionBar().show();
-                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
+                    updateNotificationNumber(1);
+                    activateMainButtonMenu(R.id.bottom_menu_me);
+                    //navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
                     e.printStackTrace();
                 }
 
+            }else {
+                Toast.makeText(this,"OnNewItent notification null",Toast.LENGTH_LONG).show();
             }
 
+        }else {
+            Toast.makeText(this,"OnNewItent",Toast.LENGTH_LONG).show();
         }
         this.setIntent(intent);
     }
@@ -229,12 +247,12 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 new GrainierFragment_(), new QueueFragment_(), new GrenouilleFragment_(),
                 new TerrasseFragment_(), new MilFragment_(), new TroncFragment_(),
                 new HyeneFragment_(), new NotificationFragment_(), new AboutFragment_(),
+                new SettingsFragment_()
         };
     }
 
     @Override
     protected CharSequence getFragmentTitle(int position) {
-        AppCompatDelegate.
         return null;
     }
 
@@ -323,6 +341,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @OptionsItem(R.id.menu_profil)
     public void showProfile() {
         drawerLayout.openDrawer(Gravity.LEFT, true);
+    }
+
+    @OptionsItem(R.id.settings)
+    public void showSettings() {
+        navigateToView(SETTINGS_FRAGMENT, ISession.Action.SUBMIT);
     }
 
     /**
@@ -426,8 +449,22 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     }
 
     @Override
-    public void activateMainButtonMenu() {
-        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_book);
+    public void activateMainButtonMenu(int itemMenuId) {
+        bottomNavigationView.setSelectedItemId(itemMenuId);
+    }
+
+    @Override
+    public void updateNotificationNumber(int number) {
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
+        badgeDrawable.setBackgroundColor(getColor(R.color.red_700));
+        badgeDrawable.setNumber(number);
+        badgeDrawable.setMaxCharacterCount(2);
+    }
+
+    @Override
+    public void clearNotification() {
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bottom_menu_me);
+        badgeDrawable.setVisible(false);
     }
 
     /**

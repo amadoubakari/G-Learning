@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flys.R;
-import com.flys.activity.MainActivity;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.CoreState;
 import com.flys.architecture.custom.DApplicationContext;
@@ -32,6 +33,8 @@ import com.flys.dao.db.NotificationDao;
 import com.flys.dao.db.NotificationDaoImpl;
 import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.adapter.NotificationAdapter;
+import com.flys.notification.dialog.DialogStyle;
+import com.flys.notification.dialog.NotificationDetailsDialogFragment;
 import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
@@ -45,11 +48,17 @@ import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.stream.Collectors;
+
+import utils.Updatable;
 
 @EFragment(R.layout.fragment_notif_layout)
 @OptionsMenu(R.menu.menu_home)
-public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, NotificationAdapter.NotificationOnclickListener {
+public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, NotificationAdapter.NotificationOnclickListener , Observer {
 
     @ViewById(R.id.notification_main_layout)
     protected ConstraintLayout mainLayout;
@@ -79,9 +88,28 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     protected void initFragment(CoreState previousState) {
-        //mainActivity.activateMainButtonMenu();
+        ((AppCompatActivity) mainActivity).getSupportActionBar().show();
+        mainActivity.activateMainButtonMenu(R.id.bottom_menu_me);
+
+    }
+
+    @Override
+    protected void initView(CoreState previousState) {
+    }
+
+    @Override
+    protected void updateOnSubmit(CoreState previousState) {
+        //initView(previousState);
+        //Toast.makeText(activity,"unUpdate",Toast.LENGTH_LONG).show();
+        mainActivity.clearNotification();
+        mainActivity.activateMainButtonMenu(R.id.bottom_menu_me);
         try {
-            notifications = notificationDao.getAll();
+            notifications = notificationDao.getAll().stream()
+                    .sorted(Comparator.comparing(Notification::getDate).reversed())
+                    .collect(Collectors.toList());
+            // }
+
+
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -90,11 +118,9 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
             mainLayout.setBackgroundColor(activity.getColor(R.color.grey_200));
             notificationsEmptyMsg.setVisibility(View.VISIBLE);
         }
-    }
-
-    @Override
-    protected void initView(CoreState previousState) {
-
+        //Upade the recycler view
+        Toast.makeText(activity, "updateOnSubmit", Toast.LENGTH_SHORT).show();
+        //mainActivity.refreshUI();
         //Is notifications empty?
         if (notifications.isEmpty()) {
             mainLayout.setBackgroundColor(activity.getColor(R.color.grey_200));
@@ -109,16 +135,12 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                 dialog.show(getActivity().getSupportFragmentManager(), "material_notification_alert_dialog");
             }
         }
-    }
-
-    @Override
-    protected void updateOnSubmit(CoreState previousState) {
-
+        //update();
     }
 
     @Override
     protected void updateOnRestore(CoreState previousState) {
-
+        Toast.makeText(activity, "updateOnRestore", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -202,12 +224,14 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     }
 
     @Override
-    public void onClickListener(int position) {
-        Toast.makeText(activity, notifications.get(position).getContent(), Toast.LENGTH_SHORT).show();
+    public void onButtonClickListener(int position) {
+        NotificationDetailsDialogFragment configDialogFragment = NotificationDetailsDialogFragment.newInstance(notifications.get(position), new DialogStyle(activity.getColor(R.color.red_A700)));
+        configDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme);
+        configDialogFragment.show(getActivity().getSupportFragmentManager(), "fragment_edit_name");
     }
 
     @Override
-    public void onMenuListener(View view, int position) {
+    public void onMenuClickListener(View view, int position) {
         showMenu(activity, view, R.menu.notification_popup_menu, position);
     }
 
@@ -237,7 +261,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
         popup.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.popmenu_share:
-                    Utils.shareText(context, "Dubun Guiziga", HtmlCompat.fromHtml(notifications.get(position).getContent(), HtmlCompat.FROM_HTML_MODE_LEGACY).toString(), "ƁIMUTOHO MIPAL");
+                    Utils.shareText(context, "Dubun Guiziga", HtmlCompat.fromHtml(notifications.get(position).getContent().concat("</br>").concat("https://play.google.com/store/apps/details?id=com.flys.glearning"), HtmlCompat.FROM_HTML_MODE_LEGACY).toString(), "ƁIMUTOHO MIPAL");
                     break;
                 case R.id.popmenu_delete:
                     try {
@@ -252,9 +276,17 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
             }
             return false;
         });
-        MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) popup.getMenu(),anchor);
+        MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) popup.getMenu(), anchor);
         menuHelper.setForceShowIcon(true);
         menuHelper.show();
         return true;
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        View root = getView();
+        Log.e(getClass().getSimpleName(),"Tu dois te changer merci" );
+       Toast.makeText(activity, "Tu dois te changer merci",Toast.LENGTH_LONG).show();
     }
 }

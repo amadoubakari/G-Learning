@@ -44,7 +44,7 @@ public interface IMainActivity extends IDao {
     boolean IS_WAITING_ICON_NEEDED = false;
 
     // nombre de fragments de l'application
-    int FRAGMENTS_COUNT =51;
+    int FRAGMENTS_COUNT = 52;
 
     //Fragments number
 
@@ -96,8 +96,9 @@ public interface IMainActivity extends IDao {
     int TRONC_FRAGMENT = 45;
     int HYENE_FRAGMENT = 46;
     int NOTIFICATION_FRAGMENT = 47;
-    int ABOUT_FRAGMENT=48;
+    int ABOUT_FRAGMENT = 48;
     int AUTH_FRAGMENT = 49;
+    int SETTINGS_FRAGMENT = 50;
 
     // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view
@@ -107,7 +108,13 @@ public interface IMainActivity extends IDao {
     boolean swiffFragment();
 
     //Select the default bottomviem item
-    void activateMainButtonMenu();
+    void activateMainButtonMenu(int itemId);
+
+    //update notifications
+    void updateNotificationNumber(int number);
+
+    //add new notification on number of notifications
+    void clearNotification();
 
 
 }
