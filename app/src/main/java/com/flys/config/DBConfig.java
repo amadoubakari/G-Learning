@@ -1,7 +1,7 @@
 package com.flys.config;
 
-import com.flys.dao.entities.Notification;
 import com.flys.dao.entities.User;
+import com.flys.notification.domain.Notification;
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 
 import java.io.Serializable;

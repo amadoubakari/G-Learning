@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -15,6 +16,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -89,11 +92,14 @@ import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.storage.FileDownloadTask;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -101,6 +107,8 @@ import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -151,53 +159,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         //If we have fcm pushed notification in course
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey("notification")) {
-            Notification notification =  (Notification) bundle.getSerializable("notification");
-            Log.e(getClass().getSimpleName(), " notification from " + notification);
-            if (notification != null) {
-                try {
-                    notification.setDate(new Date());
-                    notificationDao.save(notification);
-                    getSupportActionBar().show();
-                    updateNotificationNumber(1);
-                    activateMainButtonMenu(R.id.bottom_menu_me);
-                    //navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
-                } catch (DaoException e) {
-                    e.printStackTrace();
-                }
-
-            }else {
-                Toast.makeText(this,"Oncreate Activity notification null ",Toast.LENGTH_LONG).show();
-            }
-
-        }else{
-            Toast.makeText(this,"Oncreate Activity",Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onResumeActivity() {
-        //Update view if user has been connected
-        if (updateProfile() != null) {
-            updateUserConnectedProfile(updateProfile());
-        }
-
-        //Subscription on firebase to receive notifications
-        FirebaseMessaging.getInstance().subscribeToTopic("glearning")
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        Log.e(TAG, "subscription to the channel for notification is successfully");
-                    }
-                });
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Bundle bundle = intent.getExtras();
-        Toast.makeText(this,"bundle: "+bundle,Toast.LENGTH_LONG).show();
-        if (bundle != null && bundle.containsKey("notification")) {
-            Toast.makeText(this,"bundle containt key notification : "+bundle,Toast.LENGTH_LONG).show();
-            Log.e(getClass().getSimpleName(), " notification onNewIntent bundle " + bundle);
             Notification notification = (Notification) bundle.getSerializable("notification");
             Log.e(getClass().getSimpleName(), " notification from " + notification);
             if (notification != null) {
@@ -207,17 +168,65 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                     getSupportActionBar().show();
                     updateNotificationNumber(1);
                     activateMainButtonMenu(R.id.bottom_menu_me);
+                } catch (DaoException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                Log.e(getClass().getSimpleName(), "onCreateActivity(): notification null");
+            }
+
+        } else {
+            Log.e(getClass().getSimpleName(), "onCreateActivity(): bundle null");
+        }
+        //Subscription on firebase to receive notifications
+        if (!session.isSubscribed()) {
+            FirebaseMessaging.getInstance().subscribeToTopic("glearning")
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            session.setSubscribed(true);
+                            Log.e(TAG, "subscription to the channel for notification is successfully");
+                        }
+                    });
+        }
+    }
+
+    @Override
+    protected void onResumeActivity() {
+        //Update view if user has been connected
+        if (updateProfile() != null) {
+            updateUserConnectedProfile(updateProfile());        }
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Bundle bundle = intent.getExtras();
+        //Toast.makeText(this, "bundle: " + bundle, Toast.LENGTH_LONG).show();
+        if (bundle != null && bundle.containsKey("notification")) {
+            //Toast.makeText(this, "bundle containt key notification : " + bundle, Toast.LENGTH_LONG).show();
+            //Log.e(getClass().getSimpleName(), " notification onNewIntent bundle " + bundle);
+            Notification notification = (Notification) bundle.getSerializable("notification");
+            //Log.e(getClass().getSimpleName(), " notification from " + notification);
+            if (notification != null) {
+                try {
+                    notification.setDate(new Date());
+                    notificationDao.save(notification);
+                    getSupportActionBar().show();
+                    updateNotificationNumber(1);
+                    activateMainButtonMenu(R.id.bottom_menu_me);
                     //navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
                     e.printStackTrace();
                 }
 
-            }else {
-                Toast.makeText(this,"OnNewItent notification null",Toast.LENGTH_LONG).show();
+            } else {
+                Log.e(getClass().getSimpleName(), " onNewIntent(): notification null " );
             }
 
-        }else {
-            Toast.makeText(this,"OnNewItent",Toast.LENGTH_LONG).show();
+        } else {
+            Log.e(getClass().getSimpleName(), " onNewIntent(): bundle null " );
         }
         this.setIntent(intent);
     }
@@ -650,6 +659,34 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             mail.setText("Email");
             profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
         }
+    }
+
+    private static boolean isExternalStorageReadOnly() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isExternalStorageAvailable() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
+
+    File saveFile() {
+        // Access your app's directory in the device's Public documents directory
+        File docs = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "glearning");
+// Make the directory if it does not yet exist
+        if (!docs.exists()) {
+            docs.mkdirs();
+        }
+        Log.e(getClass().getSimpleName(), "docs directory created : " + docs.getAbsolutePath());
+        return docs;
     }
 
 }

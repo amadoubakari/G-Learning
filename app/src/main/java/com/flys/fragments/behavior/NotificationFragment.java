@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -38,7 +40,13 @@ import com.flys.notification.dialog.NotificationDetailsDialogFragment;
 import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
+import com.flys.tools.utils.FileUtils;
 import com.flys.tools.utils.Utils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
@@ -47,6 +55,8 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -54,11 +64,9 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.stream.Collectors;
 
-import utils.Updatable;
-
 @EFragment(R.layout.fragment_notif_layout)
 @OptionsMenu(R.menu.menu_home)
-public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, NotificationAdapter.NotificationOnclickListener , Observer {
+public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, NotificationAdapter.NotificationOnclickListener, Observer {
 
     @ViewById(R.id.notification_main_layout)
     protected ConstraintLayout mainLayout;
@@ -68,6 +76,10 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     protected TextView notificationsEmptyMsg;
     @OptionsMenuItem(R.id.search)
     protected MenuItem menuItem;
+
+    //Sauvegarde et restauration des données avec firebase storage
+    protected FirebaseStorage storage;
+
 
     @Bean(NotificationDaoImpl.class)
     protected NotificationDao notificationDao;
@@ -90,6 +102,9 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     protected void initFragment(CoreState previousState) {
         ((AppCompatActivity) mainActivity).getSupportActionBar().show();
         mainActivity.activateMainButtonMenu(R.id.bottom_menu_me);
+        storage = FirebaseStorage.getInstance();
+        notifications = new ArrayList<>();
+
 
     }
 
@@ -99,17 +114,16 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     protected void updateOnSubmit(CoreState previousState) {
-        //initView(previousState);
-        //Toast.makeText(activity,"unUpdate",Toast.LENGTH_LONG).show();
         mainActivity.clearNotification();
         mainActivity.activateMainButtonMenu(R.id.bottom_menu_me);
+        //Ya t'il de nouvelle notification
+
         try {
             notifications = notificationDao.getAll().stream()
-                    .sorted(Comparator.comparing(Notification::getDate).reversed())
+                    .sorted(
+                            Comparator.comparing(Notification::getDate).reversed()
+                    )
                     .collect(Collectors.toList());
-            // }
-
-
         } catch (DaoException e) {
             e.printStackTrace();
         }
@@ -118,9 +132,6 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
             mainLayout.setBackgroundColor(activity.getColor(R.color.grey_200));
             notificationsEmptyMsg.setVisibility(View.VISIBLE);
         }
-        //Upade the recycler view
-        Toast.makeText(activity, "updateOnSubmit", Toast.LENGTH_SHORT).show();
-        //mainActivity.refreshUI();
         //Is notifications empty?
         if (notifications.isEmpty()) {
             mainLayout.setBackgroundColor(activity.getColor(R.color.grey_200));
@@ -134,8 +145,23 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                 MaterialNotificationDialog dialog = new MaterialNotificationDialog(activity, new NotificationData(getString(R.string.app_name), "Veuillez activer les notifications\npour recevoir des nouveaux apprentissages", "OK", "NON", getActivity().getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_Light_Dialog_Alert), this);
                 dialog.show(getActivity().getSupportFragmentManager(), "material_notification_alert_dialog");
             }
+
+            notifications.stream()
+                    .filter(notification -> !com.flys.architecture.core.Utils.fileExist("glearning", notification.getImageName(), activity))
+                    .distinct()
+                    .forEachOrdered(notification -> {
+                        final long ONE_MEGABYTE = 1024 * 1024;
+                        storage.getReference().child(notification.getImageName()).getBytes(ONE_MEGABYTE).addOnSuccessListener(bytes -> {
+                            //Sauvegarde de l'image dans le local storage
+                            FileUtils.saveToInternalStorage(bytes, "glearning", notification.getImageName(), activity);
+                            //Refresh adapter to take in count the changes
+                            notificationAdapter.refreshAdapter();
+                        }).addOnFailureListener(exception -> {
+                            // Handle any errors
+                        });
+                    });
         }
-        //update();
+
     }
 
     @Override
@@ -286,7 +312,23 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     @Override
     public void update(Observable o, Object arg) {
         View root = getView();
-        Log.e(getClass().getSimpleName(),"Tu dois te changer merci" );
-       Toast.makeText(activity, "Tu dois te changer merci",Toast.LENGTH_LONG).show();
+        Log.e(getClass().getSimpleName(), "Tu dois te changer merci");
+        Toast.makeText(activity, "Tu dois te changer merci", Toast.LENGTH_LONG).show();
+    }
+
+    private void downloadToLocalFile() {
+        final File localFile = new File(Environment.getExternalStorageDirectory(), "parker.jpg");
+
+        storage.getReference().child("oignon.jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+
+            }
+        });
+
     }
 }

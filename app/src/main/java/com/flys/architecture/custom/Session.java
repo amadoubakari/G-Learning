@@ -15,7 +15,9 @@ public class Session extends AbstractSession {
     //Notification coming from firebase notification
     private Notification notification;
     //saved notificatiosns
-    private static List<Notification> notifications=new ArrayList<>();
+    private static List<Notification> notifications = new ArrayList<>();
+    //check if the application is subscribe to receive notification from channel
+    private boolean subscribed;
 
     public User getUser() {
         return user;
@@ -39,5 +41,13 @@ public class Session extends AbstractSession {
 
     public static void setNotifications(List<Notification> notifs) {
         notifications = notifs;
+    }
+
+    public boolean isSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(boolean subscribed) {
+        this.subscribed = subscribed;
     }
 }

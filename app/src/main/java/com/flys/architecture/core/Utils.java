@@ -1,6 +1,7 @@
 package com.flys.architecture.core;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -12,6 +13,7 @@ import com.flys.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -89,20 +91,33 @@ public class Utils {
     }
 
 
+    /**
+     * @param context
+     * @param view
+     * @param msg
+     */
+    public static void showErrorMessage(Context context, View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
+                .setAction("CLOSE", v -> {
+
+                })
+                .setActionTextColor(context.getColor(R.color.red_A700))
+                .setBackgroundTint(context.getColor(R.color.grey_900))
+                .setTextColor(context.getColor(R.color.white))
+                .show();
+    }
 
     /**
- * @param context
- * @param view
- * @param msg
- */
-public static void showErrorMessage(Context context, View view, String msg) {
-    Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
-            .setAction("CLOSE", v -> {
-
-            })
-            .setActionTextColor(context.getColor(R.color.red_A700))
-            .setBackgroundTint(context.getColor(R.color.grey_900))
-            .setTextColor(context.getColor(R.color.white))
-            .show();
-}
+     * Suppression d'un fichier existant
+     *
+     * @param fileName
+     * @param context
+     */
+    public static boolean fileExist(String dirName, String fileName, Context context) {
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir(dirName, Context.MODE_PRIVATE);
+        // Create imageDir
+        File file = new File(directory, fileName);
+        return file.exists();
+    }
 }
