@@ -117,6 +117,9 @@ public class Utils {
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir(dirName, Context.MODE_PRIVATE);
         // Create imageDir
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
         File file = new File(directory, fileName);
         return file.exists();
     }

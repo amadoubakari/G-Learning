@@ -34,7 +34,7 @@ public class SplashScreenFragment extends AbstractFragment {
     protected void initView(CoreState previousState) {
         new Handler().postDelayed(() -> {
             mainActivity.activateMainButtonMenu(R.id.bottom_menu_book);
-            //mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.SUBMIT);
+            mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.SUBMIT);
         }, 1000);
     }
 

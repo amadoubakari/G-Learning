@@ -1,4 +1,4 @@
-package utils;
+package com.flys.utils;
 
 import java.util.Observable;
 

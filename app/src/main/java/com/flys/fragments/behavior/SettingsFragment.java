@@ -30,7 +30,7 @@ public class SettingsFragment extends AbstractFragment {
     @Click(R.id.notification_switch)
     public void settings() {
         if (enableNotification.isChecked()) {
-            MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", "Content", "oui", "n", activity.getDrawable(R.drawable.books)), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
+            MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", "Activez les notifications pour recevoir des nouveautés", "OUI", "NON", activity.getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_Light_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
                 @Override
                 public void okButtonAction(DialogInterface dialogInterface, int i) {
                     Intent settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)

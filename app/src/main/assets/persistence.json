@@ -1,6 +1,6 @@
 {
   "databaseName": "glearning.db",
-  "databaseVersion": 1,
+  "databaseVersion": 2,
   "entities": [
     "com.flys.notification.domain.Notification",
     "com.flys.dao.entities.User"

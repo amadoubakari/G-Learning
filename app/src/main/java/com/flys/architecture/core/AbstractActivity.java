@@ -33,14 +33,8 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
-
-import utils.FragmentObserver;
 
 public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity, AbstractDialogFragmentInterface {
     // couche [DAO]
@@ -96,11 +90,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (IS_DEBUG_ENABLED) {
             Log.d(className, String.format("navigation vers vue %s sur action %s", position, action));
         }
-        //
-
         // affichage nouveau fragment
         mViewPager.setCurrentItem(position);
-        updateFragments();
         // on note l'action en cours lors de ce changement de vue
         session.setAction(action);
     }
@@ -302,6 +293,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     menuItem.setChecked(true);
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
+                        case R.id.menu_settings:
+                            navigateToView(SETTINGS_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
                         case R.id.menu_alphabet:
                             navigateToView(ALPHABET_FRAGMENT, ISession.Action.SUBMIT);
                             break;
@@ -429,7 +423,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     // le gestionnaire de fragments --------------------------------
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private Observable mObservers = new FragmentObserver();
         AbstractFragment[] fragments;
 
         // constructeur
@@ -442,12 +435,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // doit rendre le fragment n° i avec ses éventuels arguments
         @Override
         public AbstractFragment getItem(int position) {
-            mObservers.deleteObservers(); // Clear existing observers.
-            AbstractFragment fragment = fragments[position];
-            if (fragment instanceof Observer) {
-                mObservers.addObserver((Observer) fragment);
-            }
-            return fragment;
+            return fragments[position];
         }
 
         // rend le nombre de fragments à gérer
@@ -460,10 +448,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         @Override
         public CharSequence getPageTitle(int position) {
             return getFragmentTitle(position);
-        }
-
-        public void updateFragments() {
-            mObservers.notifyObservers();
         }
     }
 
@@ -497,9 +481,5 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     @Override
     public boolean swiffFragment() {
         return true;
-    }
-
-    private void updateFragments() {
-        mSectionsPagerAdapter.updateFragments();
     }
 }
