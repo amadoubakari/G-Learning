@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/guideline97"
+        app:layout_constraintStart_toStartOf="@+id/guideline96">
 
 
         <TextView
@@ -44,22 +44,22 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_weight="0.1"
-                        android:alpha="0.5"/>
+                        android:alpha="0.5" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Activer la notification" />
+                        android:textSize="14sp"
+                        android:text="Notifications" />
 
                     <Switch
                         android:id="@+id/notification_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:alpha="0.5"
-                        />
+                        android:alpha="0.5" />
                 </LinearLayout>
 
                 <View
@@ -73,4 +73,18 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-</ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline96"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline97"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+</androidx.constraintlayout.widget.ConstraintLayout>

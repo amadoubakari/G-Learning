@@ -1,7 +1,5 @@
 package com.flys.dao.service;
 
-import org.androidannotations.rest.spring.annotations.Path;
-
 import rx.Observable;
 
 public interface IDao {

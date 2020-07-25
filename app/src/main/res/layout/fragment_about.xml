@@ -12,7 +12,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline95"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline94"
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.0.5"
+                android:text="1.0.6"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_900" />
 
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mars 2020"
+                android:text="Juillet 2020"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_900" />
 
@@ -101,7 +101,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gwat kum magaka ar sipi jiviɗ kumo, jam lesl, naɓa Cine kum misi a muŋ anta sa wurkukum ta"
+            android:text="Ira gaka sise haɗi, dumbuŋ naŋ na da buymisemuŋ mi vula ndra gidaŋ ati wuluk angi slra hana, waɗ da ndra Gizigahay misi ar hiriuy'oy vuna gar asi jumo'ay ndra na. "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/grey_900" />
 
@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:text="Open source ici"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="14sp"
             android:textColor="@color/grey_500" />
 
 

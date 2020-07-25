@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.flys.service.SwipeDirection;
@@ -87,7 +88,7 @@ public class MyPager extends ViewPager {
                     return false;
                 }
             } catch (Exception exception) {
-                exception.printStackTrace();
+                Log.e(getClass().getSimpleName(), "Swipe in viewpager processing Exception!", exception);
             }
         }
 

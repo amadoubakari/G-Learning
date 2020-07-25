@@ -1,5 +1,7 @@
 package com.flys.dao.db;
 
+import android.util.Log;
+
 import com.flys.R;
 import com.flys.architecture.custom.DApplicationContext;
 import com.flys.generictools.dao.daoImpl.GenericDaoImpl;
@@ -10,8 +12,6 @@ import com.j256.ormlite.dao.Dao;
 import org.androidannotations.annotations.EBean;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @EBean(scope = EBean.Scope.Singleton)
 public class NotificationDaoImpl extends GenericDaoImpl<Notification, Long> implements NotificationDao {
@@ -24,7 +24,7 @@ public class NotificationDaoImpl extends GenericDaoImpl<Notification, Long> impl
         try {
             return (Dao<Notification, Long>) databaseHelper.getDao(getEntityClassManaged());
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "Getting Dao Exception!", e);
         }
 
         return null;

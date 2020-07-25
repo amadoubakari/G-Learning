@@ -45,7 +45,7 @@ public class AboutFragment extends AbstractFragment {
 
     @Override
     protected void initView(CoreState previousState) {
-        source.setText(HtmlCompat.fromHtml("Sources <font color=#D50000>here</font>", HtmlCompat.FROM_HTML_MODE_LEGACY));
+        source.setText(HtmlCompat.fromHtml("Code source <font color=#D50000>here</font>", HtmlCompat.FROM_HTML_MODE_LEGACY));
     }
 
     @Override

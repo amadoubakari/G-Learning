@@ -22,31 +22,23 @@ import org.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.fragment_settings_layout)
 @OptionsMenu(R.menu.menu_home)
-public class SettingsFragment extends AbstractFragment {
+public class SettingsFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer {
     private static final int SCAD_SETTINGS_NOTIFICATION_REQUEST_CODE = 32;
     @ViewById(R.id.notification_switch)
     protected Switch enableNotification;
+    //
+    private MaterialNotificationDialog notificationDialog;
 
     @Click(R.id.notification_switch)
     public void settings() {
+        String msg="";
         if (enableNotification.isChecked()) {
-            MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", "Activez les notifications pour recevoir des nouveautés", "OUI", "NON", activity.getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_Light_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
-                @Override
-                public void okButtonAction(DialogInterface dialogInterface, int i) {
-                    Intent settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                            .putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
-                    startActivityForResult(settingsIntent, SCAD_SETTINGS_NOTIFICATION_REQUEST_CODE);
-                }
-
-                @Override
-                public void noButtonAction(DialogInterface dialogInterface, int i) {
-                    enableNotification.setChecked(false);
-                    dialogInterface.dismiss();
-                }
-            });
-            notificationDialog.show(getActivity().getSupportFragmentManager(), "settings_notification_dialog_tag");
+            msg="Activer les notifications pour recevoir des nouveautés !";
+        } else {
+            msg="Si vous désactivez les notifications, vous risquerez ne plus recevoir des nouveautés !";
         }
-
+        notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", msg, "OUI", "NON", activity.getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_Light_Dialog_Alert), this);
+        notificationDialog.show(getActivity().getSupportFragmentManager(), "settings_notification_dialog_tag");
     }
 
     @Override
@@ -97,12 +89,25 @@ public class SettingsFragment extends AbstractFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == SCAD_SETTINGS_NOTIFICATION_REQUEST_CODE) {
-           //Checked
-            if(NotificationManagerCompat.from(activity).areNotificationsEnabled()){
+            //Checked
+            if (NotificationManagerCompat.from(activity).areNotificationsEnabled()) {
                 enableNotification.setChecked(true);
-            }else {
+            } else {
                 enableNotification.setChecked(false);
             }
         }
+    }
+
+    @Override
+    public void okButtonAction(DialogInterface dialogInterface, int i) {
+        Intent settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                .putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
+        startActivityForResult(settingsIntent, SCAD_SETTINGS_NOTIFICATION_REQUEST_CODE);
+    }
+
+    @Override
+    public void noButtonAction(DialogInterface dialogInterface, int i) {
+        enableNotification.setChecked(false);
+        dialogInterface.dismiss();
     }
 }

@@ -129,7 +129,7 @@ public abstract class AbstractFragment extends Fragment {
                 Log.d(className, String.format("session=%s", jsonMapper.writeValueAsString(session)));
                 Log.d(className, String.format("état précédent=%s", jsonMapper.writeValueAsString(previousState)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "restore view Processing Exception", e);
             }
         }
         // action en cours
@@ -423,7 +423,7 @@ public abstract class AbstractFragment extends Fragment {
             try {
                 Log.d(className, String.format("saveFragment state=%s", jsonMapper.writeValueAsString(currentState)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "saving view Processing Exception", e);
             }
         }
     }

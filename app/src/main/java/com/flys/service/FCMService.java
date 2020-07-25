@@ -62,13 +62,13 @@ public class FCMService extends FirebaseMessagingService {
             notification.setContent(remoteMessage.getData().get("content"));
             notification.setImageName(remoteMessage.getData().get("image"));
             sendNotification(notification);
-            if (/* Check if data needs to be processed by long running job */ true) {
+            /*if (*//* Check if data needs to be processed by long running job *//* true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
                 //scheduleJob();
             } else {
                 // Handle message within 10 seconds
                 //handleNow();
-            }
+            }*/
 
         }
 

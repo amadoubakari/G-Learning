@@ -105,14 +105,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         try {
             outState.putString("session", jsonMapper.writeValueAsString(session));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "Json Processing Exception", e);
         }
         // log
         if (IS_DEBUG_ENABLED) {
             try {
                 Log.d(className, String.format("onSaveInstanceState session=%s", jsonMapper.writeValueAsString(session)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "Json Processing Exception", e);
             }
         }
     }
@@ -132,14 +132,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                 session = jsonMapper.readValue(savedInstanceState.getString("session"), new TypeReference<Session>() {
                 });
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "save state Processing Exception", e);
             }
             // log
             if (IS_DEBUG_ENABLED) {
                 try {
                     Log.d(className, String.format("onCreate session=%s", jsonMapper.writeValueAsString(session)));
                 } catch (JsonProcessingException e) {
-                    e.printStackTrace();
+                    Log.e(getClass().getSimpleName(), "on create session Processing Exception", e);
                 }
             }
         } else {
@@ -351,7 +351,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             tabLayout.getTabAt(session.getPreviousTab()).select();
         }
         onResumeActivity();
-        // todo : on continue les initialisations commencées par la classe parent
     }
 
     // gestion de l'image d'attente ---------------------------------

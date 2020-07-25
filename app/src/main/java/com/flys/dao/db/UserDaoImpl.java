@@ -1,5 +1,7 @@
 package com.flys.dao.db;
 
+import android.util.Log;
+
 import com.flys.R;
 import com.flys.architecture.custom.DApplicationContext;
 import com.flys.dao.entities.User;
@@ -26,7 +28,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Long> implements UserDao {
         try {
             return (Dao<User, Long>) databaseHelper.getDao(getEntityClassManaged());
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "getting Dao Exception!", e);
         }
 
         return null;

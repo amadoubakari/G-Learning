@@ -30,9 +30,8 @@ android {
         minSdkVersion 24
         applicationId "com.flys.glearning"
         targetSdkVersion 28
-        versionCode 7
-        versionName "1.0"
-
+        versionCode 8
+        versionName "1.0.6.1"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -45,6 +44,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
         }
     }
     // options de packaging nécessaires pour être capable de produire l'APK
@@ -59,6 +61,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dependenciesInfo {
+        includeInBundle true
     }
     //Java compilation options
 

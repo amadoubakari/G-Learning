@@ -7,9 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,7 +116,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                         .collect(Collectors.toList());
             }
         } catch (DaoException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "Notification list getting from database Processing Exception", e);
         }
         //mise des informations dans la session
         session.setNotifications(notifications);
@@ -154,7 +154,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                     .filter(notification -> !com.flys.architecture.core.Utils.fileExist("glearning", notification.getImageName(), activity))
                     .distinct()
                     .forEachOrdered(notification -> {
-                        final long ONE_MEGABYTE = 1024 * 1024;
+                        final long ONE_MEGABYTE = 1024L* 1024;
                         storage.getReference().child(notification.getImageName()).getBytes(ONE_MEGABYTE).addOnSuccessListener(bytes -> {
                             //Sauvegarde de l'image dans le local storage
                             FileUtils.saveToInternalStorage(bytes, "glearning", notification.getImageName(), activity);
@@ -295,7 +295,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                         notificationAdapter.notifyDataSetChanged();
                         com.flys.architecture.core.Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), "Supprimée !");
                     } catch (DaoException e) {
-                        e.printStackTrace();
+                        Log.e(getClass().getSimpleName(), "Deleting notification from database Processing Exception", e);
                     }
                     break;
             }
@@ -305,38 +305,6 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
         menuHelper.setForceShowIcon(true);
         menuHelper.show();
         return true;
-    }
-
-    private void downloadToLocalFile() {
-        final File localFile = new File(Environment.getExternalStorageDirectory(), "parker.jpg");
-
-        storage.getReference().child("oignon.jpg").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-
-            }
-        });
-
-    }
-
-    private byte[] loadImageFromStorage(String path, String fileName, Context context) {
-        ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir(path, 0);
-        path = directory.getAbsolutePath();
-        File f = new File(path, fileName);
-        try {
-            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(f));
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            return stream.toByteArray();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

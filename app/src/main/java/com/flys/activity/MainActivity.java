@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -15,9 +14,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -92,23 +88,17 @@ import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.storage.FileDownloadTask;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -140,7 +130,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     private MaterialNotificationDialog dialog;
     //Connected user
     private User user;
-
     private static final int RC_SIGN_IN = 123;
     private String TAG = getClass().getSimpleName();
 
@@ -153,7 +142,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         }
         // session
         this.session = (Session) super.session;
-        // todo : on continue les initialisations commencées par la classe parent
         getSupportActionBar().hide();
         bottomNavigationView.setVisibility(View.GONE);
         //If we have fcm pushed notification in course
@@ -169,7 +157,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                     updateNotificationNumber(1);
                     activateMainButtonMenu(R.id.bottom_menu_me);
                 } catch (DaoException e) {
-                    e.printStackTrace();
+                    Log.e(getClass().getSimpleName(), "Dao Exception!", e);
                 }
 
             } else {
@@ -195,20 +183,18 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     protected void onResumeActivity() {
         //Update view if user has been connected
         if (updateProfile() != null) {
-            updateUserConnectedProfile(updateProfile());        }
+            updateUserConnectedProfile(updateProfile());
+        }
 
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        //Handle pushed notification if exist
         Bundle bundle = intent.getExtras();
-        //Toast.makeText(this, "bundle: " + bundle, Toast.LENGTH_LONG).show();
         if (bundle != null && bundle.containsKey("notification")) {
-            //Toast.makeText(this, "bundle containt key notification : " + bundle, Toast.LENGTH_LONG).show();
-            //Log.e(getClass().getSimpleName(), " notification onNewIntent bundle " + bundle);
             Notification notification = (Notification) bundle.getSerializable("notification");
-            //Log.e(getClass().getSimpleName(), " notification from " + notification);
             if (notification != null) {
                 try {
                     notification.setDate(new Date());
@@ -216,17 +202,16 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                     getSupportActionBar().show();
                     updateNotificationNumber(1);
                     activateMainButtonMenu(R.id.bottom_menu_me);
-                    //navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                 } catch (DaoException e) {
-                    e.printStackTrace();
+                    Log.e(getClass().getSimpleName(), "Dao Exception!", e);
                 }
 
             } else {
-                Log.e(getClass().getSimpleName(), " onNewIntent(): notification null " );
+                Log.e(getClass().getSimpleName(), " onNewIntent(): notification null ");
             }
 
         } else {
-            Log.e(getClass().getSimpleName(), " onNewIntent(): bundle null " );
+            Log.e(getClass().getSimpleName(), " onNewIntent(): bundle null ");
         }
         this.setIntent(intent);
     }
@@ -290,13 +275,14 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                     @Override
                                     public void okButtonAction(DialogInterface dialogInterface, int i) {
                                         try {
+                                            //if disconnect, clear the session and delete the user from de database
                                             userDao.delete(session.getUser());
                                             session.setUser(null);
                                             dialogInterface.dismiss();
                                             onPrepareOptionsMenu(null);
                                             updateUserConnectedProfile(null);
                                         } catch (DaoException e) {
-                                            e.printStackTrace();
+                                            Log.e(getClass().getSimpleName(), "Dao Exception!", e);
                                         }
                                     }
 
@@ -306,9 +292,6 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                     }
                                 });
                                 notificationDialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
-                            }
-                            if (task.isComplete()) {
-
                             }
                             if (task.isCanceled()) {
                                 Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Déconnexion annulée");
@@ -400,9 +383,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 //Mise à jour des informations de l'utilisateur dans la session
-                getProviderData(firebaseUser);
+                getProviderData(FirebaseAuth.getInstance().getCurrentUser());
             } else {
                 // Sign in failed
                 if (response == null) {
@@ -451,7 +433,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                     session.setUser(users.get(0));
                 }
             } catch (DaoException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "Dao Exception!", e);
             }
         }
         return session.getUser();
@@ -487,6 +469,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         for (UserInfo profile : firebaseUser.getProviderData()) {
             //switch provider
             switch (profile.getProviderId()) {
+                //Connected with google account
                 case "google.com":
                     user.setType(User.Type.GOOGLE);
                     user.setNom(firebaseUser.getDisplayName());
@@ -497,9 +480,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(bytes -> {
+                                    //Save the user avator in internal storage
                                     FileUtils.saveToInternalStorage(bytes, "glearning", user.getNom() + ".png", this);
                                     //Update profile
                                     updateUserConnectedProfile(user);
+                                    //Show user dialog with user resume
                                     showDialogImage(bytes, user);
                                 }, error -> {
                                     // on affiche les messages de la pile d'exceptions du Throwable th
@@ -509,6 +494,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                         Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Erreur connexion internet");
                     }
                     break;
+                //Connected with facebook account
                 case "facebook.com":
                     user.setType(User.Type.FACEBOOK);
                     user.setNom(firebaseUser.getDisplayName());
@@ -530,11 +516,13 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                         Utils.showErrorMessage(MainActivity.this, findViewById(R.id.main_content), "Oops! Erreur connexion internet");
                     }
                     break;
+                //connected with phone number
                 case "phone":
                     user.setType(User.Type.PHONE);
                     user.setPhone(profile.getPhoneNumber());
                     showDialogImage(null, user);
                     break;
+                //connected with an email address
                 case "password":
                     user.setType(User.Type.MAIL);
                     user.setEmail(profile.getEmail());
@@ -549,7 +537,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         try {
             userDao.save(user);
         } catch (DaoException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "Dao Exception!", e);
         }
     }
 
@@ -568,44 +556,40 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      * @param user
      */
     private void showDialogImage(byte[] bytes, User user) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
-        dialog.setContentView(R.layout.dialog_contact_image);
-        TextView name = dialog.findViewById(R.id.name);
-        TextView email = dialog.findViewById(R.id.email_or_number);
-        ImageView smallImage = dialog.findViewById(R.id.small_image);
-        ImageView image = dialog.findViewById(R.id.large_image);
+        if (user != null) {
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+            dialog.setContentView(R.layout.dialog_contact_image);
+            TextView name = dialog.findViewById(R.id.name);
+            TextView email = dialog.findViewById(R.id.email_or_number);
+            ImageView smallImage = dialog.findViewById(R.id.small_image);
+            ImageView image = dialog.findViewById(R.id.large_image);
+            switch (user.getType()) {
+                case GOOGLE:
+                case MAIL:
+                    email.setText(user.getEmail());
+                    name.setText(user.getNom());
+                    break;
+                case FACEBOOK:
+                    email.setText(user.getNom());
+                    name.setText(user.getNom());
+                    break;
 
-        switch (user.getType()) {
-            case GOOGLE:
-                email.setText(user.getEmail());
-                name.setText(user.getNom());
+                case PHONE:
+                    email.setText(user.getPhone());
+                    name.setText(user.getNom());
+                    break;
+            }
+            if (bytes != null) {
                 smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                 image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                break;
-            case FACEBOOK:
-                email.setText(user.getNom());
-                name.setText(user.getNom());
-                smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                break;
-            case MAIL:
-                email.setText(user.getEmail());
-                name.setText(user.getNom());
-                break;
-            case PHONE:
-                email.setText(user.getPhone());
-                name.setText(user.getNom());
-                break;
+            }
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.setCancelable(true);
+            (dialog.findViewById(R.id.bt_close)).setOnClickListener(v -> dialog.dismiss());
+            dialog.show();
         }
-        if (bytes != null) {
-            smallImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-            image.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-        }
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCancelable(true);
-        (dialog.findViewById(R.id.bt_close)).setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
+
     }
 
     @Override
@@ -619,6 +603,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     }
 
     /**
+     * Update the user profile
+     *
      * @param user
      */
     void updateUserConnectedProfile(User user) {
@@ -660,33 +646,4 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
         }
     }
-
-    private static boolean isExternalStorageReadOnly() {
-        String extStorageState = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isExternalStorageAvailable() {
-        String extStorageState = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
-            return true;
-        }
-        return false;
-    }
-
-    File saveFile() {
-        // Access your app's directory in the device's Public documents directory
-        File docs = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "glearning");
-// Make the directory if it does not yet exist
-        if (!docs.exists()) {
-            docs.mkdirs();
-        }
-        Log.e(getClass().getSimpleName(), "docs directory created : " + docs.getAbsolutePath());
-        return docs;
-    }
-
 }

@@ -2,20 +2,13 @@ package com.flys.architecture.core;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.view.View;
 
 import com.flys.R;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
