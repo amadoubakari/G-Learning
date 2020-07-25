@@ -1,46 +1,42 @@
 package com.flys.architecture.core;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import com.flys.common_tools.dialog.AbstractDialogActivity;
-import com.flys.common_tools.dialog.AbstractDialogFragmentInterface;
-import com.flys.common_tools.utils.DepthPageTransformer;
-import com.flys.common_tools.utils.Utils;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flys.R;
+import com.flys.architecture.custom.CustomTabLayout;
+import com.flys.architecture.custom.IMainActivity;
+import com.flys.architecture.custom.Session;
 import com.flys.dao.service.IDao;
+import com.flys.service.SwipeDirection;
+import com.flys.tools.dialog.AbstractDialogActivity;
+import com.flys.tools.dialog.AbstractDialogFragmentInterface;
+import com.flys.tools.utils.DepthPageTransformer;
+import com.flys.tools.utils.Utils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.flys.R;
-import com.flys.architecture.custom.CustomTabLayout;
-import com.flys.architecture.custom.IMainActivity;
-import com.flys.architecture.custom.Session;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity , AbstractDialogFragmentInterface {
+public abstract class AbstractActivity extends AppCompatActivity implements IMainActivity, AbstractDialogFragmentInterface {
     // couche [DAO]
     private IDao dao;
     // la session
@@ -49,26 +45,26 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     // le conteneur des fragments
     protected MyPager mViewPager;
     // la barre d'outils
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     // l'image d'attente
     private ProgressBar loadingPanel;
     // barre d'onglets
     protected TabLayout tabLayout;
 
     // le gestionnaire de fragments ou sections
-    private FragmentPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     // nom de la classe
     protected String className;
     // mappeur jSON
     private ObjectMapper jsonMapper;
     //la fenetre de navigation
-    private DrawerLayout drawerLayout;
+    protected DrawerLayout drawerLayout;
     //Action sur l'icone du menu principal
     private ActionBarDrawerToggle actionBarDrawerToggle;
     //Bottom navigation view
-    private BottomNavigationView bottomNavigationView;
-    //image du profil
-    private CircleImageView profile;
+    protected BottomNavigationView bottomNavigationView;
+    //Menu de navigation latérale
+    protected NavigationView navigationView;
 
     // constructeur
     public AbstractActivity() {
@@ -94,8 +90,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (IS_DEBUG_ENABLED) {
             Log.d(className, String.format("navigation vers vue %s sur action %s", position, action));
         }
-        //
-        mViewPager.setScrollingEnabled(true);
         // affichage nouveau fragment
         mViewPager.setCurrentItem(position);
         // on note l'action en cours lors de ce changement de vue
@@ -111,14 +105,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         try {
             outState.putString("session", jsonMapper.writeValueAsString(session));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Log.e(getClass().getSimpleName(), "Json Processing Exception", e);
         }
         // log
         if (IS_DEBUG_ENABLED) {
             try {
                 Log.d(className, String.format("onSaveInstanceState session=%s", jsonMapper.writeValueAsString(session)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "Json Processing Exception", e);
             }
         }
     }
@@ -138,14 +132,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                 session = jsonMapper.readValue(savedInstanceState.getString("session"), new TypeReference<Session>() {
                 });
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "save state Processing Exception", e);
             }
             // log
             if (IS_DEBUG_ENABLED) {
                 try {
                     Log.d(className, String.format("onCreate session=%s", jsonMapper.writeValueAsString(session)));
                 } catch (JsonProcessingException e) {
-                    e.printStackTrace();
+                    Log.e(getClass().getSimpleName(), "on create session Processing Exception", e);
                 }
             }
         } else {
@@ -165,7 +159,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         setContentView(R.layout.activity_main);
         // composants de la vue ---------------------
         // barre d'outils
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.main_content);
@@ -235,13 +229,15 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         // le conteneur de fragments est associé au gestionnaire de fragments
         // ç-à-d que le fragment n° i du conteneur de fragments est le fragment n° i délivré par le gestionnaire de fragments
-        mViewPager = (MyPager) findViewById(R.id.container);
-        mViewPager.setPageTransformer(true,new DepthPageTransformer());
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        // on inhibe le swipe entre fragments
-        mViewPager.setSwipeEnabled(swiffFragment());
+        mViewPager = findViewById(R.id.container);
+        mViewPager.setPageTransformer(true, new DepthPageTransformer());
+
         // adjacence des fragments
         mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
+        // on inhibe le swipe entre fragments
+        mViewPager.setSwipeEnabled(false);
+        // pas de scrolling
+        mViewPager.setScrollingEnabled(true);
         // qu'on associe à notre gestionnaire de fragments
         mViewPager.setAdapter(mSectionsPagerAdapter);
         // on affiche la 1ère vue
@@ -249,27 +245,71 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
             navigateToView(getFirstView(), ISession.Action.NONE);
         }
 
-        //Action sur les éléments de menu
+        //Swipe between fragments
+        //
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case HOME_FRAGMENT:
+                    case ALPHABET_FRAGMENT:
+                    case ABOUT_FRAGMENT:
+                    case NOTIFICATION_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.none);
+                        break;
+                    case FISH_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.right);
+                        break;
+                    case HYENE_FRAGMENT:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.left);
+                        break;
+                    default:
+                        mViewPager.setAllowedSwipeDirection(SwipeDirection.all);
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         //Navigation drawer
-        NavigationView navigationView = findViewById(R.id.navigation);
-        //Navigation drawer
-        View headerNavView = navigationView.getHeaderView(0);
+        navigationView = findViewById(R.id.navigation);
 
         //Nous appliquons le même style aux éléments de menu
         Utils.applyFontStyleToMenu(this, navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
 
-        profile = headerNavView.findViewById(R.id.profile_image);
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
                     // set item as selected to persist highlight
                     menuItem.setChecked(true);
                     // close drawer when item is tapped
                     switch (menuItem.getItemId()) {
+                        case R.id.menu_settings:
+                            navigateToView(SETTINGS_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
                         case R.id.menu_alphabet:
-                            navigateToView(46, ISession.Action.SUBMIT);
+                            navigateToView(ALPHABET_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
+                        case R.id.menu_home:
+                            navigateToView(HOME_FRAGMENT, ISession.Action.SUBMIT);
                             break;
                         case R.id.menu_recommander:
                             showEditDialog();
+                            break;
+                        case R.id.about:
+                            navigateToView(ABOUT_FRAGMENT, ISession.Action.SUBMIT);
+                            break;
+                        case R.id.menu_deconnexion:
+                            disconnect();
                             break;
                         default:
                             break;
@@ -277,6 +317,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 });
+
 
         //Action listener on bottom navigation view
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
@@ -288,14 +329,15 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                     navigateToView(FISH_FRAGMENT, ISession.Action.SUBMIT);
                     break;
                 case R.id.bottom_menu_me:
-                    Toast.makeText(AbstractActivity.this,"Indisponible ...",Toast.LENGTH_SHORT).show();
+                    navigateToView(NOTIFICATION_FRAGMENT, ISession.Action.SUBMIT);
                     break;
             }
             return true;
         });
-        // on passe la main à l'activité fille
+        //Check if the user device has google play services installed and if not install them
         onCreateActivity();
     }
+
 
     @Override
     public void onResume() {
@@ -308,6 +350,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         if (ARE_TABS_NEEDED && session.getAction() == ISession.Action.RESTORE) {
             tabLayout.getTabAt(session.getPreviousTab()).select();
         }
+        onResumeActivity();
     }
 
     // gestion de l'image d'attente ---------------------------------
@@ -372,19 +415,18 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
 
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher,R.style.AlertDialogTheme,R.style.BodyTextStyle);
+        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher, R.style.AlertDialogTheme, R.style.BodyTextStyle);
         dialogActivity.show(fm, "fragment_edit_name");
     }
 
 
     // le gestionnaire de fragments --------------------------------
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
         AbstractFragment[] fragments;
 
         // constructeur
         public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
+            super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             // fragments de la classe fille
             fragments = getFragments();
         }
@@ -392,7 +434,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         // doit rendre le fragment n° i avec ses éventuels arguments
         @Override
         public AbstractFragment getItem(int position) {
-            // on rend le fragment
             return fragments[position];
         }
 
@@ -421,6 +462,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     // classes filles
     protected abstract void onCreateActivity();
 
+    protected abstract void onResumeActivity();
+
     protected abstract IDao getDao();
 
     protected abstract AbstractFragment[] getFragments();
@@ -430,6 +473,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     protected abstract void navigateOnTabSelected(int position);
 
     protected abstract int getFirstView();
+
+    protected abstract void disconnect();
+
 
     @Override
     public boolean swiffFragment() {

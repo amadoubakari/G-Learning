@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
     <item
-        android:checkable="false"
-        android:title="Connexion" />
-    <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search_24px"
         android:orderInCategory="300"

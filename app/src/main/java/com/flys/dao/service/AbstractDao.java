@@ -73,6 +73,10 @@ public abstract class AbstractDao {
         }
         // on émet une exception
         subscriber.onError(new DaoException(e, 100));
+        //On interrompt l'exécution des threads en arrière plan
+        Log.e(getClass().getSimpleName(), "Interrupted!", e);
+        // Restore interrupted state...
+        Thread.currentThread().interrupt();
       }
     });
   }

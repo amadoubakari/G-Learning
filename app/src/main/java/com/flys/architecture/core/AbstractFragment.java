@@ -33,7 +33,7 @@ public abstract class AbstractFragment extends Fragment {
     private List<Subscription> abonnements = new ArrayList<>();
     // menu du fragment
     private Menu menu;
-    private MenuItemState[] menuOptionsStates;
+    private MenuItemState[] menuOptionsStates=new MenuItemState[0];
     // cycle de vie du fragment
     private boolean isVisibleToUser = false;
     private boolean saveFragmentDone = false;
@@ -129,7 +129,7 @@ public abstract class AbstractFragment extends Fragment {
                 Log.d(className, String.format("session=%s", jsonMapper.writeValueAsString(session)));
                 Log.d(className, String.format("état précédent=%s", jsonMapper.writeValueAsString(previousState)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "restore view Processing Exception", e);
             }
         }
         // action en cours
@@ -161,9 +161,11 @@ public abstract class AbstractFragment extends Fragment {
                     Log.d(className, "updateOnRestore");
                 }
                 // restauration menu (previousState ne peut être null)
-                setMenuOptionsStates(previousState.getMenuOptionsState());
-                // fragment fille
-                updateOnRestore(previousState);
+                if(previousState!=null){
+                    setMenuOptionsStates(previousState.getMenuOptionsState());
+                    // fragment fille
+                    updateOnRestore(previousState);
+                }
                 break;
         }
 
@@ -421,7 +423,7 @@ public abstract class AbstractFragment extends Fragment {
             try {
                 Log.d(className, String.format("saveFragment state=%s", jsonMapper.writeValueAsString(currentState)));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), "saving view Processing Exception", e);
             }
         }
     }

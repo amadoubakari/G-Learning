@@ -169,10 +169,9 @@
             android:id="@+id/textView27"
             android:layout_width="0dp"
             android:layout_height="26dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/libre_franklin_thin"
             android:text="c'est la pierre à moudre "
-            app:layout_constraintEnd_toStartOf="@+id/guideline19"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
