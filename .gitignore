@@ -62,6 +62,14 @@ obj/
 *.iws
 /out/
 
+#Module import configuration
+common-tools/build/
+common-tools/build/*
+fcm-notification-module/build/
+fcm-notification-module/build/*
+generictools/build/
+generictools/build/*
+
 # User-specific configurations
 .gradle/
 .idea/
