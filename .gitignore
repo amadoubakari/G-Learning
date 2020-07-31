@@ -63,9 +63,10 @@ obj/
 /out/
 
 # User-specific configurations
+.gradle/
+.idea/
 .gradle/*
 .idea/*
-.idea/
 .idea/caches/*
 .idea/libraries/
 .idea/shelf/
