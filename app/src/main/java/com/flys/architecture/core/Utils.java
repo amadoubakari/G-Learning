@@ -85,21 +85,22 @@ public class Utils {
 
 
     /**
+     *
      * @param context
-     * @param view
+     * @param parent
+     * @param textColor
      * @param msg
      */
-    public static void showErrorMessage(Context context, View view, String msg) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
-                .setAction("CLOSE", v -> {
+    public static void showErrorMessage(Context context, View parent, int textColor, String msg) {
+        Snackbar.make(parent, msg, Snackbar.LENGTH_LONG)
+                .setAction(context.getString(R.string.main_activity_close_msg), v -> {
 
                 })
-                .setActionTextColor(context.getColor(R.color.red_A700))
+                .setActionTextColor(textColor)
                 .setBackgroundTint(context.getColor(R.color.grey_900))
                 .setTextColor(context.getColor(R.color.white))
                 .show();
     }
-
     /**
      * Suppression d'un fichier existant
      *

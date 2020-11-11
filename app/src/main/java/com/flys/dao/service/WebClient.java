@@ -19,4 +19,8 @@ public interface WebClient extends RestClientRootUrl, RestClientSupport {
     @Get(value = "{url}?type={type}")
     @Accept(MediaType.APPLICATION_OCTET_STREAM)
     byte[] downloadFacebookImage(@Path("url") String url, @Path("type") String type);
+
+    @Get(value = "{baseUrl}?asid={facebookAppId}&height=640&width=640&ext={ext}&hash={params}")
+    @Accept(MediaType.APPLICATION_OCTET_STREAM)
+    byte[] downloadFacebookProfileImage(@Path("baseUrl") String baseUrl, @Path("ext") String ext, @Path("params") String params, @Path("facebookAppId") String facebookAppId);
 }

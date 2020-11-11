@@ -2,7 +2,8 @@
 <resources>
 
     <!-- nom de l'application -->
-    <string name="app_name">Dubun Guiziga</string>
+    <string name="app_name_release">Dubun Guiziga</string>
+    <string name="app_name_debug">Dubun Guiziga</string>
     <string name="msg_c_quoi">C\'est quoi?</string>
     <string name="msg_poisson">poisson</string>
     <string name="msg_arc">arc</string>
@@ -28,4 +29,21 @@
                     herbe, oiseau, ... Isa boko taŋ pislek pislek ŋwa sey ar <i>“dictionnaire”</i> giziga masa bo ma.
                 </p>]]>
     </string>
+    <string name="activity_main_disconnect_canceled">Déconnexion annulée</string>
+    <string name="activity_main_do_you_want_to_leave_app">Voudriez-vous quitter l\'application?</string>
+    <string name="activity_main_button_yes_msg">OUI</string>
+    <string name="activity_main_do_you_want_to_disconnect">Voudriez-vous vous déconnecter de l\'application?</string>
+    <string name="activity_main_button_no_msg">NON</string>
+    <string name="activity_main_button_cancel">Annuler</string>
+    <string name="activity_main_see_you_soon">, vous revoir bientôt !</string>
+    <string name="activity_main_button_close">Fermer</string>
+    <string name="activity_main_check_your_connection_and_try_again">Vérifiez votre connexion internet et réessayer plus tard.</string>
+    <string name="oops_connection_issue_msg">Oops! Erreur connexion internet</string>
+    <string name="activity_main_username">Utilisateur</string>
+    <string name="activity_main_email_address">Adresse Email</string>
+    <string name="activity_main_network_issue">Oops! Erreur connexion internet</string>
+    <string name="activity_main_thanks_msg">" Merci "</string>
+    <string name="firebase_subscription_release" translatable="false">firebase-glearning-release</string>
+    <string name="firebase_subscription_debug" translatable="false">firebase-glearning-debug</string>
+    <string name="main_activity_close_msg">Fermer</string>
 </resources>

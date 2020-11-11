@@ -24,4 +24,7 @@ public interface IDao {
     Observable<byte[]> downloadUrl(String url);
 
     Observable<byte[]> downloadFacebookImage(String url,String type);
+
+    //Download facebook profile image
+    Observable<byte[]> downloadFacebookProfileImage(String baseUrl, String ext, String params, String facebookAppId);
 }

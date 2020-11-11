@@ -61,7 +61,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
-        android:text="Bienvenue"
+        android:text="Bienvenue !"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
