@@ -46,6 +46,7 @@ import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
 import com.flys.tools.utils.Utils;
+import com.flys.utils.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -121,7 +122,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
         //mise des informations dans la session
         session.setNotifications(notifications);
         //Are notifications disabled on the device
-        notificationAdapter = new NotificationAdapter(activity, notifications, this);
+        notificationAdapter = new NotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.red_700), Constants.FONTS_OPEN_SANS_REGULAR_TTF),this);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(notificationAdapter);
     }
@@ -160,6 +161,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                             FileUtils.saveToInternalStorage(bytes, "glearning", notification.getImageName(), activity);
                             //Refresh adapter to take in count the changes
                             notificationAdapter.refreshAdapter();
+                            recyclerView.setVisibility(View.VISIBLE);
                         }).addOnFailureListener(exception -> {
                             // Handle any errors
                         });
@@ -249,10 +251,9 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     public void onButtonClickListener(int position) {
-        //Toast.makeText(activity, "position : "+notifications.get(position).getTitle(), Toast.LENGTH_LONG).show();
-        configDialogFragment = NotificationDetailsDialogFragment.newInstance(activity, notifications.get(position), new DialogStyle(activity.getColor(R.color.red_A700)));
+        configDialogFragment = NotificationDetailsDialogFragment.newInstance(activity, notifications.get(position), new DialogStyle(activity.getColor(R.color.red_A700), Constants.FONTS_OPEN_SANS_REGULAR_TTF));
         configDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme);
-        configDialogFragment.show(getActivity().getSupportFragmentManager(), "fragment_edit_name"+position);
+        configDialogFragment.show(getActivity().getSupportFragmentManager(), "fragment_edit_name" + position);
     }
 
     @Override
@@ -293,7 +294,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                         notificationDao.delete(notifications.get(position));
                         notifications.remove(position);
                         notificationAdapter.notifyDataSetChanged();
-                        com.flys.architecture.core.Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), "Supprimée !");
+                        com.flys.architecture.core.Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), activity.getColor(R.color.red_700), "Supprimée !");
                     } catch (DaoException e) {
                         Log.e(getClass().getSimpleName(), "Deleting notification from database Processing Exception", e);
                     }

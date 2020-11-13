@@ -89,6 +89,11 @@ public class Dao extends AbstractDao implements IDao {
         return getResponse(() -> webClient.downloadFacebookImage(url, type));
     }
 
+    @Override
+    public Observable<byte[]> downloadFacebookProfileImage(String baseUrl, String ext, String params, String facebookAppId) {
+        return getResponse(() -> webClient.downloadFacebookProfileImage(baseUrl, ext, params, facebookAppId));
+    }
+
     // méthodes privées -------------------------------------------------
     private void log(String message) {
         if (isDebugEnabled) {

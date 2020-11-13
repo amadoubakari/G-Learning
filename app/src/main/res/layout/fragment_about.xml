@@ -35,7 +35,7 @@
             android:text="Dubun Guiziga"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/grey_900"
-            app:fontFamily="sans-serif-light" />
+            app:fontFamily="@font/open_sans" />
 
         <View
             android:layout_width="120dp"
@@ -56,6 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="Version"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/grey_500" />
@@ -63,7 +64,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.0.6"
+                android:fontFamily="@font/open_sans"
+                android:text="1.0.7"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_900" />
 
@@ -81,6 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="Last Update"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/grey_500" />
@@ -88,7 +91,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Juillet 2020"
+                android:fontFamily="@font/open_sans"
+                android:text="Novembre 2020"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_900" />
 
@@ -101,9 +105,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:text="Ira gaka sise haɗi, dumbuŋ naŋ na da buymisemuŋ mi vula ndra gidaŋ ati wuluk angi slra hana, waɗ da ndra Gizigahay misi ar hiriuy'oy vuna gar asi jumo'ay ndra na. "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/grey_900" />
+            android:textColor="@color/black" />
 
         <View
             android:layout_width="0dp"
@@ -113,10 +118,11 @@
             android:id="@+id/source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:text="Open source ici"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textSize="14sp"
-            android:textColor="@color/grey_500" />
+            android:textColor="@color/grey_500"
+            android:textSize="14sp" />
 
 
     </LinearLayout>
@@ -151,10 +157,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="www.kyossi.com"
+        android:fontFamily="@font/libre_franklin"
         android:gravity="center"
+        android:text="www.kyossi.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:fontFamily="@font/libre_franklin_thin"
         android:textColor="@color/red_A700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline95"

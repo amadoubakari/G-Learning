@@ -23,7 +23,7 @@ public interface IMainActivity extends IDao {
     // constantes de l'application (à modifier) -------------------------------------
 
     // mode debug
-    boolean IS_DEBUG_ENABLED = true;
+    boolean IS_DEBUG_ENABLED = false;
 
     // délai maximal d'attente de la réponse du serveur
     int TIMEOUT = 10000;

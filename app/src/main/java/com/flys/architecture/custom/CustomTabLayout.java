@@ -27,7 +27,7 @@ public class CustomTabLayout extends TabLayout {
   }
 
   private void init() {
-    mTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Bold.ttf");
+    mTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/libre_franklin_thin.ttf");
   }
 
   @Override

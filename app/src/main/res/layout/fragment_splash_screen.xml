@@ -25,12 +25,12 @@
         android:id="@+id/textView7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-       android:paddingBottom="5dp"
-        android:layout_marginTop="88dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/libre_franklin_thin"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/open_sans"
         android:gravity="center"
+        android:paddingBottom="10dp"
         android:text="Dubun Guiziga"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,18 +42,15 @@
         android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="278dp"
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
-        android:text="Version 1.0.0"
+        android:text="Version 1.0.7"
         android:textColor="@color/red_A700"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

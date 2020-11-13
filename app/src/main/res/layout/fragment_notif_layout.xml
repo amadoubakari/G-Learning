@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline92"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline93"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/notifications_empty_id"
@@ -39,12 +40,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.97" />
+        app:layout_constraintGuide_percent="0.99" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline93"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.03" />
+        app:layout_constraintGuide_percent="0.01" />
 </androidx.constraintlayout.widget.ConstraintLayout>

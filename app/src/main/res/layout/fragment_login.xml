@@ -61,7 +61,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
-        android:text="Bienvenue"
+        android:text="Bienvenue !"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,8 +105,8 @@
                 android:layout_height="35dp"
                 android:layout_weight="0.01"
                 android:padding="5dp"
-                android:tint="@color/green_700"
-                app:srcCompat="@drawable/ic_perm_phone_msg_black_24dp" />
+                app:srcCompat="@drawable/ic_perm_phone_msg_black_24dp"
+                app:tint="@color/green_800" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_vertical"
                 android:text="Avec mon téléphone"
-                android:textColor="@color/green_700"
+                android:textColor="@color/green_800"
                 android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -145,7 +145,8 @@
                 android:layout_height="35dp"
                 android:layout_weight="0.01"
                 android:padding="5dp"
-                app:srcCompat="@drawable/ic_mail_outline_black_24dp" />
+                app:srcCompat="@drawable/ic_mail_outline_black_24dp"
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,7 +155,8 @@
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_vertical"
                 android:text="Avec une adresse email"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -182,8 +184,8 @@
                 android:layout_height="35dp"
                 android:layout_weight="0.01"
                 android:padding="5dp"
-                android:tint="@color/red_A700"
-                app:srcCompat="@drawable/ic_social_round_google_plus" />
+                app:srcCompat="@drawable/ic_social_round_google_plus"
+                app:tint="@color/red_A700" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,8 +223,8 @@
                 android:layout_height="35dp"
                 android:layout_weight="0.01"
                 android:padding="5dp"
-                android:tint="@color/blue_600"
-                app:srcCompat="@drawable/ic_social_round_facebook" />
+                app:srcCompat="@drawable/ic_social_round_facebook"
+                app:tint="@color/blue_700" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -231,7 +233,7 @@
                 android:fontFamily="@font/libre_franklin_thin"
                 android:gravity="center_vertical"
                 android:text="Avec Facebook"
-                android:textColor="@color/blue_600"
+                android:textColor="@color/blue_700"
                 android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
