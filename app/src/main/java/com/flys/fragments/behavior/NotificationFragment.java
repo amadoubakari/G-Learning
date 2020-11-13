@@ -122,7 +122,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
         //mise des informations dans la session
         session.setNotifications(notifications);
         //Are notifications disabled on the device
-        notificationAdapter = new NotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.blue_500), Constants.FONTS_OPEN_SANS_REGULAR_TTF),this);
+        notificationAdapter = new NotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.red_700), Constants.FONTS_OPEN_SANS_REGULAR_TTF),this);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(notificationAdapter);
     }
