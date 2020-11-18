@@ -33,6 +33,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.kyossi.firebase.tools.FirebaseCommonTools;
 
 import java.io.IOException;
 
@@ -310,6 +311,9 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
                             break;
                         case R.id.menu_deconnexion:
                             disconnect();
+                            break;
+                        case R.id.menu_review:
+                            FirebaseCommonTools.rateApplication(this);
                             break;
                         default:
                             break;
