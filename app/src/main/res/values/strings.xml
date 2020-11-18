@@ -3,7 +3,7 @@
 
     <!-- nom de l'application -->
     <string name="app_name_release">Dubun Guiziga</string>
-    <string name="app_name_debug">Dubun Guiziga</string>
+    <string name="app_name_debug">Dev</string>
     <string name="msg_c_quoi">C\'est quoi?</string>
     <string name="msg_poisson">poisson</string>
     <string name="msg_arc">arc</string>

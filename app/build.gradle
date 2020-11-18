@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         // Since Android's Gradle plugin 0.11, you have to use android-apt >= 1.3
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath 'com.google.gms:google-services:4.3.2'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.0.0-beta02'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
@@ -30,8 +30,8 @@ android {
         minSdkVersion 24
         applicationId "com.flys.glearning"
         targetSdkVersion 29
-        versionCode 10
-        versionName "1.0.7"
+        versionCode 13
+        versionName "1.1.1"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -78,7 +78,7 @@ android {
 def AAVersion = '4.7.0'
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth:20.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.1'
     implementation 'androidx.navigation:navigation-ui:2.3.1'
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
@@ -101,7 +101,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
 
     // Add the Firebase SDK for Crashlytics.
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
     //Firebase Cloud messaging
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
 
@@ -119,23 +119,18 @@ dependencies {
     //Firebase authentication dependencies
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
-    // Required only if Facebook login support is required
-    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
-    // https://mvnrepository.com/artifact/com.facebook.android/facebook-android-sdk
     implementation group: 'com.facebook.android', name: 'facebook-android-sdk', version: '7.0.0'
 
-
-    // Required only if Twitter login support is required
-    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
-    // https://mvnrepository.com/artifact/com.twitter.sdk.android/twitter-core
     implementation group: 'com.twitter.sdk.android', name: 'twitter-core', version: '3.3.0'
     implementation 'com.android.support:cardview-v7:29.0.0'
-    api group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.1'
+    api group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.2'
 
     implementation 'com.google.firebase:firebase-messaging-directboot:21.0.0'
 
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'com.firebaseui:firebase-ui-storage:6.2.0'
+    implementation project(':firebase-tools')
+    implementation 'com.google.android.play:core:1.8.3'
 
 }
 
