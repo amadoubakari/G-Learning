@@ -2,12 +2,11 @@ package com.flys.architecture.core;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.view.View;
 
 import com.flys.R;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,36 +50,6 @@ public class Utils {
         }
         // résultat
         return texte.toString();
-    }
-
-    /**
-     * Test the connection
-     *
-     * @param context
-     * @return
-     */
-    public static boolean isConnectedToNetwork(Context context) {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-        return isConnected;
-    }
-
-    /**
-     * Test if connected network is data mobile or wifi
-     * if true mobile data.
-     *
-     * @param context
-     * @return
-     */
-    public static boolean isMobileDataNetwork(Context context) {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isMetered = cm.isActiveNetworkMetered();
-        return isMetered;
     }
 
 

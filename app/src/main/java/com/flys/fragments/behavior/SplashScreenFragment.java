@@ -32,10 +32,11 @@ public class SplashScreenFragment extends AbstractFragment {
 
     @Override
     protected void initView(CoreState previousState) {
+        //Necessary time in milisecond to launch the application
+        int WAITING_TIME = 1500;
         new Handler().postDelayed(() -> {
-            mainActivity.activateMainButtonMenu(R.id.bottom_menu_book);
-            mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.SUBMIT);
-        }, 1000);
+            mainActivity.navigateToView(mainActivity.FISH_FRAGMENT, ISession.Action.NONE);
+        }, WAITING_TIME);
     }
 
     @Override

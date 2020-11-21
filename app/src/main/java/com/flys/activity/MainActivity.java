@@ -99,6 +99,8 @@ import com.flys.tools.utils.FacebookUrl;
 import com.flys.tools.utils.FileUtils;
 import com.flys.utils.Constants;
 import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -399,6 +401,21 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         badgeDrawable.setVisible(false);
     }
 
+    @Override
+    public void popupSnackbarForCompleteUpdate(AppUpdateManager appUpdateManager) {
+        Snackbar snackbar =
+                Snackbar.make(
+                        mViewPager,
+                        getString(R.string.main_activity_completed_download),
+                        Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(R.string.main_activity_download_completed_restart, view -> {
+            appUpdateManager.completeUpdate();
+        });
+        bottomNavigationView.setVisibility(View.GONE);
+        snackbar.setAnchorView(bottomNavigationView);
+        snackbar.setActionTextColor(getColor(R.color.red_700));
+        snackbar.show();
+    }
     /**
      * Return user informations switch provider type
      *
