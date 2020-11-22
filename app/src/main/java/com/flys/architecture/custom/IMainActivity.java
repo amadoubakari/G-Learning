@@ -3,6 +3,7 @@ package com.flys.architecture.custom;
 import com.flys.architecture.core.ISession;
 import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
+import com.google.android.play.core.appupdate.AppUpdateManager;
 
 public interface IMainActivity extends IDao {
 
@@ -41,7 +42,7 @@ public interface IMainActivity extends IDao {
     boolean ARE_TABS_NEEDED = false;
 
     // image d'attente
-    boolean IS_WAITING_ICON_NEEDED = false;
+    boolean IS_WAITING_ICON_NEEDED = true;
 
     // nombre de fragments de l'application
     int FRAGMENTS_COUNT = 52;
@@ -116,5 +117,6 @@ public interface IMainActivity extends IDao {
     //add new notification on number of notifications
     void clearNotification();
 
+    void popupSnackbarForCompleteUpdate(AppUpdateManager appUpdateManager);
 
 }

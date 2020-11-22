@@ -33,6 +33,8 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.listener.StateUpdatedListener;
 import com.kyossi.firebase.tools.FirebaseCommonTools;
 
 import java.io.IOException;

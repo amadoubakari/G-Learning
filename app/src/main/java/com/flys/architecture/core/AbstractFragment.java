@@ -386,20 +386,21 @@ public abstract class AbstractFragment extends Fragment {
             Log.d(className, "onDestroy");
         }
     }
-
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        // parent
-        super.setUserVisibleHint(isVisibleToUser);
+    public void onResume() {
+        super.onResume();
         // sauvegarde ?
-        if (this.isVisibleToUser && !isVisibleToUser) {
+        if (this.isVisibleToUser) {
             // le fragment va être caché - on le sauvegarde
             if (!saveFragmentDone) {
                 saveState();
             }
         }
         // mémoire
-        this.isVisibleToUser = isVisibleToUser;
+        this.isVisibleToUser = true;
+        onFragmentResume();
+    }
+    public void onFragmentResume() {
     }
 
     private void saveState() {
