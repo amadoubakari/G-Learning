@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/libre_franklin_thin"
         android:gravity="center"
-        android:text="Version 1.0.7"
+        android:text="Version 1.1.2"
         android:textColor="@color/red_A700"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
