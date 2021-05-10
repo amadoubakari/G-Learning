@@ -531,7 +531,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/libre_franklin_thin"
+                android:fontFamily="@font/google_sans"
                 android:gravity="center_horizontal"
                 android:text="Page 13"
                 android:textColor="@color/red_A700"

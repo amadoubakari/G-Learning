@@ -3,7 +3,7 @@
 
     <!-- nom de l'application -->
     <string name="app_name_release">Dubun Guiziga</string>
-    <string name="app_name_debug">Dev</string>
+    <string name="app_name_debug">Dubun Guiziga</string>
     <string name="msg_c_quoi">C\'est quoi?</string>
     <string name="msg_poisson">poisson</string>
     <string name="msg_arc">arc</string>
@@ -46,4 +46,6 @@
     <string name="firebase_subscription_release" translatable="false">firebase-glearning-release</string>
     <string name="firebase_subscription_debug" translatable="false">firebase-glearning-debug</string>
     <string name="main_activity_close_msg">Fermer</string>
+    <string name="app_version">1.1.2</string>
+    <string name="ads_native_notification_item_debug" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 </resources>

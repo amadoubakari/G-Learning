@@ -288,7 +288,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
         navigationView = findViewById(R.id.navigation);
 
         //Nous appliquons le même style aux éléments de menu
-        Utils.applyFontStyleToMenu(this, navigationView.getMenu(), "fonts/libre_franklin_thin.ttf");
+        Utils.applyFontStyleToMenu(this, navigationView.getMenu(), R.font.google_sans);
 
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {

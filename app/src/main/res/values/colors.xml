@@ -2,8 +2,9 @@
 <resources>
   <color name="colorPrimary">#FFFF</color>
   <color name="colorPrimaryDark">#D50000</color>
-  <color name="colorAccent">#B71C1C</color>
+  <color name="colorAccent">@color/black</color>
   <color name="floral_white">#FFFAF0</color>
+
 
   <color name="red_50">#FFEBEE</color>
   <color name="red_100">#FFCDD2</color>

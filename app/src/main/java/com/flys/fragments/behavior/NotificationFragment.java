@@ -2,12 +2,8 @@ package com.flys.fragments.behavior;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -24,6 +19,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.TaskStackBuilder;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.DialogFragment;
@@ -31,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flys.R;
+import com.flys.activity.MainActivity_;
 import com.flys.architecture.core.AbstractFragment;
 import com.flys.architecture.custom.CoreState;
 import com.flys.architecture.custom.DApplicationContext;
@@ -38,6 +35,7 @@ import com.flys.architecture.custom.Session;
 import com.flys.dao.db.NotificationDao;
 import com.flys.dao.db.NotificationDaoImpl;
 import com.flys.generictools.dao.daoException.DaoException;
+import com.flys.notification.adapter.AdsNotificationAdapter;
 import com.flys.notification.adapter.NotificationAdapter;
 import com.flys.notification.dialog.DialogStyle;
 import com.flys.notification.dialog.NotificationDetailsDialogFragment;
@@ -46,10 +44,6 @@ import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
 import com.flys.tools.utils.Utils;
-import com.flys.utils.Constants;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 
 import org.androidannotations.annotations.Bean;
@@ -59,10 +53,6 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -70,7 +60,7 @@ import java.util.stream.Collectors;
 
 @EFragment(R.layout.fragment_notif_layout)
 @OptionsMenu(R.menu.menu_home)
-public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, NotificationAdapter.NotificationOnclickListener {
+public class NotificationFragment extends AbstractFragment implements MaterialNotificationDialog.NotificationButtonOnclickListeneer, AdsNotificationAdapter.NotificationOnclickListener {
 
     @ViewById(R.id.notification_main_layout)
     protected ConstraintLayout mainLayout;
@@ -91,7 +81,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     protected SearchView searchView;
     private List<Notification> notifications;
-    private NotificationAdapter notificationAdapter;
+    private AdsNotificationAdapter notificationAdapter;
 
     @Override
     public CoreState saveFragment() {
@@ -122,14 +112,17 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
         //mise des informations dans la session
         session.setNotifications(notifications);
         //Are notifications disabled on the device
-        notificationAdapter = new NotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.red_700), Constants.FONTS_OPEN_SANS_REGULAR_TTF),this);
+        notificationAdapter = new AdsNotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.red_700),R.font.google_sans),true,activity.getString(R.string.ads_native_notification_item_debug),this);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(notificationAdapter);
     }
 
     @Override
     protected void initView(CoreState previousState) {
-
+        TaskStackBuilder.create(activity)
+                .addNextIntent(new Intent(activity, MainActivity_.class))
+                .addNextIntent(activity.getIntent())
+                .startActivities();
     }
 
     @Override
@@ -251,7 +244,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
 
     @Override
     public void onButtonClickListener(int position) {
-        configDialogFragment = NotificationDetailsDialogFragment.newInstance(activity, notifications.get(position), new DialogStyle(activity.getColor(R.color.red_A700), Constants.FONTS_OPEN_SANS_REGULAR_TTF));
+        configDialogFragment = NotificationDetailsDialogFragment.newInstance(activity, notifications.get(position), new DialogStyle(activity.getColor(R.color.red_A700)));
         configDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme);
         configDialogFragment.show(getActivity().getSupportFragmentManager(), "fragment_edit_name" + position);
     }

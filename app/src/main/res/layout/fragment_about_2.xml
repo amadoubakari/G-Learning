@@ -157,7 +157,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/libre_franklin"
+        android:fontFamily="@font/google_sans"
         android:gravity="center"
         android:text="www.kyossi.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"

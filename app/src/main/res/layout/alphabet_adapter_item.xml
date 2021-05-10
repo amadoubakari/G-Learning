@@ -18,7 +18,7 @@
             android:id="@+id/alphabet_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/libre_franklin"
+            android:fontFamily="@font/google_sans"
             android:gravity="center"
             android:text="A"
             android:textSize="24sp" />

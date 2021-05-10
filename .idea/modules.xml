@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/G-Learning.iml" filepath="$PROJECT_DIR$/.idea/modules/G-Learning.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/G-Learning.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/G-Learning.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common-tools/G-Learning.common-tools.iml" filepath="$PROJECT_DIR$/.idea/modules/common-tools/G-Learning.common-tools.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fcm-notification-module/G-Learning.fcm-notification-module.iml" filepath="$PROJECT_DIR$/.idea/modules/fcm-notification-module/G-Learning.fcm-notification-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/firebase-tools/G-Learning.firebase-tools.iml" filepath="$PROJECT_DIR$/.idea/modules/firebase-tools/G-Learning.firebase-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/generictools/G-Learning.generictools.iml" filepath="$PROJECT_DIR$/.idea/modules/generictools/G-Learning.generictools.iml" />
     </modules>

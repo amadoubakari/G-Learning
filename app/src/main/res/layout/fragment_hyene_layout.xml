@@ -119,7 +119,7 @@
             android:id="@+id/textView27"
             android:layout_width="0dp"
             android:layout_height="26dp"
-            android:fontFamily="@font/libre_franklin_thin"
+            android:fontFamily="@font/google_sans"
             android:text="c'est l'hyène"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"
             app:layout_constraintStart_toStartOf="@+id/guideline31"
@@ -200,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/libre_franklin_thin"
+                android:fontFamily="@font/google_sans"
                 android:gravity="center_horizontal"
                 android:text="Page 45"
                 android:textColor="@color/red_A700"
@@ -415,7 +415,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/libre_franklin_thin"
+                android:fontFamily="@font/google_sans"
                 android:gravity="center"
                 android:text="hyène" />
 
