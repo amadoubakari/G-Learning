@@ -48,4 +48,5 @@
     <string name="main_activity_close_msg">Fermer</string>
     <string name="app_version">1.1.2</string>
     <string name="ads_native_notification_item_debug" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="fragment_notif_layout_no_elements">Aucune notification\ndisponible</string>
 </resources>

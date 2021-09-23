@@ -27,7 +27,7 @@
         <item name="fontFamily">@font/google_sans</item>
     </style>
 
-    <style name="ActionBarTheme" parent="AppTheme.AppBarOverlay">
+        <style name="ActionBarTheme" parent="AppTheme.AppBarOverlay">
         <item name="android:textColorPrimary">@color/red_A700</item>
     </style>
 
