@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flys.R;
 import com.flys.architecture.core.AbstractFragment;
+import com.flys.architecture.core.Utils;
 import com.flys.architecture.custom.CoreState;
 import com.flys.architecture.custom.DApplicationContext;
 import com.flys.dao.db.NotificationDao;
@@ -35,7 +36,7 @@ import com.flys.notification.domain.Notification;
 import com.flys.tools.dialog.MaterialNotificationDialog;
 import com.flys.tools.domain.NotificationData;
 import com.flys.tools.utils.FileUtils;
-import com.flys.tools.utils.Utils;
+import com.flys.utils.Constants;
 import com.google.firebase.storage.FirebaseStorage;
 
 import org.androidannotations.annotations.Bean;
@@ -136,7 +137,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
     @OptionsItem(R.id.search)
     protected void doSearch() {
         searchView = (SearchView) menuItem.getActionView();
-        Utils.changeSearchTextColor(activity, searchView, R.font.google_sans);
+        com.flys.architecture.core.Utils.changeSearchTextColor(activity, searchView, R.font.google_sans);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -222,7 +223,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
                         notificationDao.delete(notifications.get(position));
                         notifications.remove(position);
                         notificationAdapter.notifyDataSetChanged();
-                        com.flys.dico.architecture.core.Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), activity.getColor(R.color.blue_500), getString(R.string.delete_msg));
+                        Utils.showErrorMessage(activity, activity.findViewById(R.id.main_content), activity.getColor(R.color.blue_500), getString(R.string.delete_msg));
                     } catch (DaoException e) {
                         Log.e(getClass().getSimpleName(), "Deleting notification from database Processing Exception", e);
                     }

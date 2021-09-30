@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#FFFF</color>
-  <color name="colorPrimaryDark">#D50000</color>
-  <color name="colorAccent">@color/black</color>
-  <color name="floral_white">#FFFAF0</color>
+  <color name="color_primary">@color/white</color>
+  <color name="color_on_primary">@color/black</color>
+
+  <color name="color_primary_dark">@color/white</color>
+
+  <color name="color_secondary">@color/red_700</color>
+  <color name="color_on_secondary">@color/white</color>
+
+
+  <color name="color_surface">@color/white</color>
+  <color name="color_on_surface">@color/red_700</color>
+
+  <color name="color_accent">@color/red_700</color>
+
+  <color name="color_control_name">@color/grey_800</color>
+
+  <color name="navigation_bar_color">@color/white</color>
+  <color name="status_bar_color">@android:color/transparent</color>
+
+
+
+  <color name="textColorSecondary">@color/white</color>
+  <color name="toolbar_background_color">@color/white</color>
+  <color name="search_icon_tint_color">@color/red_700</color>
+  <color name="app_background_color">@color/white</color>
+  <color name="app_text_color">@color/black</color>
+  <color name="app_bottom_navigation_color">@color/grey_100</color>
+  <color name="app_bottom_navigation_icon_color">@color/red_700</color>
+  <color name="app_inverse_color">@color/black</color>
+  <color name="app_text_second_color">@color/red_700</color>
+  <color name="app_background_second_color">@color/white</color>
+  <color name="app_text_color_tint">@color/grey_400</color>
+  <color name="app_background_grey">@color/grey_800</color>
+  <color name="app_menu_text_and_icon_color">@color/grey_800</color>
 
 
   <color name="red_50">#FFEBEE</color>
@@ -282,10 +312,6 @@
   <color name="black">#000000</color>
   <color name="white">#FFFFFF</color>
 
-  <!-- Colors for the app -->
-  <color name="primary">@color/indigo_500</color>
-  <color name="primary_dark">@color/indigo_700</color>
-  <color name="accent">@color/pink_A200</color>
 
   <!--Light Background Dark Text-->
   <color name="light_bg_dark_primary_text">#DE000000</color>

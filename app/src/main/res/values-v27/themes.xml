@@ -39,7 +39,7 @@
 
         <!-- Window decor -->
         <item name="android:windowLightStatusBar">true</item>
-
+        <item name="android:windowLightNavigationBar">true</item>
         <item name="popupMenuStyle">@style/popupmenu</item>
     </style>
 </resources>

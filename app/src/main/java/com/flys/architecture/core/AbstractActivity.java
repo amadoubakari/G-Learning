@@ -416,7 +416,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     //Récupération du texte issu de la boite de dialogue
     @Override
     public void receivedDate(String data) {
-        Utils.shareText(this, "Dubun GUIZIGA", data + "  https://play.google.com/store/apps/details?id=com.flys.glearning", "Recommandation de l'application.");
+        Utils.shareText(this, "Dubun GUIZIGA", data + "  "+getString(R.string.app_google_play_store_url), "Recommandation de l'application.");
     }
 
     private void showEditDialog() {

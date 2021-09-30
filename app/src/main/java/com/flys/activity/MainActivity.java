@@ -99,6 +99,7 @@ import com.flys.tools.utils.FacebookUrl;
 import com.flys.tools.utils.FileUtils;
 import com.flys.utils.Constants;
 import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,7 +117,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -360,6 +360,16 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @Override
     public Observable<byte[]> downloadFacebookProfileImage(String baseUrl, String ext, String params, String facebookAppId) {
         return dao.downloadFacebookProfileImage(baseUrl, ext, params, facebookAppId);
+    }
+
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase() {
+        return dao.loadNotificationsFromDatabase();
+    }
+
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase(String property, Object value) {
+        return dao.loadNotificationsFromDatabase(property, value);
     }
 
     @Override
@@ -645,7 +655,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      */
     void updateUserConnectedProfile(User user) {
         View headerNavView = navigationView.getHeaderView(0);
-        CircleImageView profile = headerNavView.findViewById(R.id.profile_image);
+        ShapeableImageView profile = headerNavView.findViewById(R.id.profile_image);
         TextView title = headerNavView.findViewById(R.id.profile_user_name);
         TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
         MenuItem disconnect = navigationView.getMenu().findItem(R.id.menu_deconnexion);
@@ -762,4 +772,14 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         });
         notificationDialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
     }
+    @Override
+    public void scrollUp() {
+        bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void scrollDown() {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
 }

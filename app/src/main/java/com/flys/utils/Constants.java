@@ -33,4 +33,11 @@ public class Constants {
     public static final String SOCIAL_MEDIA_FACEBOOK_COM = "facebook.com";
     public static final String SOCIAL_MEDIA_PHONE = "phone";
     public static final String SOCIAL_MEDIA_PASSWORD = "password";
+
+
+    public static final String MY_LAND = "my_land";
+    public static final String SETTINGS = "Settings";
+    public static final String EN = "en";
+    public static final String FR = "fr";
+    public static final String NIGHT_MODE_KEY = "NIGHT_MODE_KEY_V2";
 }
