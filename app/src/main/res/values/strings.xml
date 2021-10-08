@@ -54,4 +54,5 @@
     <string name="ads_native_notification_item" translatable="false">ca-app-pub-9112600790446098/4885818374</string>
     <string name="fcm_notification_service_no_messages">\u0020nouveaux messages</string>
     <string name="fcm_notification_service_one_message">\u0020nouveau message</string>
+    <string name="activity_abstract_recommendation_msg">Recommandation</string>
 </resources>

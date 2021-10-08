@@ -173,7 +173,7 @@
     </style>
 
     <style name="customMaterialAlertEditDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/color_primary</item>
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle2</item>
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle2</item>
         <item name="materialAlertDialogBodyTextStyle">@style/materialDialogAlertContentStyle</item>

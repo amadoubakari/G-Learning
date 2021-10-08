@@ -5,7 +5,8 @@
     android:id="@+id/notification_main_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,7 @@
         android:clipToPadding="false"
         android:paddingTop="56dp"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/view_simple_notification_item"
-        />
+        tools:listitem="@layout/view_simple_notification_item" />
 
     <LinearLayout
         android:id="@+id/notification_not_found_msg_id"
