@@ -37,7 +37,7 @@ public class SettingsFragment extends AbstractFragment implements MaterialNotifi
         } else {
             msg="Si vous désactivez les notifications, vous risquerez ne plus recevoir des nouveautés !";
         }
-        notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", msg, "OUI", "NON", activity.getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_Light_Dialog_Alert), this);
+        notificationDialog = new MaterialNotificationDialog(activity, new NotificationData("Dubun Guiziga", msg, "OUI", "NON", activity.getDrawable(R.drawable.books), R.style.customMaterialAlertEditDialog), this);
         notificationDialog.show(getActivity().getSupportFragmentManager(), "settings_notification_dialog_tag");
     }
 

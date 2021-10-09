@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -99,6 +100,7 @@ import com.flys.tools.utils.FacebookUrl;
 import com.flys.tools.utils.FileUtils;
 import com.flys.utils.Constants;
 import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,7 +118,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -251,7 +252,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         if (mViewPager.getCurrentItem() == HOME_FRAGMENT) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
-            this.dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous quitter l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), this);
+            this.dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), "Voudriez-vous quitter l'application?", "OUI", "NON", getDrawable(R.drawable.books), R.style.customMaterialAlertEditDialog), this);
             this.dialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
         } else {
             // Otherwise, select the previous step.
@@ -360,6 +361,16 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     @Override
     public Observable<byte[]> downloadFacebookProfileImage(String baseUrl, String ext, String params, String facebookAppId) {
         return dao.downloadFacebookProfileImage(baseUrl, ext, params, facebookAppId);
+    }
+
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase() {
+        return dao.loadNotificationsFromDatabase();
+    }
+
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase(String property, Object value) {
+        return dao.loadNotificationsFromDatabase(property, value);
     }
 
     @Override
@@ -645,10 +656,11 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      */
     void updateUserConnectedProfile(User user) {
         View headerNavView = navigationView.getHeaderView(0);
-        CircleImageView profile = headerNavView.findViewById(R.id.profile_image);
+        ShapeableImageView profile = headerNavView.findViewById(R.id.profile_image);
         TextView title = headerNavView.findViewById(R.id.profile_user_name);
         TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
         MenuItem disconnect = navigationView.getMenu().findItem(R.id.menu_deconnexion);
+        LinearLayout userInfo=headerNavView.findViewById(R.id.profile_user_info);
         //Si l'utilisateur est connecte?
         if (user != null && (user.getEmail() != null || user.getPhone() != null)) {
             disconnect.setVisible(true);
@@ -657,25 +669,32 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
                 case FACEBOOK:
                     title.setText(user.getNom());
                     mail.setText(user.getEmail());
-                    profile.setImageDrawable(user.getImageUrl() != null ? FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()) : getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    profile.setImageDrawable(user.getImageUrl() != null ? FileUtils.loadImageFromStorage("glearning", user.getNom() + ".png", DApplicationContext.getContext()) : getDrawable(R.drawable.ic_outline_account_circle_24));
                     break;
                 case MAIL:
                     title.setText(user.getNom());
                     mail.setText(user.getEmail());
-                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    profile.setImageDrawable(getDrawable(R.drawable.ic_outline_account_circle_24));
                     break;
                 case PHONE:
                     title.setText(user.getNom());
                     mail.setText(user.getPhone());
-                    profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+                    profile.setImageDrawable(getDrawable(R.drawable.ic_outline_account_circle_24));
                     break;
             }
-
+            profile.setStrokeColor(getColorStateList(R.color.color_secondary));
+            profile.setStrokeWidth((float) 0.5);
+            profile.setOnClickListener(null);
+            userInfo.setVisibility(View.VISIBLE);
         } else {
+            userInfo.setVisibility(View.GONE);
+            profile.setStrokeColor(null);
+            profile.setStrokeWidth(0);
             disconnect.setVisible(false);
-            title.setText("Username");
-            mail.setText("Email");
-            profile.setImageDrawable(getDrawable(R.drawable.baseline_account_circle_white_48dp));
+            profile.setImageDrawable(getDrawable(R.drawable.ic_outline_account_circle_24));
+            profile.setOnClickListener(v -> {
+                createSignInIntent();
+            });
         }
     }
 
@@ -712,7 +731,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      * handle disconnection
      */
     private void disconnectHandle() {
-        MaterialNotificationDialog dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), getString(R.string.activity_main_do_you_want_to_disconnect), getString(R.string.activity_main_button_yes_msg), getString(R.string.activity_main_button_no_msg), getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
+        MaterialNotificationDialog dialog = new MaterialNotificationDialog(this, new NotificationData(getString(R.string.app_name), getString(R.string.activity_main_do_you_want_to_disconnect), getString(R.string.activity_main_button_yes_msg), getString(R.string.activity_main_button_no_msg), getDrawable(R.drawable.books), R.style.customMaterialAlertEditDialog), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
             @Override
             public void okButtonAction(DialogInterface dialogInterface, int i) {
                 // Disconnection
@@ -731,7 +750,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      *
      */
     private void Disconnection() {
-        MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(MainActivity.this, new NotificationData(getString(R.string.app_name), getString(R.string.activity_main_thanks_msg) + (session.getUser().getNom() != null ? session.getUser().getNom() : "") + getString(R.string.activity_main_see_you_soon), getString(R.string.activity_main_button_yes_msg), getString(R.string.activity_main_button_cancel), getDrawable(R.drawable.books), R.style.Theme_MaterialComponents_DayNight_Dialog_Alert), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
+        MaterialNotificationDialog notificationDialog = new MaterialNotificationDialog(MainActivity.this, new NotificationData(getString(R.string.app_name), getString(R.string.activity_main_thanks_msg) + (session.getUser().getNom() != null ? session.getUser().getNom() : "") + getString(R.string.activity_main_see_you_soon), getString(R.string.activity_main_button_yes_msg), getString(R.string.activity_main_button_cancel), getDrawable(R.drawable.books), R.style.customMaterialAlertEditDialog), new MaterialNotificationDialog.NotificationButtonOnclickListeneer() {
             @Override
             public void okButtonAction(DialogInterface dialogInterface, int i) {
                 AuthUI.getInstance()
@@ -762,4 +781,14 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         });
         notificationDialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
     }
+    @Override
+    public void scrollUp() {
+        bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void scrollDown() {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
 }

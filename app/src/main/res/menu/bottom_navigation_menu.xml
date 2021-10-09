@@ -3,14 +3,14 @@
 
     <item android:title="Accueil"
         android:id="@+id/bottom_menu_home"
-        android:icon="@drawable/ic_home_24px"/>
+        android:icon="@drawable/ic_outline_home_24"/>
 
     <item android:title="Lecture"
         android:id="@+id/bottom_menu_book"
-        android:icon="@drawable/ic_book_24px"/>
+        android:icon="@drawable/ic_outline_book_24"/>
 
     <item android:title="Me"
         android:id="@+id/bottom_menu_me"
-        android:icon="@drawable/ic_account_circle_24px"/>
+        android:icon="@drawable/ic_outline_account_circle_24"/>
 
 </menu>

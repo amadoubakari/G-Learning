@@ -5,6 +5,8 @@ import com.flys.dao.entities.User;
 import com.flys.dao.service.IDao;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 
+import org.androidannotations.annotations.Background;
+
 public interface IMainActivity extends IDao {
 
     // accès à la session
@@ -101,7 +103,6 @@ public interface IMainActivity extends IDao {
     int AUTH_FRAGMENT = 49;
     int SETTINGS_FRAGMENT = 50;
 
-    // todo ajoutez ici vos constantes et autres méthodes
     //hide or show navigation bottom view
     void hideNavigationView(boolean hide);
 
@@ -118,5 +119,11 @@ public interface IMainActivity extends IDao {
     void clearNotification();
 
     void popupSnackbarForCompleteUpdate(AppUpdateManager appUpdateManager);
+
+    //When user scroll up the view
+    void scrollUp();
+
+    //When user scroll down the view
+    void scrollDown();
 
 }

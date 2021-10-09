@@ -7,7 +7,7 @@
 
         <item
             android:id="@+id/menu_home"
-            android:icon="@drawable/ic_home_24px"
+            android:icon="@drawable/ic_outline_home_24"
             app:itemTextAppearance="@style/menu_font_style"
             android:title="Home" />
         <item
@@ -42,7 +42,7 @@
         android:visible="true">
         <item
             android:id="@+id/menu_settings"
-            android:icon="@drawable/ic_settings_24px"
+            android:icon="@drawable/ic_outline_settings_24"
             app:itemTextAppearance="@style/menu_font_style"
             android:title="Settings" />
         <!--<item
@@ -58,13 +58,13 @@
             app:itemTextAppearance="@style/menu_font_style" />
         <item
             android:id="@+id/about"
-            android:icon="@drawable/ic_help_outline_black_24dp"
+            android:icon="@drawable/ic_outline_help_outline_24"
             app:itemTextAppearance="@style/menu_font_style"
             android:title="About"
             android:visible="true" />
         <item
             android:id="@+id/menu_review"
-            android:icon="@drawable/ic_baseline_star_rate_24"
+            android:icon="@drawable/ic_outline_star_outline_24"
             android:title="@string/menu_rating_msg"
             android:visible="true"
             app:itemTextAppearance="@style/menu_font_style" />

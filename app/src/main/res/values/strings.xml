@@ -49,4 +49,10 @@
     <string name="app_version">1.1.2</string>
     <string name="ads_native_notification_item_debug" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
     <string name="fragment_notif_layout_no_elements">Aucune notification\ndisponible</string>
+    <string name="app_google_play_store_url">https://play.google.com/store/apps/details?id=com.flys.glearning</string>
+    <string name="delete_msg">Deleted</string>
+    <string name="ads_native_notification_item" translatable="false">ca-app-pub-9112600790446098/4885818374</string>
+    <string name="fcm_notification_service_no_messages">\u0020nouveaux messages</string>
+    <string name="fcm_notification_service_one_message">\u0020nouveau message</string>
+    <string name="activity_abstract_recommendation_msg">Recommandation</string>
 </resources>

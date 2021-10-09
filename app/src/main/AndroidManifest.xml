@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name="com.flys.service.FCMService"
+            android:name="com.flys.service.FCMService_"
             android:exported="false"
             android:directBootAware="true">
             <intent-filter>

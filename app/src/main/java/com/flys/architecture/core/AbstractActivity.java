@@ -27,6 +27,7 @@ import com.flys.dao.service.IDao;
 import com.flys.service.SwipeDirection;
 import com.flys.tools.dialog.AbstractDialogActivity;
 import com.flys.tools.dialog.AbstractDialogFragmentInterface;
+import com.flys.tools.dialog.EditDialogFragment;
 import com.flys.tools.utils.DepthPageTransformer;
 import com.flys.tools.utils.Utils;
 import com.google.android.material.appbar.AppBarLayout;
@@ -416,13 +417,14 @@ public abstract class AbstractActivity extends AppCompatActivity implements IMai
     //Récupération du texte issu de la boite de dialogue
     @Override
     public void receivedDate(String data) {
-        Utils.shareText(this, "Dubun GUIZIGA", data + "  https://play.google.com/store/apps/details?id=com.flys.glearning", "Recommandation de l'application.");
+        Utils.shareText(this, "Dubun GUIZIGA", data + "  "+getString(R.string.app_google_play_store_url), "Recommandation de l'application.");
     }
+
 
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        AbstractDialogActivity dialogActivity = new AbstractDialogActivity("Recommandation", R.mipmap.ic_launcher, R.style.AlertDialogTheme, R.style.BodyTextStyle);
-        dialogActivity.show(fm, "fragment_edit_name");
+        EditDialogFragment editDialogFragment = new EditDialogFragment(this, getString(R.string.activity_abstract_recommendation_msg), R.drawable.logo, R.style.customMaterialAlertEditDialog, R.font.google_sans);
+        editDialogFragment.show(fm, "fragment_edit_dialog_name");
     }
 
 
