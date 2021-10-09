@@ -72,6 +72,7 @@ generictools/build/*
 
 # User-specific configurations
 .gradle/
+.idea
 .idea/
 .gradle/*
 .idea/*
