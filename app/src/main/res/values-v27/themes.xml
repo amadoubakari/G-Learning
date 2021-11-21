@@ -41,5 +41,13 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="popupMenuStyle">@style/popupmenu</item>
+        <item name="app_name">@string/app_name</item>
+        <item name="app_background_color">@color/app_background_color</item>
+        <item name="app_text_color" >@color/app_text_color</item>>
+        <item name="app_version">@string/app_version</item>
+        <item name="releasing_date">@string/releasing_date</item>
+        <item name="app_description">@string/app_description</item>
     </style>
+
+    <string name="releasing_date">27/10/2021</string>
 </resources>

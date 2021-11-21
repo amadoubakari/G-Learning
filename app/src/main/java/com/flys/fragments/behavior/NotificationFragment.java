@@ -271,7 +271,7 @@ public class NotificationFragment extends AbstractFragment implements MaterialNo
      */
     private void init() {
         notifications = new ArrayList<>();
-        notificationAdapter = new AdsSimpleNotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.app_text_color), activity.getColor(R.color.app_text_second_color), R.font.google_sans), true /*Constants.isNetworkConnected*/,activity.getString(R.string.fragment_notification_item_ads_native),this);
+        notificationAdapter = new AdsSimpleNotificationAdapter(activity, notifications, new DialogStyle(activity.getColor(R.color.app_text_color), activity.getColor(R.color.app_text_second_color), R.font.google_sans), false /*Constants.isNetworkConnected*/,activity.getString(R.string.fragment_notification_item_ads_native),this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(notificationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));

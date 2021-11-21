@@ -65,7 +65,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start|left"
         android:background="@color/color_primary"
-        app:headerLayout="@layout/navigation_header3"
+        app:headerLayout="@layout/navigation_header"
         app:insetForeground="@android:color/transparent"
         app:itemIconTint="@color/navigation_item_color_state"
        app:itemTextColor="@color/navigation_item_color_state"

@@ -3,58 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?colorPrimary"
-    android:orientation="vertical"
-    android:paddingTop="10dp">
-
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:paddingTop="34dp"
-        android:layout_gravity="left"
-        android:src="@drawable/baseline_account_circle_white_48dp"
-        app:civ_border_color="@android:color/white"
-        app:civ_border_width="0.5dp" />
-
-    <TextView
-        android:id="@+id/profile_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/google_sans"
-        android:paddingTop="5dp"
-        android:paddingLeft="16dp"
-        android:text="@string/activity_main_username"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        />
-
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:paddingBottom="10dp"
-        android:paddingLeft="16dp">
+        android:layout_marginTop="@dimen/layout_padding_10dp"
+        android:background="@drawable/header_bottom_border"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="34dp">
 
-        <TextView
-            android:id="@+id/profile_user_email_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/google_sans"
-            android:paddingTop="5dp"
-            android:text="@string/activity_main_email_address"
-            android:textColor="@android:color/white"
-            android:textSize="10sp"
-            android:layout_weight="0.5"
-            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_outline_account_circle_24"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
+            android:id="@+id/profile_user_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/google_sans"
+                android:paddingTop="5dp"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/profile_user_email_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/google_sans"
+                    android:paddingTop="5dp"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    app:srcCompat="@drawable/ic_outline_keyboard_arrow_down_24" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -109,6 +110,7 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -148,7 +150,8 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
     private String TAG = getClass().getSimpleName();
     // Register Callback - Call this in your app start!
     private ObjectMapper objectMapper;
-
+    private View headerNavView;
+    private ShapeableImageView profile;
 
     // méthodes classe parent -----------------------
     @Override
@@ -178,13 +181,20 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         objectMapper = new ObjectMapper();
         //Check network
         com.flys.tools.utils.Utils.registerNetworkCallback(this);
+        this.headerNavView = navigationView.getHeaderView(0);
+        this.profile = this.headerNavView.findViewById(R.id.profile_image);
+        profile.setOnClickListener(v -> createSignInIntent());
     }
 
     @Override
     protected void onResumeActivity() {
         //Update view if user has been connected
-        if (updateProfile() != null && updateProfile().getType() != null) {
-            updateUserConnectedProfile(updateProfile());
+        User user = updateProfile();
+        if (user != null && user.getType() != null) {
+            profile.setOnClickListener(null);
+            updateUserConnectedProfile(user);
+        } else {
+            profile.setOnClickListener(v -> createSignInIntent());
         }
 
     }
@@ -427,6 +437,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         snackbar.setActionTextColor(getColor(R.color.red_700));
         snackbar.show();
     }
+
     /**
      * Return user informations switch provider type
      *
@@ -655,12 +666,10 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
      * @param user
      */
     void updateUserConnectedProfile(User user) {
-        View headerNavView = navigationView.getHeaderView(0);
-        ShapeableImageView profile = headerNavView.findViewById(R.id.profile_image);
-        TextView title = headerNavView.findViewById(R.id.profile_user_name);
-        TextView mail = headerNavView.findViewById(R.id.profile_user_email_address);
+        TextView title = this.headerNavView.findViewById(R.id.profile_user_name);
+        TextView mail = this.headerNavView.findViewById(R.id.profile_user_email_address);
         MenuItem disconnect = navigationView.getMenu().findItem(R.id.menu_deconnexion);
-        LinearLayout userInfo=headerNavView.findViewById(R.id.profile_user_info);
+        LinearLayout userInfo = this.headerNavView.findViewById(R.id.profile_user_info);
         //Si l'utilisateur est connecte?
         if (user != null && (user.getEmail() != null || user.getPhone() != null)) {
             disconnect.setVisible(true);
@@ -684,17 +693,14 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
             }
             profile.setStrokeColor(getColorStateList(R.color.color_secondary));
             profile.setStrokeWidth((float) 0.5);
-            profile.setOnClickListener(null);
             userInfo.setVisibility(View.VISIBLE);
+
         } else {
             userInfo.setVisibility(View.GONE);
             profile.setStrokeColor(null);
             profile.setStrokeWidth(0);
             disconnect.setVisible(false);
             profile.setImageDrawable(getDrawable(R.drawable.ic_outline_account_circle_24));
-            profile.setOnClickListener(v -> {
-                createSignInIntent();
-            });
         }
     }
 
@@ -781,6 +787,7 @@ public class MainActivity extends AbstractActivity implements MaterialNotificati
         });
         notificationDialog.show(getSupportFragmentManager(), "material_notification_alert_dialog");
     }
+
     @Override
     public void scrollUp() {
         bottomNavigationView.setVisibility(View.GONE);
