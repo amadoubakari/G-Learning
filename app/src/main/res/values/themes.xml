@@ -1,3 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+
+        <item name="colorAccent">@color/color_accent</item>
+
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+
+        <item name="backgroundColor">@color/color_primary</item>
+        <item name="colorOnBackground">@color/color_on_primary</item>
+
+        <item name="android:windowBackground">@color/app_background_color</item>
+
+        <item name="android:textColorPrimary">@color/app_text_color</item>
+
+        <item name="android:textColorSecondary">@color/red_700</item>
+
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_keyboard_backspace_24</item>
+        <item name="actionModeBackground">@color/app_background_color</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorControlActivated">@color/red_700</item>
+        <item name="android:listDivider">@color/grey_100</item>
+        <item name="colorControlNormal">@color/color_control_name</item>
+        <item name="colorControlHighlight">@color/color_control_name</item>
+
+        <item name="android:navigationBarColor">@color/navigation_bar_color</item>
+        <item name="android:navigationIcon">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="fontFamily">@font/google_sans</item>
+
+        <!-- Window decor -->
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="popupMenuStyle">@style/popupmenu</item>
+        <item name="app_name">@string/app_name</item>
+    </style>
+
+    <string name="releasing_date">27/10/2021</string>
 </resources>

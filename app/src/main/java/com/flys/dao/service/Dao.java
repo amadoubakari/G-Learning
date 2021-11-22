@@ -2,6 +2,11 @@ package com.flys.dao.service;
 
 import android.util.Log;
 
+import com.flys.dao.db.NotificationDao;
+import com.flys.dao.db.NotificationDaoImpl;
+import com.flys.generictools.dao.daoException.DaoException;
+import com.flys.notification.domain.Notification;
+
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
@@ -12,7 +17,9 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import rx.Observable;
 
@@ -29,6 +36,9 @@ public class Dao extends AbstractDao implements IDao {
     private RestTemplate restTemplate;
     // factory du RestTemplate
     private SimpleClientHttpRequestFactory factory;
+
+    @Bean(NotificationDaoImpl.class)
+    protected NotificationDao notificationDao;
 
     @AfterInject
     public void afterInject() {
@@ -101,5 +111,43 @@ public class Dao extends AbstractDao implements IDao {
         }
     }
 
-    // todo : implémentation IDao
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase() {
+        return Observable.create(subscriber -> {
+            try {
+                List<Notification> notifications = notificationDao.getAll();
+                if (notifications != null) {
+                    subscriber.onNext(notifications.stream()
+                            .distinct()
+                            .sorted(Comparator.comparing(Notification::getDate).reversed())
+                            .collect(Collectors.toList()));
+                } else {
+                    subscriber.onNext(new ArrayList<>());
+                }
+                subscriber.onCompleted();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<Notification>> loadNotificationsFromDatabase(String property, Object value) {
+        return Observable.create(subscriber -> {
+            try {
+                List<Notification> notifications = notificationDao.findByPropertyName(property, value);
+                if (notifications != null) {
+                    subscriber.onNext(notifications.stream()
+                            .distinct()
+                            .sorted(Comparator.comparing(Notification::getDate).reversed())
+                            .collect(Collectors.toList()));
+                } else {
+                    subscriber.onNext(new ArrayList<>());
+                }
+                subscriber.onCompleted();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

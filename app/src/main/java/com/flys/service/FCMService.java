@@ -12,19 +12,45 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
+import androidx.core.app.NotificationCompat.InboxStyle;
+
 
 import com.flys.R;
 import com.flys.activity.MainActivity_;
-import com.flys.architecture.custom.DApplicationContext;
+import com.flys.dao.db.NotificationDao;
+import com.flys.dao.db.NotificationDaoImpl;
+import com.flys.dao.service.Dao;
+import com.flys.dao.service.IDao;
+import com.flys.generictools.dao.daoException.DaoException;
 import com.flys.notification.domain.Notification;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EService;
+
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import me.leolin.shortcutbadger.ShortcutBadger;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+@EService
 public class FCMService extends FirebaseMessagingService {
 
+    @Bean(NotificationDaoImpl.class)
+    protected NotificationDao notificationDao;
+    // couche [DAO]
+    @Bean(Dao.class)
+    protected IDao dao;
+
     private static final String TAG = "FCMService";
+
+    private static final String GROUP_KEY_WORK_EMAIL = "com.flys.dico.FIREBASE_NOTIFICATIONS";
+
+    private static int SUMMARY_ID = 0;
 
     /**
      * Called when message is received.
@@ -35,6 +61,7 @@ public class FCMService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Notification notification = new Notification();
+        //List<Notification> notifications = new ArrayList<>();
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages
         // are handled
@@ -53,7 +80,7 @@ public class FCMService extends FirebaseMessagingService {
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
+        //Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -61,7 +88,29 @@ public class FCMService extends FirebaseMessagingService {
             notification.setSubTitle(remoteMessage.getData().get("subTitle"));
             notification.setContent(remoteMessage.getData().get("content"));
             notification.setImageName(remoteMessage.getData().get("image"));
-            sendNotification(notification);
+            notification.setSource(remoteMessage.getData().get("source"));
+            notification.setSourceIcon(remoteMessage.getData().get("sourceIcon"));
+
+            //Saving notification in the database
+            try {
+                notification.setDate(new Date());
+                Log.e(getClass().getSimpleName(),"=============  Notification: "+notification);
+                notificationDao.save(notification);
+                dao.loadNotificationsFromDatabase("seen", false).debounce(500, TimeUnit.MILLISECONDS)
+                        .distinctUntilChanged()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(notifications -> {
+                            if (notifications != null && !notifications.isEmpty()) {
+                                sendNotification(this, notifications);
+                            }
+                        });
+
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+
+            //sendNotification(notification);
             /*if (*//* Check if data needs to be processed by long running job *//* true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
                 //scheduleJob();
@@ -73,10 +122,10 @@ public class FCMService extends FirebaseMessagingService {
         }
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            //sendNotification(remoteMessage.getNotification().getBody());
-        }
+        //if (remoteMessage.getNotification() != null) {
+        //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+        //sendNotification(remoteMessage.getNotification().getBody());
+        // }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -90,23 +139,23 @@ public class FCMService extends FirebaseMessagingService {
      */
     @Override
     public void onNewToken(String token) {
-        Log.d(TAG, "Refreshed token: " + token);
+        //Log.d(TAG, "Refreshed token: " + token);
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(token);
+        //sendRegistrationToServer(token);
     }
 
     /**
      * Schedule async work using WorkManager.
      */
     private void scheduleJob() {
-        // [START dispatch_job]
+       /* // [START dispatch_job]
         OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .build();
         WorkManager.getInstance(DApplicationContext.getContext()).beginWith(work).enqueue();
-        // [END dispatch_job]
+        // [END dispatch_job]*/
     }
 
     /**
@@ -129,31 +178,44 @@ public class FCMService extends FirebaseMessagingService {
     }
 
     /**
-     * Create and show a simple notification containing the received FCM message.
-     *
-     * @param notification FCM message body received.
+     * @param context:       from where notifications will be send
+     * @param notifications: list of unread notifications
      */
-    private void sendNotification(Notification notification) {
-        Intent intent = new Intent(DApplicationContext.getContext(), MainActivity_.class);
+    private void sendNotification(Context context, List<Notification> notifications) {
+        ShortcutBadger.applyCount(context, notifications.size());
+        Notification notification = notifications.get(0);
+        Intent intent = new Intent(context, MainActivity_.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("notification",notification);
+        bundle.putSerializable("notification", notification);
         intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(DApplicationContext.getContext(), 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, SUMMARY_ID, intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
+        //
+        InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        notifications.forEach(notification1 -> inboxStyle.addLine(notification1.getContent()));
+        String message = getString(R.string.fcm_notification_service_one_message);
+        if (notifications.size() > 1) {
+            message = getString(R.string.fcm_notification_service_no_messages);
+        }
+        inboxStyle.setBigContentTitle(notifications.size() + message);
+        //inboxStyle.setSummaryText("janedoe@example.com");
+        //
         String channelId = getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.books)
-                        .setContentTitle(notification.getSubTitle())
-                        .setContentText(notification.getSubTitle())
-                        .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(notification.getContent()))
+                        .setContentTitle(notifications.size() + getString(R.string.fcm_notification_service_no_messages))
+                        .setContentText(notification.getContent())
+                        .setStyle(inboxStyle)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
+                        .setContentIntent(pendingIntent)
+                        .setGroup(GROUP_KEY_WORK_EMAIL)
+                        .setGroupSummary(true)
+                        .setNumber(notifications.size());
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -166,6 +228,8 @@ public class FCMService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(SUMMARY_ID /* ID of notification */, notificationBuilder.build());
     }
+
+
 }

@@ -35,7 +35,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/grey_900"
                 android:textSize="28sp"
-                app:fontFamily="sans-serif-light" />
+                app:fontFamily="@font/google_sans"
+                android:textStyle="bold"/>
 
             <View
                 android:id="@+id/view11"
@@ -57,7 +58,9 @@
                 android:text="@string/home_msg"
                 android:lineSpacingExtra="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/google_sans"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>

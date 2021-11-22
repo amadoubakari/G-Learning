@@ -76,7 +76,7 @@ public class AboutFragment extends AbstractFragment {
     //------------------------------- Action sur la vue  --------------------------
     @Click(R.id.site)
     void openSite() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.kyossi.com"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kyossi.com"));
         startActivity(browserIntent);
     }
 

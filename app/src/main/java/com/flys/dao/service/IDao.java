@@ -1,5 +1,9 @@
 package com.flys.dao.service;
 
+import com.flys.notification.domain.Notification;
+
+import java.util.List;
+
 import rx.Observable;
 
 public interface IDao {
@@ -27,4 +31,10 @@ public interface IDao {
 
     //Download facebook profile image
     Observable<byte[]> downloadFacebookProfileImage(String baseUrl, String ext, String params, String facebookAppId);
+
+    //Load notifications from the data base
+    Observable<List<Notification>> loadNotificationsFromDatabase();
+
+    //Load notifications from the data base
+    Observable<List<Notification>> loadNotificationsFromDatabase(String property, Object value);
 }

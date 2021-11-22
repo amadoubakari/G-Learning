@@ -219,7 +219,9 @@ public abstract class AbstractFragment extends Fragment {
             // identifiant option
             int id = menuOptionsIds.get(i);
             // état option
-            menuOptionsStates[i] = new MenuItemState(id, menu.findItem(id).isVisible());
+            if (menu.findItem(id) != null) {
+                menuOptionsStates[i] = new MenuItemState(id, menu.findItem(id).isVisible());
+            }
         }
         // résultat
         if (isDebugEnabled) {
@@ -236,7 +238,9 @@ public abstract class AbstractFragment extends Fragment {
             // id du menu
             int id = state.getMenuItemId();
             // initialisation état
-            menuOptionsStates[i] = new MenuItemState(id, menu.findItem(id).isVisible());
+            if (menu.findItem(id) != null) {
+                menuOptionsStates[i] = new MenuItemState(id, menu.findItem(id).isVisible());
+            }
         }
         // résultat
         return menuOptionsStates;

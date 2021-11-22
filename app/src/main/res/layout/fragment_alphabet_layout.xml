@@ -15,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:fontFamily="@font/libre_franklin_thin"
-            android:textStyle="bold"
+            android:fontFamily="@font/google_sans"
             android:textSize="20sp"
             android:text="Alphabet GUIZIGA" />
 

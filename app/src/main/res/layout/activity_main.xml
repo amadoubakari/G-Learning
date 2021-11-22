@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.flys.activity.MainActivity">
+    tools:context="com.flys.activity.MainActivity"
+    tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -16,18 +17,15 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
            >
-
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
+                style="@style/kyossi.toolbar.style"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:theme="@style/ActionBarTheme"
-                app:titleTextAppearance="@style/AppTheme.Toolbar.Title"></androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+                app:titleTextAppearance="@style/customTitleTextStyle"
+                />
+          </com.google.android.material.appbar.AppBarLayout>
 
         <!-- conteneur de fragments -->
         <com.flys.architecture.core.MyPager xmlns:android="http://schemas.android.com/apk/res/android"
@@ -52,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
+
             app:itemIconTint="@drawable/bottom_navigation_colors"
             app:itemTextColor="@drawable/bottom_navigation_colors"
             app:menu="@menu/bottom_navigation_menu"
@@ -66,10 +64,22 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start|left"
+        android:background="@color/color_primary"
         app:headerLayout="@layout/navigation_header"
+        app:insetForeground="@android:color/transparent"
         app:itemIconTint="@color/navigation_item_color_state"
-        app:itemTextColor="@color/navigation_item_color_state"
-        app:itemBackground="@color/white"
-        app:menu="@menu/navigation_menu" />
+       app:itemTextColor="@color/navigation_item_color_state"
+        app:menu="@menu/navigation_menu">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="right|bottom"
+            android:paddingRight="@dimen/layout_padding_10dp"
+            android:paddingBottom="@dimen/layout_padding_10dp"
+            app:srcCompat="@drawable/logo"
+            android:visibility="gone"/>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

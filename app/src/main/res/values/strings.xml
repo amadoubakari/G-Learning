@@ -3,7 +3,7 @@
 
     <!-- nom de l'application -->
     <string name="app_name_release">Dubun Guiziga</string>
-    <string name="app_name_debug">Dev</string>
+    <string name="app_name_debug">Dubun Guiziga</string>
     <string name="msg_c_quoi">C\'est quoi?</string>
     <string name="msg_poisson">poisson</string>
     <string name="msg_arc">arc</string>
@@ -46,4 +46,14 @@
     <string name="firebase_subscription_release" translatable="false">firebase-glearning-release</string>
     <string name="firebase_subscription_debug" translatable="false">firebase-glearning-debug</string>
     <string name="main_activity_close_msg">Fermer</string>
+    <string name="app_version">1.1.2</string>
+    <string name="ads_native_notification_item_debug" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="fragment_notif_layout_no_elements">Aucune notification\ndisponible</string>
+    <string name="app_google_play_store_url">https://play.google.com/store/apps/details?id=com.flys.glearning</string>
+    <string name="delete_msg">Deleted</string>
+    <string name="ads_native_notification_item" translatable="false">ca-app-pub-9112600790446098/4885818374</string>
+    <string name="fcm_notification_service_no_messages">\u0020nouveaux messages</string>
+    <string name="fcm_notification_service_one_message">\u0020nouveau message</string>
+    <string name="activity_abstract_recommendation_msg">Recommandation</string>
+    <string name="app_description">Ira gaka sise haɗi, dumbuŋ naŋ na da buymisemuŋ mi vula ndra gidaŋ ati wuluk angi slra hana, waɗ da ndra Gizigahay misi ar hiriuy\'oy vuna gar asi jumo\'ay ndra na.</string>
 </resources>

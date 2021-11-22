@@ -1,14 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/red_A700</item>
-        <item name="colorPrimaryDark">@color/red_A700</item>
-        <item name="colorAccent">@color/red_A400</item>
-        <item name="android:textColorSecondary">@color/red_A200</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -19,10 +10,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="menu_font_style">
-        <item name="fontFamily">@font/libre_franklin_thin</item>
+        <item name="fontFamily">@font/google_sans</item>
     </style>
 
-    <style name="ActionBarTheme" parent="AppTheme.AppBarOverlay">
+        <style name="ActionBarTheme" parent="AppTheme.AppBarOverlay">
         <item name="android:textColorPrimary">@color/red_A700</item>
     </style>
 
@@ -31,11 +22,11 @@
         <item name="android:textSize">16dp</item>
         <!-- Set title color -->
         <item name="android:textColor">@color/red_A700</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
     <!--  Bottom navigation view style -->
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="fontFamily">@font/libre_franklin_thin</item>
+        <item name="fontFamily">@font/google_sans</item>
         <item name="android:textSize">12dp</item>
     </style>
 
@@ -49,50 +40,50 @@
 
     <style name="TitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:textColor">@color/grey_600</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="textMedium" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:textSize">30dp</item>
         <item name="android:textColor">@color/grey_800</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="textMedium26" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:textSize">26dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/grey_900</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="textMedium22" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:textSize">22dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/grey_900</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="textMediumSubTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:textSize">12dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/grey_600</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="BodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
         <item name="android:textColor">@color/grey_700</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/black</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/red_700</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="AlertDialogTheme.Center" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
@@ -135,18 +126,17 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:textColor">@color/red_A700</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">48sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">42sp</item>
     </style>
 
     <style name="style_letter_text_header_small">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">35dp</item>
         <item name="android:textColor">@color/red_A700</item>
@@ -157,17 +147,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:color">@color/black</item>
         <item name="android:textSize">@dimen/material_component_text_medium</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="style_text_header_medium_small">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:color">@color/black</item>
         <item name="android:textSize">@dimen/material_component_text_medium</item>
         <item name="android:textStyle">bold</item>
@@ -177,15 +166,64 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:fontFamily">@font/libre_franklin_thin</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:color">@color/black</item>
         <item name="android:textSize">@dimen/material_component_text_medium_xxl</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="customMaterialAlertEditDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@color/color_primary</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle2</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle2</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/materialDialogAlertContentStyle</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialTitleTextStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle2" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/color_on_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PositiveButtonStyle2" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/red_700</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="materialDialogAlertContentStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/app_text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="MaterialTitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/app_text_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/google_sans</item>
+    </style>
+
     <style name="AuthenticationTheme" parent="FirebaseUI">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
+    <style name="popupmenu" parent="Base.Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@color/app_text_color</item>
+        <item name="android:popupElevation">@dimen/layout_padding_10dp</item>
+    </style>
+    <style name="kyossi.toolbar.style" parent="Widget.AppCompat.Light.PopupMenu">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+        <item name="android:background">@color/app_background_color</item>
+    </style>
+    <style name="customTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="roundedImageViewRounded">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
